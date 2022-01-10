@@ -25,9 +25,9 @@ public class TestDAL {
 	 */
 	public static void main(String[] args) throws SQLException {
 
-//		// Insertion d'un nouvel utilisateur
+		// Insertion d'un nouvel utilisateur
 //		try {
-//			DAOFactory.getUtilisateurDAO().ajouterUtilisateur(new Utilisateur("mamie", "goarnisson", "claire", "clairegoarnisson@gmail.com", "0606060606", "2 rue de la chapelle", "35000", "RENNES", "mdp", 100, false));
+//			DAOFactory.getUtilisateurDAO().ajouterUtilisateur(new Utilisateur("papy", "fernands", "angélo", "fernandesangelo@gmail.com", "0606060606", "2 rue de la chapelle", "35000", "RENNES", "mdp", 100, false));
 //		} catch (DALException e) {
 //			e.printStackTrace();
 //		}
