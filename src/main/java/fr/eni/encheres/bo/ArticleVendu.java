@@ -11,6 +11,8 @@ import java.util.List;
  *
  */
 public class ArticleVendu {
+	
+	//Coucou les girls !!!!!
 	Integer noArticle;
 	String nomArticle;
 	String description;
