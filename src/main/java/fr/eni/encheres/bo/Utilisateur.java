@@ -29,6 +29,28 @@ public class Utilisateur {
 	 */
 	public Utilisateur() {
 	}
+	
+	/**
+	 * Constructeur.
+	 * @param noUtilisateur
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 * @param credit
+	 * @param administrateur
+	 */
+	public Utilisateur(Integer noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse, Integer credit, Boolean administrateur) {
+		this(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+		this.noUtilisateur = noUtilisateur;
+	}
+
 	/**
 	 * Constructeur.
 	 * @param pseudo
