@@ -9,6 +9,7 @@ import java.util.List;
  * Classe en charge de créer un objet catégorie
  * 
  */
+//TEST MODIF ROXANE 
 public class Categorie {
 	Integer noCategorie;
 	String libelle;
