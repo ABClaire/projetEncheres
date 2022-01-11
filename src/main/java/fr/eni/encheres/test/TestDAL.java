@@ -26,11 +26,11 @@ public class TestDAL {
 	public static void main(String[] args) throws SQLException {
 
 		// Insertion d'un nouvel utilisateur
-//		try {
-//			DAOFactory.getUtilisateurDAO().ajouterUtilisateur(new Utilisateur("papy", "fernands", "ang�lo", "fernandesangelo@gmail.com", "0606060606", "2 rue de la chapelle", "35000", "RENNES", "mdp", 100, false));
-//		} catch (DALException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			DAOFactory.getUtilisateurDAO().ajouterUtilisateur(new Utilisateur("pépé", "arien", "fernand", "fernandesangelo@gmail.com", "0606060606", "2 rue de la chapelle", "35000", "RENNES", "mdp", 100, false));
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 		
 		// Liste de tous les utilisateurs
 		try {

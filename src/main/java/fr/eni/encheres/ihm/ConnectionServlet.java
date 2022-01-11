@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bll.UtilisateurManagerImpl;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -35,7 +34,7 @@ public class ConnectionServlet extends HttpServlet {
 			String identifiant = request.getParameter("identifiant");
 			String motDePasse = request.getParameter("motDePasse");
 			Utilisateur saisieUtilisateur = new Utilisateur(identifiant, motDePasse);
-			Utilisateur utilisateurRecuperer;
+			Utilisateur utilisateurRecuperer = new Utilisateur();
 			
 			try {
 				utilisateurRecuperer = UtilisateurManagerImpl.getInstance().verificationIdentifiantMotDePasse(saisieUtilisateur);
@@ -45,6 +44,8 @@ public class ConnectionServlet extends HttpServlet {
 				request.setAttribute("message", e.getMessage());
 				e.printStackTrace();
 			}
+			
+			request.setAttribute("message", utilisateurRecuperer);
 			
 		}
 		

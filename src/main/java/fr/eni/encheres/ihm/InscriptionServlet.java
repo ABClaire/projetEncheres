@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.BLLException;
+import fr.eni.encheres.bll.UtilisateurManagerImpl;
+import fr.eni.encheres.bo.Utilisateur;
+
 /**
  * Servlet implementation class InscriptionServlet
  */
@@ -24,6 +28,35 @@ public class InscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		if(request.getParameter("creerUtilisateur") != null) {
+			if(request.getParameter("motDePasse").equals(request.getParameter("confirmationMotDePasse"))) {
+				String pseudo = request.getParameter("pseudo");
+				String nom = request.getParameter("nom");
+				String prenom = request.getParameter("prenom");
+				String email = request.getParameter("email");
+				String rue = request.getParameter("rue");
+				String codePostal = request.getParameter("codePostal");
+				String ville = request.getParameter("ville");
+				String motDePasse = request.getParameter("motDePasse");
+				
+				Utilisateur nouvelUtilisateur = new Utilisateur(pseudo, nom, prenom, email, rue, codePostal, ville, motDePasse, 100, false);
+				
+				try {
+					UtilisateurManagerImpl.getInstance().ajouterNouvelUtilisateur(nouvelUtilisateur);
+				} catch (BLLException e) {
+					e.printStackTrace();
+					request.setAttribute("message", e.toString());
+				}
+				
+			} else {
+				request.setAttribute("message", "les deux mots de passes sont différents");
+			}
+		}
+		
+		
+		
 		
 		request.getRequestDispatcher("WEB-INF/inscription.jsp").forward(request, response);
 	}
