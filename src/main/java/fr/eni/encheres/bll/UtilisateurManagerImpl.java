@@ -158,6 +158,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		// récupération de la saisie utilisateur
 		String identifiant = utilisateur.getEmail();
 		String motDePasse = utilisateur.getMotDePasse();
+		String pseudo = utilisateur.getPseudo();
 		Utilisateur compteAAssocier = utilisateur;
 		
 		//récupération de la liste des comptes
@@ -173,12 +174,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		// Vérification de l'existance d'un compte utilisateur
 		for (Utilisateur compte : LstCompteUtilisateur) {	
-			if (identifiant.equals(compte.getEmail()) && motDePasse.equals(compte.getMotDePasse())) {
+			if ((identifiant.equals(compte.getEmail()) && motDePasse.equals(compte.getMotDePasse())) || (pseudo.equals(compte.getPseudo()) && motDePasse.equals(compte.getMotDePasse()))) {
 				// le compte existe
 				combinaisonValide = true;
 				compteAAssocier = compte;
 				break;
 			}
+			
+			
 		}
 		
 		// si le compte n'exite pas: exception

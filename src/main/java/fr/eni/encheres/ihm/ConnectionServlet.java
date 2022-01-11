@@ -35,7 +35,7 @@ public class ConnectionServlet extends HttpServlet {
 			String identifiant = request.getParameter("identifiant");
 			String motDePasse = request.getParameter("motDePasse");
 			Utilisateur saisieUtilisateur = new Utilisateur(identifiant, motDePasse);
-			Utilisateur utilisateurRecuperer;
+			Utilisateur utilisateurRecuperer = new Utilisateur();
 			
 			try {
 				utilisateurRecuperer = UtilisateurManagerImpl.getInstance().verificationIdentifiantMotDePasse(saisieUtilisateur);
@@ -46,6 +46,7 @@ public class ConnectionServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			request.setAttribute("message", utilisateurRecuperer);
 		}
 		
 		request.getRequestDispatcher("WEB-INF/ConnexionPage.jsp").forward(request, response);
