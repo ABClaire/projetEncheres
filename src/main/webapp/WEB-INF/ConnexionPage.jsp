@@ -8,10 +8,17 @@
 </head>
 <body>
 <form action="ConnectionServlet" method="POST">
-	<input type="text" name="identifiant" value="${identifiant}"/>
-	<input type="text" name="motDePasse" value="${motDePasse}"/>
+	<p>Identifiant :</p><input type="text" name="identifiant" value="${identifiant}"/><br>
+	<p>Mot de passe :</p><input type="text" name="motDePasse" value="${motDePasse}"/>
 	<p>${message}</p>
+	<p>${donneeUtilisateur}</p>
 	<input type="submit" name="Connexion" value="Connexion"/>
+	
+	
+</form>
+<form action="ConnectionServlet" method="POST">
+	
+	<input type="submit" name="Creation Compte" value="Creation Compte"/>
 	
 </form>
 
