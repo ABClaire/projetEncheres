@@ -46,7 +46,7 @@ public class ConnectionServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("message", utilisateurRecuperer);
-			
+
 		}
 		
 		request.getRequestDispatcher("WEB-INF/ConnexionPage.jsp").forward(request, response);
