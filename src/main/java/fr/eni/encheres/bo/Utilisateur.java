@@ -44,6 +44,13 @@ public class Utilisateur {
 	}
 
 
+	public Utilisateur(String pseudo, String email, String motDePasse) {
+		super();
+		this.pseudo = pseudo;
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
+
 	/**
 	 * Constructeur.
 	 * @param noUtilisateur

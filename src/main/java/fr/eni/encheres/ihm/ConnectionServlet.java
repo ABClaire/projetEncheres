@@ -20,50 +20,52 @@ public class ConnectionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ConnectionServlet() {
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		if(request.getRequestURI().contains("Inscription")) {
-			System.out.println("je suis dans requestURI");
-			Boolean inscrit =	request.getRequestURI().contains("Inscription");
-			System.out.println(inscrit);
-			request.setAttribute("messageInscription", "Merci pour votre inscription! Vous pouvez vous connecter");
-		}
-		
-		if (request.getParameter("Connexion") != null) {
-			String identifiant = request.getParameter("identifiant");
-			String motDePasse = request.getParameter("motDePasse");
-			Utilisateur saisieUtilisateur = new Utilisateur(identifiant, motDePasse);
-			Utilisateur utilisateurRecuperer = new Utilisateur();
-			
-			try {
-				utilisateurRecuperer = UtilisateurManagerImpl.getInstance().verificationIdentifiantMotDePasse(saisieUtilisateur);
-				request.getSession().setAttribute("utilisateur", utilisateurRecuperer);
-			} catch (BLLException e) {
-				e.getMessage();
-				request.setAttribute("message", e.getMessage());
-				e.printStackTrace();
-			}
-			
-			request.setAttribute("message", utilisateurRecuperer);
-
-		}
-		
-		request.getRequestDispatcher("WEB-INF/ConnexionPage.jsp").forward(request, response);
-		
+	public ConnectionServlet() {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String nextScreen = "WEB-INF/ConnexionPage.jsp";
+
+		if (request.getParameter("Connexion") != null) {
+			String identifiant = request.getParameter("identifiant");
+			String motDePasse = request.getParameter("motDePasse");
+			Utilisateur saisieUtilisateur = new Utilisateur(identifiant, identifiant, motDePasse);
+			Utilisateur utilisateurRecuperer = new Utilisateur();
+			String message = null;
+			try {
+				utilisateurRecuperer = UtilisateurManagerImpl.getInstance()
+						.verificationIdentifiantMotDePasse(saisieUtilisateur);
+				request.getSession().setAttribute("utilisateur", utilisateurRecuperer);
+			} catch (BLLException e) {
+				message = e.toString();
+
+			}
+
+			request.setAttribute("message", message);
+			request.setAttribute("donneeUtilisateur", utilisateurRecuperer);
+
+		}
+		if (request.getParameter("Creation Compte") != null) {
+			nextScreen = "WEB-INF/inscription.jsp";
+
+		}
+		request.getRequestDispatcher(nextScreen).forward(request, response);
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

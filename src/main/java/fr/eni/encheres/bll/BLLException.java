@@ -33,7 +33,7 @@ public class BLLException extends Exception{
 		StringBuilder sb = new StringBuilder();
 		sb.append(System.lineSeparator());
 		for(Exception e : erreurs) {
-			sb.append(e.getMessage()).append("\n")
+			sb.append(e.getMessage())
 				.append(System.lineSeparator());
 		}
 		return sb.toString();

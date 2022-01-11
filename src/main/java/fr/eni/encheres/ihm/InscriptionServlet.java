@@ -43,7 +43,7 @@ public class InscriptionServlet extends HttpServlet {
 				
 				Utilisateur nouvelUtilisateur = new Utilisateur(pseudo, nom, prenom, email, rue, codePostal, ville, motDePasse, 100, false);
 				nextScreen = "/Connexion";
-				request.setAttribute("messageConnexion", "Merci pour votre inscription! Vous pouvez vous connecter");
+				request.setAttribute("messageInscriptionOk", "Merci pour votre inscription! Vous pouvez vous connecter");
 				
 				try {
 					UtilisateurManagerImpl.getInstance().ajouterNouvelUtilisateur(nouvelUtilisateur);
