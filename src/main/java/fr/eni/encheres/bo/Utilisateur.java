@@ -30,6 +30,20 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 	
+	
+	/**
+	 * Constructeur.
+	 * @param email
+	 * @param motDePasse
+	 */
+	
+	public Utilisateur(String email, String motDePasse) {
+		super();
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
+
+
 	/**
 	 * Constructeur.
 	 * @param noUtilisateur
