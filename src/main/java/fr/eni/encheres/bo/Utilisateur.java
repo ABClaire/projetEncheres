@@ -9,6 +9,18 @@ import java.util.List;
  * Classe en charge de créer un objet utilisateur
  *
  */
+/**
+ * Classe en charge de 
+ * @author cgoarnisson2021
+ * @date 11 janv. 2022 - 09:54:25
+ * @version ProjetEncheres - V0.1  
+ */
+/**
+ * Classe en charge de 
+ * @author cgoarnisson2021
+ * @date 11 janv. 2022 - 09:54:35
+ * @version ProjetEncheres - V0.1  
+ */
 public class Utilisateur {
 	Integer noUtilisateur;
 	String pseudo;
@@ -30,6 +42,56 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 	
+
+	/**
+	 * Constructeur.
+	 * @param noUtilisateur
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 * @param credit
+	 * @param administrateur
+	 */
+	public Utilisateur(String pseudo, String nom, String prenom, String email,
+			String rue, String codePostal, String ville, String motDePasse, Integer credit, Boolean administrateur) {
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.motDePasse = motDePasse;
+		this.credit = credit;
+		this.administrateur = administrateur;
+	}
+	
+	/**
+	 * Constructeur.
+	 * @param pseudo
+	 * @param nom
+	 * @param prenom
+	 * @param email
+	 * @param telephone
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 * @param motDePasse
+	 * @param credit
+	 * @param administrateur
+	 */
+	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String codePostal, String ville, String motDePasse, Integer credit, Boolean administrateur) {
+		this(pseudo, nom, prenom, email, rue, codePostal, ville, motDePasse, credit, administrateur);
+		this.telephone = telephone;
+	}
+	
+
 	/**
 	 * Constructeur.
 	 * @param noUtilisateur
@@ -50,35 +112,7 @@ public class Utilisateur {
 		this(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 		this.noUtilisateur = noUtilisateur;
 	}
-
-	/**
-	 * Constructeur.
-	 * @param pseudo
-	 * @param nom
-	 * @param prenom
-	 * @param email
-	 * @param telephone
-	 * @param rue
-	 * @param codePostal
-	 * @param ville
-	 * @param motDePasse
-	 * @param credit
-	 * @param administrateur
-	 */
-	public Utilisateur(String pseudo, String nom, String prenom, String email, String telephone,
-			String rue, String codePostal, String ville, String motDePasse, Integer credit, Boolean administrateur) {
-		this.pseudo = pseudo;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.telephone = telephone;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
-		this.motDePasse = motDePasse;
-		this.credit = credit;
-		this.administrateur = administrateur;
-	}
+	
 	/**
 	 * Getter pour noUtilisateur.
 	 * @return the noUtilisateur
