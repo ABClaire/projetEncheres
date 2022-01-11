@@ -15,7 +15,7 @@ import fr.eni.encheres.bo.Utilisateur;
 /**
  * Servlet implementation class ConnectionServlet
  */
-@WebServlet("/ConnectionServlet")
+@WebServlet("/Connexion")
 public class ConnectionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -30,6 +30,13 @@ public class ConnectionServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		if(request.getRequestURI().contains("Inscription")) {
+			System.out.println("je suis dans requestURI");
+			Boolean inscrit =	request.getRequestURI().contains("Inscription");
+			System.out.println(inscrit);
+			request.setAttribute("messageInscription", "Merci pour votre inscription! Vous pouvez vous connecter");
+		}
+		
 		if (request.getParameter("Connexion") != null) {
 			String identifiant = request.getParameter("identifiant");
 			String motDePasse = request.getParameter("motDePasse");

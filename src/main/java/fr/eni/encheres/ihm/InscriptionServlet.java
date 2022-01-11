@@ -28,7 +28,7 @@ public class InscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String nextScreen = "WEB-INF/inscription.jsp";
 		
 		if(request.getParameter("creerUtilisateur") != null) {
 			if(request.getParameter("motDePasse").equals(request.getParameter("confirmationMotDePasse"))) {
@@ -42,6 +42,8 @@ public class InscriptionServlet extends HttpServlet {
 				String motDePasse = request.getParameter("motDePasse");
 				
 				Utilisateur nouvelUtilisateur = new Utilisateur(pseudo, nom, prenom, email, rue, codePostal, ville, motDePasse, 100, false);
+				nextScreen = "/Connexion";
+				request.setAttribute("messageConnexion", "Merci pour votre inscription! Vous pouvez vous connecter");
 				
 				try {
 					UtilisateurManagerImpl.getInstance().ajouterNouvelUtilisateur(nouvelUtilisateur);
@@ -58,7 +60,7 @@ public class InscriptionServlet extends HttpServlet {
 		
 		
 		
-		request.getRequestDispatcher("WEB-INF/inscription.jsp").forward(request, response);
+		request.getRequestDispatcher(nextScreen).forward(request, response);
 	}
 
 	/**

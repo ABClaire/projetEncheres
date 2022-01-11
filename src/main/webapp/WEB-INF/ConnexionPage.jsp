@@ -7,7 +7,9 @@
 <title>Page de Connexion</title>
 </head>
 <body>
-<form action="ConnectionServlet" method="POST">
+
+<p> ${messageInscription} </p>
+<form action="Connexion" method="POST">
 	<input type="text" name="identifiant" value="${identifiant}"/>
 	<input type="text" name="motDePasse" value="${motDePasse}"/>
 	<p>${message}</p>

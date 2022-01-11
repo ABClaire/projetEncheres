@@ -30,10 +30,10 @@ public class BLLException extends Exception{
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder("BLLException");
+		StringBuilder sb = new StringBuilder();
 		sb.append(System.lineSeparator());
 		for(Exception e : erreurs) {
-			sb.append(e.getMessage())
+			sb.append(e.getMessage()).append("\n")
 				.append(System.lineSeparator());
 		}
 		return sb.toString();
