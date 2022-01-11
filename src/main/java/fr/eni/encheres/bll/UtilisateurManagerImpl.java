@@ -150,4 +150,47 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		return utilisateur;
 	}
+	
+	
+	public Utilisateur verificationIdentifiantMotDePasse (Utilisateur utilisateur) throws BLLException {
+		Boolean combinaisonValide = false;
+		
+		// récupération de la saisie utilisateur
+		String identifiant = utilisateur.getEmail();
+		String motDePasse = utilisateur.getMotDePasse();
+		Utilisateur compteAAssocier = utilisateur;
+		
+		//récupération de la liste des comptes
+		List<Utilisateur> LstCompteUtilisateur;
+		
+		// DAl exception passer en BLL exception
+		try {
+			LstCompteUtilisateur = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e);
+		}
+		
+		// Vérification de l'existance d'un compte utilisateur
+		for (Utilisateur compte : LstCompteUtilisateur) {	
+			if (identifiant.equals(compte.getEmail()) && motDePasse.equals(compte.getMotDePasse())) {
+				// le compte existe
+				combinaisonValide = true;
+				compteAAssocier = compte;
+				break;
+			}
+		}
+		
+		// si le compte n'exite pas: exception
+		if (combinaisonValide == false) {
+			BLLException be = new BLLException();
+
+			be.ajouterErreur(new ParameterException("Erreur Mdp identifiant"));
+			
+			throw be;
+		}
+
+		return compteAAssocier;
+	}
+	
 }

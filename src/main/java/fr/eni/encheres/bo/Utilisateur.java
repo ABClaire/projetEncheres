@@ -9,18 +9,7 @@ import java.util.List;
  * Classe en charge de créer un objet utilisateur
  *
  */
-/**
- * Classe en charge de 
- * @author cgoarnisson2021
- * @date 11 janv. 2022 - 09:54:25
- * @version ProjetEncheres - V0.1  
- */
-/**
- * Classe en charge de 
- * @author cgoarnisson2021
- * @date 11 janv. 2022 - 09:54:35
- * @version ProjetEncheres - V0.1  
- */
+
 public class Utilisateur {
 	Integer noUtilisateur;
 	String pseudo;
@@ -42,6 +31,18 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 	
+	/**
+	 * Constructeur.
+	 * @param email
+	 * @param motDePasse
+	 */
+	
+	public Utilisateur(String email, String motDePasse) {
+		super();
+		this.email = email;
+		this.motDePasse = motDePasse;
+	}
+
 
 	/**
 	 * Constructeur.
