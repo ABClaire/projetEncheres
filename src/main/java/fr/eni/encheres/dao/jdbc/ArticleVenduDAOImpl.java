@@ -15,7 +15,7 @@ import fr.eni.encheres.dao.ArticleVenduDAO;
 import fr.eni.encheres.dao.DALException;
 
 /**
- * Classe en charge d'effectuer des traitements de base de données
+ * Classe en charge d'effectuer des traitements de base de donnï¿½es
  *
  */
 
@@ -23,10 +23,10 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 	//Rajouter categorie article et lieu retrait
 	private final static String INSERT = "INSERT INTO ARTICLES_VENDUS (nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix) VALUES (?,?,?,?,?,?)";
-	private final static String SELECT_ALL = "SELECT * FROM ARTICLES_VENDUS ";
+	private final static String SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, prix_vente, no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
 
 	/**
-	 * Méthode en charge d'ajouter un nouvel article à la BDD
+	 * Mï¿½thode en charge d'ajouter un nouvel article dans la BDD
 	 */
 	@Override
 	public void ajouterArticleVendu (ArticleVendu articleVendu) throws DALException {
@@ -39,7 +39,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				pStmt.setDate(4,java.sql.Date.valueOf(articleVendu.getDateDebutEncheres()));
 				pStmt.setDate(5, java.sql.Date.valueOf(articleVendu.getDateFinEncheres()));
 				pStmt.setInt(6, articleVendu.getMiseAPrix());
-//				pStmt.set???(7, articleVendu.getCategorieArticle());
+				//pStmt.setInt(7, articleVendu.getCategorieArticle());
 //				pStmt.set???(8, articleVendu.getLieuRetrait());
 
 				pStmt.executeUpdate();

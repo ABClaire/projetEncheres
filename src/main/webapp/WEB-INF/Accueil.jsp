@@ -24,7 +24,7 @@
             <div class="col-md-6">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">S'inscrire - Se connecter</a>
+                        <a class="nav-link active" href="http://localhost:8080/ProjetEncheres/Connexion">S'inscrire - Se connecter</a>
                     </li>                
                 </ul>
             </div>
@@ -43,7 +43,7 @@
         <!--Recherche-->
         <section class="search-sec">
             <div class="container-fluid">
-                <form action="#" method="post" novalidate="novalidate">
+                <form action="Encheres" method="post" novalidate="novalidate">
                     <dv class="row">
                         <div class="col-md-6">
                             <p>Filtres</p>

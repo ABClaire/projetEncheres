@@ -3,9 +3,13 @@
  */
 package fr.eni.encheres.test;
 
+import java.time.LocalDate;
+import java.util.Locale;
+
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bll.UtilisateurManagerImpl;
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -16,6 +20,11 @@ public class TestBLL {
 	public static void main(String[] args) {
 		UtilisateurManager mger = UtilisateurManagerImpl.getInstance();
 		
+	/*
+	 * =========================================================
+	 * 				TEST INSCRIPTION UTILISATEUR
+	 * =========================================================
+	*/
 		// Vérification erreur pseudo avec caractères spéciaux
 		Utilisateur utilisateurErreurPseudo = new Utilisateur("Pseudo!", "Erreur", "Pseudo", "erreur.pseudo@outlook.fr", "15 rue de l'impasse", "35000", "Rennes", "monErreur", 100, false);
 		try {
@@ -48,6 +57,12 @@ public class TestBLL {
 			e.printStackTrace();
 		}
 		
+	
+		/*
+		 * =========================================================
+		 * 				TEST CONNEXION UTILISATEUR
+		 * =========================================================
+		*/
 		
 		// test identifiant 1
 		// Utilisateur claire 

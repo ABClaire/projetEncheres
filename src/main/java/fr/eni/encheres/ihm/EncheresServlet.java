@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**	
  * Servlet implementation class EncheresServlet
  */
-@WebServlet("/EncheresServlet")
+@WebServlet("/Encheres")
 public class EncheresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -19,7 +19,6 @@ public class EncheresServlet extends HttpServlet {
      * Default constructor. 
      */
     public EncheresServlet() {
-        // TODO Auto-generated constructor stub
     }
 
 	/**
