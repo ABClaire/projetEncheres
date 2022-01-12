@@ -8,6 +8,8 @@ import java.util.List;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
+import fr.eni.encheres.dao.UtilisateurDAO;
+import fr.eni.encheres.dao.jdbc.UtilisateurDAOImpl;
 
 /**
  * Classe en charge de gérer les utilisateurs du site
@@ -195,5 +197,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 		return compteAAssocier;
 	}
+
 	
 }
