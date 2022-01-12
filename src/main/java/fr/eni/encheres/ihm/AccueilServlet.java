@@ -8,17 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**	
- * Servlet implementation class EncheresServlet
- */
-@WebServlet("/Encheres")
-public class EncheresServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public EncheresServlet() {
+@WebServlet("/AccueilServlet")
+public class AccueilServlet extends HttpServlet {
+
+    public AccueilServlet() {
     }
 
 	/**
