@@ -31,6 +31,15 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 	
+	
+	
+	public Utilisateur(String pseudo) {
+		super();
+		this.pseudo = pseudo;
+	}
+
+
+
 	/**
 	 * Constructeur.
 	 * @param email
@@ -42,6 +51,16 @@ public class Utilisateur {
 		this.email = email;
 		this.motDePasse = motDePasse;
 	}
+
+
+	
+	
+	public Utilisateur(String pseudo, List<ArticleVendu> lstVentes) {
+		super();
+		this.pseudo = pseudo;
+		this.lstVentes = lstVentes;
+	}
+
 
 
 	public Utilisateur(String pseudo, String email, String motDePasse) {
