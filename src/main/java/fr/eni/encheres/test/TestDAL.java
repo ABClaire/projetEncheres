@@ -14,20 +14,16 @@ import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
 
-/**
- * Classe en charge de 
- * @author cgoarnisson2021
- * @date 10 janv. 2022 - 16:51:37
- * @version ProjetEncheres - V0.1  
- */
 public class TestDAL {
 
+	
 	/**
 	 * Méthode en charge de tester la couche DAL
 	 * @param args
 	 * @throws SQLException 
 	 */
 	public static void main(String[] args) throws SQLException {
+
 
 //		// Insertion d'un nouvel utilisateur
 //		try {
@@ -44,19 +40,8 @@ public class TestDAL {
 //			e.printStackTrace();
 //		}
 		
-		Utilisateur util = null;
-		try {
-			util = DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(util);
-		
-		for (ArticleVendu string : util.getLstVentes()) {
-			System.out.println(string);
-		}
-		
+
+	
 	}
 
 }

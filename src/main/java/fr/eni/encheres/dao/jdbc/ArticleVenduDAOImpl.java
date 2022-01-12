@@ -5,11 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
@@ -38,7 +35,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "";
 
 	/**
-	 * M�thode en charge d'ajouter un nouvel article dans la BDD
+	 * Méthode en charge d'ajouter un nouvel article dans la BDD
 	 */
 	@Override
 	public void ajouterArticleVendu (ArticleVendu articleVendu) throws DALException {
@@ -112,7 +109,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			throw new DALException(e.getMessage());
 		}
 		
-		return utilisateur;
+		return lstArticleVendus;
 	}
 
 

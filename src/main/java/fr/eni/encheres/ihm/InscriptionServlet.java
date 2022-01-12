@@ -53,11 +53,9 @@ public class InscriptionServlet extends HttpServlet {
 				}
 				
 			} else {
-				request.setAttribute("message", "les deux mots de passes sont différents");
+				request.setAttribute("message", "Attention, vous avez saisi deux mots de passes différents. Veuillez recommancer s'il vous plait");
 			}
 		}
-		
-		
 		
 		
 		request.getRequestDispatcher(nextScreen).forward(request, response);

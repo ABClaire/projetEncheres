@@ -37,26 +37,28 @@ public class ConnectionServlet extends HttpServlet {
 			String identifiant = request.getParameter("identifiant");
 			String motDePasse = request.getParameter("motDePasse");
 			Utilisateur saisieUtilisateur = new Utilisateur(identifiant, identifiant, motDePasse);
-			Utilisateur utilisateurRecuperer = new Utilisateur();
+			Utilisateur utilisateurRecupere;
 			String message = null;
+
 			try {
-				utilisateurRecuperer = UtilisateurManagerImpl.getInstance()
+				utilisateurRecupere = UtilisateurManagerImpl.getInstance()
 						.verificationIdentifiantMotDePasse(saisieUtilisateur);
-				request.getSession().setAttribute("utilisateur", utilisateurRecuperer);
+				
+				if(utilisateurRecupere.getNoUtilisateur() != null) {
+					request.getSession().setAttribute("utilisateur", utilisateurRecupere);
+					nextScreen = "AccueilConnecte";
+				} 
 			} catch (BLLException e) {
 				message = e.toString();
-
+				
 			}
-
+			
 			request.setAttribute("message", message);
-			request.setAttribute("donneeUtilisateur", utilisateurRecuperer);
 
 		}
 		if (request.getParameter("Creation Compte") != null) {
 			nextScreen = "WEB-INF/inscription.jsp";
 		}
-		
-		
 		
 		
 		request.getRequestDispatcher(nextScreen).forward(request, response);
