@@ -29,6 +29,19 @@ public class ArticleVendu {
 	 */
 	public ArticleVendu() {
 	}
+	
+	
+	
+	public ArticleVendu(String nomArticle, String description, LocalDate dateFinEncheres, Integer miseAPrix) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+	}
+
+
+
 	/**
 	 * Constructeur.
 	 * @param noArticle

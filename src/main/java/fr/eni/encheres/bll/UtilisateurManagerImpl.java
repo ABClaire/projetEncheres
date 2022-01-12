@@ -190,7 +190,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		if (combinaisonValide == false) {
 			BLLException be = new BLLException();
 
-			be.ajouterErreur(new ParameterException("Erreur Mdp identifiant"));
+			be.ajouterErreur(new ParameterException("Identifiant ou mot de passe incorrect. Veuillez réessayer ou cliquez sur le bouton de création d'un compte."));
 			
 			throw be;
 		}
