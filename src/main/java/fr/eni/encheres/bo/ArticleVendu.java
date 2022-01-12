@@ -30,6 +30,29 @@ public class ArticleVendu {
 	public ArticleVendu() {
 	}
 	
+	/**
+	 * Constructeur.
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param utilisateur
+	 * @param categorieArticle
+	 * @param lieuRetrait
+	 */
+	public ArticleVendu(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
+			Integer miseAPrix, Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait) {
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.utilisateur = utilisateur;
+		this.categorieArticle = categorieArticle;
+		this.lieuRetrait = lieuRetrait;
+	}
+
 	
 	
 	public ArticleVendu(String nomArticle, String description, LocalDate dateFinEncheres, Integer miseAPrix) {

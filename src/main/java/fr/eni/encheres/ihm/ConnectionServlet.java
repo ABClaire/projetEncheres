@@ -42,7 +42,7 @@ public class ConnectionServlet extends HttpServlet {
 
 			try {
 				utilisateurRecupere = UtilisateurManagerImpl.getInstance()
-						.verificationIdentifiantMotDePasse(saisieUtilisateur);
+						.verificationLogin(saisieUtilisateur);
 				
 				if(utilisateurRecupere.getNoUtilisateur() != null) {
 					request.getSession().setAttribute("utilisateur", utilisateurRecupere);

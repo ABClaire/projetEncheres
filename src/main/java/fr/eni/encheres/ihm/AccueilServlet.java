@@ -27,9 +27,14 @@ public class AccueilServlet extends HttpServlet {
 		
 		if (request.getParameter("recherche")!= null) {
 			option = request.getParameter("listeDeroulante");
+
 			
 			
 			// je récupère sous forme de String l'option choisie quand le bouton recherche est choisie
+
+			System.out.println(option);
+			// je rï¿½cupï¿½re sous forme de String l'option choisie quand le bouton recherche est choisie
+
 			
 			
 		}
@@ -38,7 +43,6 @@ public class AccueilServlet extends HttpServlet {
 		try {
 			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option));
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

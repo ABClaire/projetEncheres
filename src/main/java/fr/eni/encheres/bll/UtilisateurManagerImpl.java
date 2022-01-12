@@ -3,16 +3,12 @@
  */
 package fr.eni.encheres.bll;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
-import fr.eni.encheres.dao.UtilisateurDAO;
-import fr.eni.encheres.dao.jdbc.JdbcTools;
-import fr.eni.encheres.dao.jdbc.UtilisateurDAOImpl;
 
 /**
  * Classe en charge de gerer les utilisateurs du site
@@ -40,6 +36,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		BLLException be = new BLLException();
 		
+		verificationPseudo(nouvelUtilisateur.getPseudo(), be);
+		verificationNom(nouvelUtilisateur.getNom(), be);
+		verificationPrenom(nouvelUtilisateur.getPrenom(), be);
+		verificationEmail(nouvelUtilisateur.getEmail(), be);
+		verificationTelephone(nouvelUtilisateur.getTelephone(), be);
+		verificationRue(nouvelUtilisateur.getRue(), be);
+		verificationCp(nouvelUtilisateur.getCodePostal(), be);	
+		verificationVille(nouvelUtilisateur.getVille(), be);
 		verificationCaracteresPseudo(nouvelUtilisateur.getPseudo(), be);
 		verificationPseudoUnique(nouvelUtilisateur.getPseudo(), be);
 		verificationEMailUnique(nouvelUtilisateur.getEmail(), be);
@@ -89,10 +93,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		return utilisateur;
 	}
 	/*
-	 * MÈthode en charge de 
+	 * MÔøΩthode en charge de 
 	 */
 	
-	public Utilisateur verificationIdentifiantMotDePasse (Utilisateur utilisateur) throws BLLException {
+	/**
+	 * M√©thode en charge de v√©rifier la connexion de l'utilistaeur.
+	 * @return l'utilisateur connect√©
+	 */
+	public Utilisateur verificationLogin (Utilisateur utilisateur) throws BLLException {
 		Boolean combinaisonValide = false;
 		
 		// r√©cup√©ration de la saisie utilisateur
@@ -135,9 +143,39 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 		return compteAAssocier;
 	}
-
+		
+		/**
+		 * M√©thode en charge d'afficher un message de r√©cup√©ration de mot de passe √† l'utilisateur
+		 * @param email
+		 * @return un message d'envoi de mail
+		 * @throws BLLException
+		 */
+		public String RecuperationMotDePasse (String email) throws BLLException {
+			
+			List<Utilisateur> lstUtilisateur = new ArrayList<>();
+			String message = "Aucun compte correspondant √† cette adresse mail";
+			try {
+				lstUtilisateur = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
+				
+			} catch (DALException e) {
+				e.printStackTrace();
+				throw new BLLException(e);
+			}
+			
+			for (Utilisateur utilisateur : lstUtilisateur) {
+				
+				if (email.equals(utilisateur.getEmail())) {
+					 message = "Votre mot de passe vous a √©t√© envoy√© par mail";
+				}
+			}
+			
+			
+			return message;
+		
+		}
+		
 	/*
-	 * RÈcuperer un utilisateur par son ID
+	 * RÔøΩcuperer un utilisateur par son ID
 	 */
 	public Utilisateur getByIdUtilisateur (int IdUtilisateur) throws BLLException {
 		try {
@@ -149,7 +187,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 	
 	/*
-	 * RÈcuperer un utilisateur par son Pseudo
+	 * RÔøΩcuperer un utilisateur par son Pseudo
 	 */
 	public Utilisateur getByPseudoUtilisateur (String pseudoUtilisateur) throws BLLException {
 		try {
@@ -161,30 +199,42 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 
 	/*
-	 * MÈthode en charge de mofidier un utilisateur existant par l'utilisateur
+	 * MÔøΩthode en charge de mofidier un utilisateur existant par l'utilisateur
 	 */
 	@Override
-	public void modifierUtilisateur(Utilisateur utilisateur) throws BLLException {
+	public void modifierUtilisateur(Utilisateur utilisateur, Utilisateur utilisateurModif) throws BLLException {
 		BLLException be= new BLLException();
 	
-		verificationPseudo(utilisateur.getPseudo(), be);
-		verificationNom(utilisateur.getNom(), be);
-		verificationPrenom(utilisateur.getPrenom(), be);
-		verificationEmail(utilisateur.getEmail(), be);
-		verificationTelephone(utilisateur.getTelephone(), be);
-		verificationRue(utilisateur.getRue(), be);
-		verificationCp(utilisateur.getCodePostal(), be);	
-		verificationVille(utilisateur.getVille(), be);
-		verificationCaracteresPseudo(utilisateur.getPseudo(), be);
-		verificationPseudoUnique(utilisateur.getPseudo(), be);
-		verificationEMailUnique(utilisateur.getEmail(), be);
+		verificationPseudo(utilisateurModif.getPseudo(), be);
+		verificationNom(utilisateurModif.getNom(), be);
+		verificationPrenom(utilisateurModif.getPrenom(), be);
+		verificationEmail(utilisateurModif.getEmail(), be);
+		verificationTelephone(utilisateurModif.getTelephone(), be);
+		verificationRue(utilisateurModif.getRue(), be);
+		verificationCp(utilisateurModif.getCodePostal(), be);	
+		verificationVille(utilisateurModif.getVille(), be);
+		verificationCaracteresPseudo(utilisateurModif.getPseudo(), be);
 		
+		//Verificiation du Pseudo unique et du Mail unique
+		
+		if(utilisateur.getPseudo().equals(utilisateurModif.getPseudo())) {	
+		}
+		else {
+		verificationPseudoUnique(utilisateur.getPseudo(), be);
+		}
+		
+		if(utilisateur.getEmail().equals(utilisateurModif.getEmail())){
+		}
+		else {
+		verificationEMailUnique(utilisateur.getEmail(), be);
+		}
+	
 		if(be.hasErreur()) {
 			throw be;
 		}
 			
 		try {
-			DAOFactory.getUtilisateurDAO().modifierUtilisateur(utilisateur);;
+			DAOFactory.getUtilisateurDAO().modifierUtilisateur(utilisateurModif);;
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e);
@@ -262,43 +312,43 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	/*****VERIFICATIONS******/
 	private void verificationPseudo(String pseudo, BLLException be) {
 		if(pseudo == null || pseudo.isBlank() || pseudo.length()>30) {
-			be.ajouterErreur(new ParameterException("Le pseudo est obligatoire et doit Ítre <=30 caractËres" ));
+			be.ajouterErreur(new ParameterException("Le pseudo est obligatoire et doit ÔøΩtre <=30 caractÔøΩres" ));
 		}
 	}
 	private void verificationNom(String nom, BLLException be) {
 		if(nom == null || nom.isBlank() || nom.length()>30) {
-			be.ajouterErreur(new ParameterException("Le nom est obligatoire et doit Ítre <=30 caractËres" ));
+			be.ajouterErreur(new ParameterException("Le nom est obligatoire et doit ÔøΩtre <=30 caractÔøΩres" ));
 		}
 	}
 	private void verificationPrenom(String prenom, BLLException be) {
 		if(prenom == null || prenom.isBlank() || prenom.length()>30) {
-			be.ajouterErreur(new ParameterException("Le prÈnom est obligatoire et doit Ítre <=30 caractËres" ));
+			be.ajouterErreur(new ParameterException("Le prÔøΩnom est obligatoire et doit ÔøΩtre <=30 caractÔøΩres" ));
 		}
 	}
 	private void verificationEmail(String email, BLLException be) {
 		if(email == null || email.isBlank() || email.length()>50) {
-			be.ajouterErreur(new ParameterException("L'email est obligatoire et doit Ítre <=50 caractËres" ));
+			be.ajouterErreur(new ParameterException("L'email est obligatoire et doit ÔøΩtre <=50 caractÔøΩres" ));
 		}
 	}
 	private void verificationTelephone(String telephone, BLLException be) {
 		if(telephone.length()>15) {
-			be.ajouterErreur(new ParameterException("Le telephone doit Ítre <=15 caractËres" ));
+			be.ajouterErreur(new ParameterException("Le telephone doit ÔøΩtre <=15 caractÔøΩres" ));
 		}
 	}
 	private void verificationRue(String rue, BLLException be) {
 		if(rue == null || rue.isBlank() || rue.length()>30) {
-			be.ajouterErreur(new ParameterException("La rue est obligatoire et doit Ítre <=30 caractËres" ));
+			be.ajouterErreur(new ParameterException("La rue est obligatoire et doit ÔøΩtre <=30 caractÔøΩres" ));
 		}
 	}
 	private void verificationCp(String cp, BLLException be) {
 		if(cp == null || cp.isBlank() || cp.length()>10) {
-			be.ajouterErreur(new ParameterException("Le code postal est obligatoire et doit Ítre <=10 caractËres" ));
+			be.ajouterErreur(new ParameterException("Le code postal est obligatoire et doit ÔøΩtre <=10 caractÔøΩres" ));
 		}
 	}
 	
 	private void verificationVille(String ville, BLLException be) {
 		if(ville == null || ville.isBlank() || ville.length()>10) {
-			be.ajouterErreur(new ParameterException("La ville est obligatoire et doit Ítre <=50 caractËres" ));
+			be.ajouterErreur(new ParameterException("La ville est obligatoire et doit ÔøΩtre <=50 caractÔøΩres" ));
 		}
 	}
 	

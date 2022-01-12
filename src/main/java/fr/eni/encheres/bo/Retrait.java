@@ -20,12 +20,7 @@ public class Retrait {
 	
 	
 	
-	public Retrait(String lieu, String codePostal, String ville) {
-		super();
-		this.lieu = lieu;
-		this.codePostal = codePostal;
-		this.ville = ville;
-	}
+
 
 
 
@@ -41,6 +36,18 @@ public class Retrait {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.articleVendu = articleVendu;
+	}
+
+	/**
+	 * Constructeur.
+	 * @param lieu
+	 * @param codePostal
+	 * @param ville
+	 */
+	public Retrait(String lieu, String codePostal, String ville) {
+		this.lieu = lieu;
+		this.codePostal = codePostal;
+		this.ville = ville;
 	}
 	/**
 	 * Getter pour lieu.

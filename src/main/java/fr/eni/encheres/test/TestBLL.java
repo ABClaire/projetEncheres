@@ -66,7 +66,7 @@ public class TestBLL {
 		Utilisateur test = new Utilisateur("clairegoarnisson@gmail.com", "mdp5");
 		Utilisateur recuperer = new Utilisateur();
 		try {
-			recuperer = UtilisateurManagerImpl.getInstance().verificationIdentifiantMotDePasse(test);
+			recuperer = UtilisateurManagerImpl.getInstance().verificationLogin(test);
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());

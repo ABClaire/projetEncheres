@@ -8,7 +8,7 @@ import fr.eni.encheres.bo.Utilisateur;
 
 public interface ArticleVenduDAO {
 	
-	void ajouterArticleVendu(ArticleVendu articleVendu) throws DALException;
+	void ajouterArticleAVendre(ArticleVendu articleVendu, Utilisateur utilisateur) throws DALException;
 	List<ArticleVendu> getAllArticleVendu() throws DALException;
 	List<ArticleVendu> selectJointArticleUtilisateur() throws DALException;
 	
