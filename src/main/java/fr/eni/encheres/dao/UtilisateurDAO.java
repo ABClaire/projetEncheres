@@ -13,6 +13,11 @@ import fr.eni.encheres.bo.Utilisateur;
 public interface UtilisateurDAO {
 	void ajouterUtilisateur(Utilisateur utilisateur) throws DALException;
 	List<Utilisateur> getAllUtilisateurs() throws DALException;
+
 	Utilisateur selectUtilisateurById(Integer no_utilisateur) throws DALException;
+
+	Utilisateur getById(int idUtilisateur) throws DALException;
+	Utilisateur getByPseudo(String pseudoUtilisateur) throws DALException;
+
 
 }

@@ -5,7 +5,6 @@ package fr.eni.encheres.test;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
@@ -44,7 +43,7 @@ public class TestDAL {
 //		 * 				TEST LISTE UTILISATEURS
 //		 * =========================================================
 //		*/
-//		
+//
 //		// Liste de tous les utilisateurs
 //		try {
 //			List<Utilisateur> lstUtilisateurs = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
@@ -66,11 +65,11 @@ public class TestDAL {
 //			e.printStackTrace();
 //		}
 		Utilisateur utilisateur = null;
-		try {
-			utilisateur = DAOFactory.getUtilisateurDAO().selectUtilisateurById(3);
-		} catch (DALException e1) {
-			e1.printStackTrace();
-		}
+//		try {
+//			utilisateur = DAOFactory.getUtilisateurDAO().selectUtilisateurById(3);
+//		} catch (DALException e1) {
+//			e1.printStackTrace();
+//		}
 		
 		Categorie categorieArticle = new Categorie(3);
 		Retrait retraitArticle = new Retrait("11 rue des lilas", "44000","Nanntes");
@@ -81,6 +80,7 @@ public class TestDAL {
 		} catch (DALException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 }

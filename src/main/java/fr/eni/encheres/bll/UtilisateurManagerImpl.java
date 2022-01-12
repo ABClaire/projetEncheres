@@ -228,8 +228,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			
 			
 			return message;
-			
+		
 		}
-	
 	
 }

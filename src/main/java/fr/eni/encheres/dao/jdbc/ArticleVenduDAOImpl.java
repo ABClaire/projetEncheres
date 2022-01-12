@@ -25,6 +25,16 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	//TODO Rajouter categorie article et lieu retrait
 	private final static String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article,description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?)";
 	private final static String SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, prix_vente, no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	private final static String SELECT_ARTICLE_JOINTED_UTILISATEUR = "SELECT \r\n"
+			+ "	nom_article,\r\n"
+			+ "	description,\r\n"
+			+ "	prix_initial,\r\n"
+			+ "	date_fin_encheres,\r\n"
+			+ "	pseudo\r\n"
+			+ "FROM ARTICLES_VENDUS av\r\n"
+			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur\r\n"
+			+ "GROUP BY nom_article, description, prix_initial, date_fin_encheres, pseudo\r\n"
+			+ "";
 
 	/**
 	 * Méthode en charge d'ajouter un nouvel article dans la BDD
@@ -75,6 +85,34 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		
 		return articlesVendus;
 	}
+	
+	
+	@Override
+	//methode qui permet de recuperer une map avec comme clef un objet articles et en valeur un objet Utilisateur;
+	public List<ArticleVendu> selectJointArticleUtilisateur() throws DALException  {
+		
+		
+		List<ArticleVendu> lstArticleVendus = new ArrayList<ArticleVendu>();
+		Utilisateur utilisateur = null ;
+		try(Connection cnx = JdbcTools.getConnection()) {
+			Statement stmt = cnx.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_ARTICLE_JOINTED_UTILISATEUR);
+			while(rs.next()) {
+				ArticleVendu article = new ArticleVendu(rs.getString("nom_article"), rs.getString("description"), (rs.getDate("date_fin_encheres")).toLocalDate(), rs.getInt("prix_initial"));
+				// pour chaque article 
+				lstArticleVendus.add(article);
+				
+				utilisateur = new Utilisateur(rs.getString("pseudo"), lstArticleVendus);
+						
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return lstArticleVendus;
+	}
 
 
 	private ArticleVendu map(ResultSet rs) throws SQLException {
@@ -90,6 +128,10 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	}
 	
 
+	
+	
+	
+	
 	
 	
 }
