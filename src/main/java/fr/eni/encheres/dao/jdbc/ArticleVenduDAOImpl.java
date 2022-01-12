@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.bo.Categorie;
-import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.ArticleVenduDAO;
 import fr.eni.encheres.dao.DALException;
 
@@ -26,7 +24,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	private final static String SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, prix_vente, no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
 
 	/**
-	 * M�thode en charge d'ajouter un nouvel article dans la BDD
+	 * Méthode en charge d'ajouter un nouvel article dans la BDD
 	 */
 	@Override
 	public void ajouterArticleVendu (ArticleVendu articleVendu) throws DALException {

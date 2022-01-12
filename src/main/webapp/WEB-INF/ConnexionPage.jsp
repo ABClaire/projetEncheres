@@ -12,23 +12,16 @@
 
 	<form action="Connexion" method="POST">
 		<p>Identifiant :</p><input type="text" name="identifiant" value="${identifiant}"/><br>
-		<p>Mot de passe :</p><input type="text" name="motDePasse" value="${motDePasse}"/>
+		<p>Mot de passe :</p><input type="text" name="motDePasse" value="${motDePasse}"/><br><br>
 	
-		<p>${message}</p>
-		<p>${donneeUtilisateur}</p>
 		<input type="submit" name="Connexion" value="Connexion"/>
+		<input type="submit" name="Creation Compte" value="Creation Compte"/>
 		
+		<p>${message}</p>
 		
 	</form>
 
-	<form action="Connexion" method="POST">
-		
-		<input type="submit" name="Creation Compte" value="Creation Compte"/>
-		
-	</form>
 	<a href="http://localhost:8080/ProjetEncheres/MotDePasseOublie">Mot de passe oublié ?</a>
-	
-	
 	
 
 </body>

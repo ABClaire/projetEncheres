@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/AccueilServlet")
 public class AccueilServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-    public AccueilServlet() {
+	public AccueilServlet() {
     }
 
 	/**

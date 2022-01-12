@@ -25,6 +25,7 @@ public class Utilisateur {
 	Boolean administrateur;
 	List<ArticleVendu> lstVentes;
 	List<Enchere> lstEncheres;
+	
 	/**
 	 * Constructeur.
 	 */
