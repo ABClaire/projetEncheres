@@ -4,6 +4,7 @@
 package fr.eni.encheres.test;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,24 @@ public class TestDAL {
 //		}
 		
 
+		System.out.println("pp");
 	
+		List<ArticleVendu> Lst = new ArrayList<ArticleVendu>();
+		try {
+			Lst = DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
+			
+			
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		for (ArticleVendu articleVendu : Lst) {
+			System.out.println(articleVendu.getUtilisateur().getPseudo());
+			System.out.println(articleVendu);
+		}
+		
 	}
 
 }

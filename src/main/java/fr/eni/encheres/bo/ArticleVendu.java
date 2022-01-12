@@ -40,6 +40,18 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 	}
 
+	
+
+	public ArticleVendu(String nomArticle, String description, LocalDate dateFinEncheres, Integer miseAPrix,
+			Utilisateur utilisateur) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.utilisateur = utilisateur;
+	}
+
 
 
 	/**

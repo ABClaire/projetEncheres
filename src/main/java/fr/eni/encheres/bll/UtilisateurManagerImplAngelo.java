@@ -6,6 +6,7 @@ package fr.eni.encheres.bll;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
@@ -52,6 +53,24 @@ public class UtilisateurManagerImplAngelo  {
 		
 		
 		return message;
+		
+	}
+	
+	//passe plat 
+	public List<ArticleVendu> RecuperationArticleEtUtilisateur () throws BLLException{
+		
+		
+		
+		
+		try {
+			return DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BLLException(e);
+		}
+		
+		
 		
 	}
 	
