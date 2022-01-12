@@ -18,8 +18,8 @@ import fr.eni.encheres.bo.Utilisateur;
 @WebServlet("/Connexion")
 public class ConnectionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
+
+	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ConnectionServlet() {
@@ -54,8 +54,11 @@ public class ConnectionServlet extends HttpServlet {
 		}
 		if (request.getParameter("Creation Compte") != null) {
 			nextScreen = "WEB-INF/inscription.jsp";
-
 		}
+		
+		
+		
+		
 		request.getRequestDispatcher(nextScreen).forward(request, response);
 
 	}

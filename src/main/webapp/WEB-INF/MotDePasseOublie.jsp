@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="ConnectionServlet" method="POST">
+<form action="MotDePasseOublie" method="POST">
 	<p>Saisir votre E-mail :</p>
 	<input type="text" name="identifiant" value="${identifiant}"/><br>
 	

@@ -26,6 +26,10 @@
 		<input type="submit" name="Creation Compte" value="Creation Compte"/>
 		
 	</form>
+	<a href="http://localhost:8080/ProjetEncheres/MotDePasseOublie">Mot de passe oublié ?</a>
+	
+	
+	
 
 </body>
 </html>

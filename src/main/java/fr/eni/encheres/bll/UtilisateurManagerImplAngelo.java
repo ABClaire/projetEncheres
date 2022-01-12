@@ -29,7 +29,9 @@ public class UtilisateurManagerImplAngelo  {
 		
 	}
 	
-	public String RecuperationMotDePasse (String email) {
+	
+	
+	public String RecuperationMotDePasse (String email) throws BLLException {
 		
 		List<Utilisateur> lstUtilisateur = new ArrayList<>();
 		String message = "Aucun compte correspondant à cette adresse mail";
@@ -37,8 +39,8 @@ public class UtilisateurManagerImplAngelo  {
 			lstUtilisateur = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
 			
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw new BLLException(e);
 		}
 		
 		for (Utilisateur utilisateur : lstUtilisateur) {

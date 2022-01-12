@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UtilisateurManagerImplAngelo;
 
 /**
  * Servlet implementation class MotDePasseOublie
  */
 @WebServlet("/MotDePasseOublie")
-public class MotDePasseOublie extends HttpServlet {
+public class MotDePasseOublieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MotDePasseOublie() {
+    public MotDePasseOublieServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,10 +29,18 @@ public class MotDePasseOublie extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
+		
 		if (request.getParameter("Recuperation Mot de passe") != null) {
 			String identifiant = request.getParameter("identifiant");
-			String message = UtilisateurManagerImplAngelo.getInstance().RecuperationMotDePasse(identifiant);
+			String message = "BLLException catch au niveau de la servlet";
+			try {
+				message = UtilisateurManagerImplAngelo.getInstance().RecuperationMotDePasse(identifiant);
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			request.setAttribute("message", message);
 			
