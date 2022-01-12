@@ -28,7 +28,7 @@ public class AccueilServlet extends HttpServlet {
 			String option = "rien";
 			option = request.getParameter("listeDeroulante");
 			System.out.println(option);
-			// je récupère sous forme de String l'option choisie quand le bouton recherche est choisie
+			// je rï¿½cupï¿½re sous forme de String l'option choisie quand le bouton recherche est choisie
 			
 			
 		}
@@ -38,7 +38,6 @@ public class AccueilServlet extends HttpServlet {
 		try {
 			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RecuperationArticleEtUtilisateur());
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

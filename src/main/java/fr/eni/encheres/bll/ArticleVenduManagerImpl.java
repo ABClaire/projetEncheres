@@ -13,6 +13,17 @@ import fr.eni.encheres.dao.DAOFactory;
  */
 public class ArticleVenduManagerImpl implements ArticleVenduManager{
 
+	private static class ArticleVenduManagerHolder {
+		private static ArticleVenduManagerImpl instance = new ArticleVenduManagerImpl();
+	}
+	
+	private ArticleVenduManagerImpl() {}
+	
+	public static ArticleVenduManagerImpl getInstance() {
+		return ArticleVenduManagerHolder.instance;
+		
+	}
+	
 	@Override
 	public void ajouterUnArticle(ArticleVendu articleAVendre, Utilisateur utilisateur) throws BLLException {
 		try {

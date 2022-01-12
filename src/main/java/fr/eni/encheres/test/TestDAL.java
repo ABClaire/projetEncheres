@@ -4,7 +4,11 @@
 package fr.eni.encheres.test;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
+import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateur;
 
 public class TestDAL {
@@ -65,9 +69,9 @@ public class TestDAL {
 //			e1.printStackTrace();
 //		}
 //		
-//		Categorie categorieArticle = new Categorie(3);
-//		Retrait retraitArticle = new Retrait("11 rue des lilas", "44000","Nanntes");
-//		ArticleVendu articleAVendre = new ArticleVendu("Bol pour tricot", "Céramique. 15 x 15 x 10 cm", LocalDate.now(), LocalDate.now().plusDays(15), 100,utilisateur, categorieArticle, retraitArticle);
+		Categorie categorieArticle = new Categorie(3);
+		Retrait retraitArticle = new Retrait("11 rue des lilas", "44000","Nanntes");
+		ArticleVendu articleAVendre = new ArticleVendu("Bol pour tricot", "Céramique. 15 x 15 x 10 cm", LocalDate.now(), LocalDate.now().plusDays(15), 100,utilisateur, categorieArticle, retraitArticle);
 //		
 //		try {
 //			DAOFactory.getArticleVenduDAO().ajouterArticleAVendre(articleAVendre, utilisateur);
