@@ -11,16 +11,16 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
- * Servlet implementation class AccueilConnecte
+ * Servlet implementation class VenteServlet
  */
-@WebServlet("/AccueilConnecte")
-public class AccueilConnecte extends HttpServlet {
+@WebServlet("/VenteServlet")
+public class VenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AccueilConnecte() {
+    public VenteServlet() {
     }
 
 	/**
@@ -28,11 +28,9 @@ public class AccueilConnecte extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
-		Integer noUtilisateur = utilisateur.getNoUtilisateur();
 		
-		System.out.println(noUtilisateur);
 		
-		request.getRequestDispatcher("WEB-INF/AccueilConnecte.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/Vente.jsp").forward(request, response);
 	}
 
 	/**

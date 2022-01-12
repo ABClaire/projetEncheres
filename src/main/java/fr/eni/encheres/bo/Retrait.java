@@ -30,6 +30,18 @@ public class Retrait {
 		this.ville = ville;
 		this.articleVendu = articleVendu;
 	}
+
+	/**
+	 * Constructeur.
+	 * @param lieu
+	 * @param codePostal
+	 * @param ville
+	 */
+	public Retrait(String lieu, String codePostal, String ville) {
+		this.lieu = lieu;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
 	/**
 	 * Getter pour lieu.
 	 * @return the lieu

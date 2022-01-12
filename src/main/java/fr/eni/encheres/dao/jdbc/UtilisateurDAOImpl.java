@@ -22,6 +22,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	private final static String SELECT_ALL = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS";
 	
+	private final static String SELECT_BY_ID = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur FROM UTILISATEURS WHERE no_utilisateur=?";
+	
 	private final static String INSERT = "INSERT INTO UTILISATEURS(pseudo,nom,prenom, email, telephone,rue,code_postal, ville, mot_de_passe,credit,administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
 	
@@ -48,6 +50,26 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		return utilisateurs;
 	}
 	
+	/**
+	 * Méthode en charge de sélectionner un utilisateur par son numéro
+	 * @return un utilisateur
+	 */
+	@Override
+	public Utilisateur selectUtilisateurById(Integer no_utilisateur) throws DALException {
+		Utilisateur utilisateur = null;
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID);
+			pStmt.setInt(1, no_utilisateur);
+			ResultSet rs = pStmt.executeQuery();
+			while(rs.next()) {
+				utilisateur = map(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		return utilisateur;
+	}
 	
 
 	/**

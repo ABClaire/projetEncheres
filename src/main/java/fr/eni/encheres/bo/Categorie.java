@@ -25,9 +25,16 @@ public class Categorie {
 	 * @param lstArticlesVendus
 	 */
 	public Categorie(Integer noCategorie, String libelle, List<ArticleVendu> lstArticlesVendus) {
-		this.noCategorie = noCategorie;
+		this(noCategorie);
 		this.libelle = libelle;
 		this.lstArticlesVendus = lstArticlesVendus;
+	}
+	/**
+	 * Constructeur.
+	 * @param noCategorie
+	 */
+	public Categorie(Integer noCategorie) {
+		this.noCategorie = noCategorie;
 	}
 	/**
 	 * Getter pour noCategorie.

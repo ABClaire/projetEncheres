@@ -3,6 +3,7 @@
  */
 package fr.eni.encheres.bll;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.Utilisateur;
@@ -152,7 +153,11 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 	
 	
-	public Utilisateur verificationIdentifiantMotDePasse (Utilisateur utilisateur) throws BLLException {
+	/**
+	 * Méthode en charge de vérifier la connexion de l'utilistaeur.
+	 * @return l'utilisateur connecté
+	 */
+	public Utilisateur verificationLogin (Utilisateur utilisateur) throws BLLException {
 		Boolean combinaisonValide = false;
 		
 		// récupération de la saisie utilisateur
@@ -195,5 +200,36 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 		return compteAAssocier;
 	}
+		
+		/**
+		 * Méthode en charge d'afficher un message de récupération de mot de passe à l'utilisateur
+		 * @param email
+		 * @return un message d'envoi de mail
+		 * @throws BLLException
+		 */
+		public String RecuperationMotDePasse (String email) throws BLLException {
+			
+			List<Utilisateur> lstUtilisateur = new ArrayList<>();
+			String message = "Aucun compte correspondant à cette adresse mail";
+			try {
+				lstUtilisateur = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
+				
+			} catch (DALException e) {
+				e.printStackTrace();
+				throw new BLLException(e);
+			}
+			
+			for (Utilisateur utilisateur : lstUtilisateur) {
+				
+				if (email.equals(utilisateur.getEmail())) {
+					 message = "Votre mot de passe vous a été envoyé par mail";
+				}
+			}
+			
+			
+			return message;
+			
+		}
+	
 	
 }
