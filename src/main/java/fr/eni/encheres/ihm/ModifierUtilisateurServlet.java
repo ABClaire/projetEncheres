@@ -1,7 +1,6 @@
 package fr.eni.encheres.ihm;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,14 +8,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.UtilisateurManagerImplAngelo;
+import fr.eni.encheres.bll.UtilisateurManagerImpl;
+import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.dao.UtilisateurDAO;
+import fr.eni.encheres.dao.jdbc.UtilisateurDAOImpl;
 
-
-@WebServlet("/AccueilServlet")
-public class AccueilServlet extends HttpServlet {
+/**
+ * Servlet implementation class ModifierUtilisateurServlet
+ */
+@WebServlet("/ModifierUtilisateurServlet")
+public class ModifierUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	public AccueilServlet() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ModifierUtilisateurServlet() {
+        super();
     }
 
 	/**
@@ -24,32 +32,16 @@ public class AccueilServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (request.getParameter("recherche2")!= null) {
-			String option = "rien";
-			option = request.getParameter("listeDeroulante");
-			System.out.println(option);
-			// je récupère sous forme de String l'option choisie quand le bouton recherche est choisie
-			
-			
-		}
+		ProfilModel model = new ProfilModel();
+		
+		Utilisateur utilisateur =(Utilisateur) request.getSession().getAttribute("utilisateur");
 		
 		
 		
-		try {
-			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RecuperationArticleEtUtilisateur());
-		} catch (BLLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		
-		
-		request.getRequestDispatcher("WEB-INF/Accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/Profil.jsp").forward(request, response);
 
-		
-		
+	
+	
 	}
 
 	/**

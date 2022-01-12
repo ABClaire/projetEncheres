@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.encheres.bll.UtilisateurManagerImpl;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -29,19 +28,15 @@ public class AfficherPofilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+		ProfilModel model = new ProfilModel();
 		
-		UtilisateurManagerImpl.getInstance().
 		
-		Utilisateur utilisateur = new Utilisateur();
-		
-		request.setAttribute("pseudo", utilisateur.getPseudo());
-		request.setAttribute("nom", utilisateur.getNom());
-		request.setAttribute("prenom", utilisateur.getPrenom());
-		request.setAttribute("email", utilisateur.getEmail());
-		request.setAttribute("telephone", utilisateur.getTelephone());
-		request.setAttribute("rue", utilisateur.getRue());
-		request.setAttribute("cp", utilisateur.getCodePostal());
-		request.setAttribute("ville", utilisateur.getVille());
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
+		model.setUtilisateur(utilisateur);
+		request.setAttribute("model", model);
+
 		
 		request.getRequestDispatcher("WEB-INF/Profil.jsp").forward(request, response);
 

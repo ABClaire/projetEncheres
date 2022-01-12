@@ -11,7 +11,7 @@ import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
 
 /**
- * Classe en charge de gérer les utilisateurs du site
+ * Classe en charge de gerer les utilisateurs du site
  * 
  */
 public class UtilisateurManagerImpl implements UtilisateurManager {
@@ -58,73 +58,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 
 
 	/**
-	 * Méthode en charge de vérfiier que le pseudo ne possède que des caractères alphanumériques
-	 * @param pseudo
-	 * @param be
-	 */
-	private void verificationCaracteresPseudo(String pseudo, BLLException be) {
-		for (int i = 0; i < pseudo.length(); i++) {
-			pseudoIsValid =	Character.isLetterOrDigit(pseudo.charAt(i));
-			if(!pseudoIsValid) {
-				be.ajouterErreur(new ParameterException("Le pseudo doit contenir des caractères alphanumériques uniquement. Les caractères spéciaux sont interdits"));
-				break;
-			}
-		}		
-	}
-
-	/**
-	 * Méthode en charge de vérifer l'unicité du pseudo
-	 * @param pseudo
-	 * @param exception couche BLL
-	 */
-	private void verificationPseudoUnique(String pseudo, BLLException be) {
-		try {
-			List<Utilisateur> lstUtilisateurs = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
-			lstUtilisateurs.stream().forEach(
-						utilisateur -> {
-							if(utilisateur.getPseudo().equals(pseudo)) {
-								pseudoIsDoublon = true;
-							}
-						});
-			if(pseudoIsDoublon) {
-				be.ajouterErreur(new ParameterException("Le pseudo renseigné existe déjà"));
-				pseudoIsDoublon = false;
-			}
-			
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-
-	/**
-	 * Méthode en charge de vérifier l'unicité de l'email
-	 * @param email
-	 * @param be
-	 */
-	private void verificationEMailUnique(String email, BLLException be) {
-		try {
-			List<Utilisateur> lstUtilisateurs = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
-			lstUtilisateurs.stream().forEach(
-						utilisateur -> {
-							if(utilisateur.getEmail().equals(email)) {
-								emailIsDoublon = true;
-							}
-						});
-			if(emailIsDoublon) {
-				be.ajouterErreur(new ParameterException("L'email renseigné existe déjà."));
-				emailIsDoublon = false;
-			}
-			
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-		
-		
-	}
-
-	/**
 	 * Méthode en charge de créer un nouvel utilisateur en fonction des données saisies
 	 * @param nouvelUtilisateur
 	 * @return
@@ -151,7 +84,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		return utilisateur;
 	}
-	
+	/*
+	 * M�thode en charge de 
+	 */
 	
 	/**
 	 * Méthode en charge de vérifier la connexion de l'utilistaeur.
@@ -230,5 +165,171 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			return message;
 		
 		}
+		
+	/*
+	 * R�cuperer un utilisateur par son ID
+	 */
+	public Utilisateur getByIdUtilisateur (int IdUtilisateur) throws BLLException {
+		try {
+			return DAOFactory.getUtilisateurDAO().getById(IdUtilisateur);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e);
+		}
+	}
+	
+	/*
+	 * R�cuperer un utilisateur par son Pseudo
+	 */
+	public Utilisateur getByPseudoUtilisateur (String pseudoUtilisateur) throws BLLException {
+		try {
+			return DAOFactory.getUtilisateurDAO().getByPseudo(pseudoUtilisateur);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e);
+		}
+	}
+
+	/*
+	 * M�thode en charge de mofidier un utilisateur existant par l'utilisateur
+	 */
+	@Override
+	public void modifierUtilisateur(Utilisateur utilisateur) throws BLLException {
+		BLLException be= new BLLException();
+	
+		verificationPseudo(utilisateur.getPseudo(), be);
+		verificationNom(utilisateur.getNom(), be);
+		verificationPrenom(utilisateur.getPrenom(), be);
+		verificationEmail(utilisateur.getEmail(), be);
+		verificationTelephone(utilisateur.getTelephone(), be);
+		verificationRue(utilisateur.getRue(), be);
+		verificationCp(utilisateur.getCodePostal(), be);	
+		verificationVille(utilisateur.getVille(), be);
+		verificationCaracteresPseudo(utilisateur.getPseudo(), be);
+		verificationPseudoUnique(utilisateur.getPseudo(), be);
+		verificationEMailUnique(utilisateur.getEmail(), be);
+		
+		if(be.hasErreur()) {
+			throw be;
+		}
+			
+		try {
+			DAOFactory.getUtilisateurDAO().modifierUtilisateur(utilisateur);;
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e);
+		}
+	}
+	/********************CONTRAINTES ET VERIFICATIONS*********************
+	 * 
+	 *********************************************************************/
+	
+	/**
+	 * Méthode en charge de vérfiier que le pseudo ne possède que des caractères alphanumériques
+	 * @param pseudo
+	 * @param be
+	 */
+	private void verificationCaracteresPseudo(String pseudo, BLLException be) {
+		for (int i = 0; i < pseudo.length(); i++) {
+			pseudoIsValid =	Character.isLetterOrDigit(pseudo.charAt(i));
+			if(!pseudoIsValid) {
+				be.ajouterErreur(new ParameterException("Le pseudo doit contenir des caractères alphanumériques uniquement. Les caractères spéciaux sont interdits"));
+				break;
+			}
+		}		
+	}
+
+	/**
+	 * Méthode en charge de vérifer l'unicité du pseudo
+	 * @param pseudo
+	 * @param exception couche BLL
+	 */
+	private void verificationPseudoUnique(String pseudo, BLLException be) {
+		try {
+			List<Utilisateur> lstUtilisateurs = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
+			lstUtilisateurs.stream().forEach(
+						utilisateur -> {
+							if(utilisateur.getPseudo().equals(pseudo)) {
+								pseudoIsDoublon = true;
+							}
+						});
+			if(pseudoIsDoublon) {
+				be.ajouterErreur(new ParameterException("Le pseudo renseigné existe déjà"));
+				pseudoIsDoublon = false;
+			}
+			
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * Méthode en charge de vérifier l'unicité de l'email
+	 * @param email
+	 * @param be
+	 */
+	private void verificationEMailUnique(String email, BLLException be) {
+		try {
+			List<Utilisateur> lstUtilisateurs = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
+			lstUtilisateurs.stream().forEach(
+						utilisateur -> {
+							if(utilisateur.getEmail().equals(email)) {
+								emailIsDoublon = true;
+							}
+						});
+			if(emailIsDoublon) {
+				be.ajouterErreur(new ParameterException("L'email renseigné existe déjà."));
+				emailIsDoublon = false;
+			}
+			
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	/*****VERIFICATIONS******/
+	private void verificationPseudo(String pseudo, BLLException be) {
+		if(pseudo == null || pseudo.isBlank() || pseudo.length()>30) {
+			be.ajouterErreur(new ParameterException("Le pseudo est obligatoire et doit �tre <=30 caract�res" ));
+		}
+	}
+	private void verificationNom(String nom, BLLException be) {
+		if(nom == null || nom.isBlank() || nom.length()>30) {
+			be.ajouterErreur(new ParameterException("Le nom est obligatoire et doit �tre <=30 caract�res" ));
+		}
+	}
+	private void verificationPrenom(String prenom, BLLException be) {
+		if(prenom == null || prenom.isBlank() || prenom.length()>30) {
+			be.ajouterErreur(new ParameterException("Le pr�nom est obligatoire et doit �tre <=30 caract�res" ));
+		}
+	}
+	private void verificationEmail(String email, BLLException be) {
+		if(email == null || email.isBlank() || email.length()>50) {
+			be.ajouterErreur(new ParameterException("L'email est obligatoire et doit �tre <=50 caract�res" ));
+		}
+	}
+	private void verificationTelephone(String telephone, BLLException be) {
+		if(telephone.length()>15) {
+			be.ajouterErreur(new ParameterException("Le telephone doit �tre <=15 caract�res" ));
+		}
+	}
+	private void verificationRue(String rue, BLLException be) {
+		if(rue == null || rue.isBlank() || rue.length()>30) {
+			be.ajouterErreur(new ParameterException("La rue est obligatoire et doit �tre <=30 caract�res" ));
+		}
+	}
+	private void verificationCp(String cp, BLLException be) {
+		if(cp == null || cp.isBlank() || cp.length()>10) {
+			be.ajouterErreur(new ParameterException("Le code postal est obligatoire et doit �tre <=10 caract�res" ));
+		}
+	}
+	
+	private void verificationVille(String ville, BLLException be) {
+		if(ville == null || ville.isBlank() || ville.length()>10) {
+			be.ajouterErreur(new ParameterException("La ville est obligatoire et doit �tre <=50 caract�res" ));
+		}
+	}
 	
 }

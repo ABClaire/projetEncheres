@@ -11,5 +11,5 @@ import fr.eni.encheres.bo.Utilisateur;
 public interface UtilisateurManager {
 	
 	Utilisateur ajouterNouvelUtilisateur(Utilisateur utilisateur) throws BLLException;
-
+	void modifierUtilisateur (Utilisateur utilisateur) throws BLLException;
 }
