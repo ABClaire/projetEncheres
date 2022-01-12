@@ -62,43 +62,7 @@
 							<p>Catégories</p>
 						</div>
 						<div class="col-md-6">
-							<select class="form-control search-slt">
-								<option>
-									<!-- Toutes les catégories--> <a><p>Toutes</p></a>
-								</option>
-								<!-- Informatique -->
-								<option><a><p>Informatique</p></a>
-								</option>
-								<!--Ameublement -->
-								<option><a><p>Ameublement</p></a>
-								</option>
-								<!--Vêtement-->
-								<option><a><p>Vêtement</p></a>
-								</option>
-								<!--Sport & Loisirs-->
-								<option><a><p>Sports et loisirs</p></a>
-								</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<!--Boutons Rechercher-->
-				<div class="col-md-6 text-center">
-					<button type="button" class="btn btn-primary search-btn"
-						name="rechercher" value="rechercher">Rechercher</button>
-				</div>
-			</form>
-		</div>
-	</section>
-	<!-- Fin du formulaire de recherche-->
-
-	<!-- Expérience Angélo -->
-
-	<form action="AccueilServlet" method="POST">
-
-
-		<input type="submit" name="recherche2" value="recherche2" />
-		<select name="listeDeroulante" value="listeDeroulante" >
+							<select name="listeDeroulante" value="listeDeroulante" class="form-control search-slt">
 								<option name="Toutes" value="Toutes">
 									<!-- Toutes les catégories--> <a><p>Toutes</p></a>
 								</option>
@@ -112,25 +76,32 @@
 								<option name="Vêtement" value="Vêtement"><a><p>Vêtement</p></a>
 								</option>
 								<!--Sport & Loisirs-->
-								<option name="Sports et loisirs" value="Sports et loisirs"><a><p>Sports et loisirs</p></a>
+								<option name="Sports&Loisirs" value="Sports&Loisirs"><a><p>Sports&Loisirs</p></a>
 								</option>
-		</select>
-		
+							</select>
+						</div>
+					</div>
+				</div>
+				<!--Boutons Rechercher-->
+				<div class="col-md-6 text-center">
+					<button type="submit" class="btn btn-primary search-btn"
+						name="recherche" value="recherche">Rechercher</button>
+				</div>
+			</form>
+		</div>
+	</section>
+	<!-- Fin du formulaire de recherche-->
 
-	</form>
 
-
-
-	<!--  fin Expérience Angélo -->
-
+	<!-- Début Affichage des Articles -->
 	<c:forEach items="${Liste}" var="sc">
 		<p>-------------------------------------------------------</p>
 		<p>${sc.nomArticle}</p>
-		<p>Prix :${sc.miseAPrix}</p>
+		<p>Prix :${sc.prixVente}</p>
 		<p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
 		<p>Vendeur : ${sc.utilisateur.pseudo}</p>
 		<p>-------------------------------------------------------</p>
 	</c:forEach>
-
+	<!-- Fin Affichage des Articles-->
 </body>
 </html>

@@ -41,6 +41,22 @@ public class ArticleVendu {
 	}
 
 	
+	
+	
+	
+	public ArticleVendu(String nomArticle, String description, LocalDate dateFinEncheres, Integer prixVente,
+			Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.prixVente = prixVente;
+		this.utilisateur = utilisateur;
+		this.categorieArticle = categorieArticle;
+		this.lieuRetrait = lieuRetrait;
+	}
+
+
 
 	public ArticleVendu(String nomArticle, String description, LocalDate dateFinEncheres, Integer miseAPrix,
 			Utilisateur utilisateur) {

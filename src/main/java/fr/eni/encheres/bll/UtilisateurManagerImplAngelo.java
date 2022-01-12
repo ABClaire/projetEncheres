@@ -58,9 +58,7 @@ public class UtilisateurManagerImplAngelo  {
 	
 	//passe plat 
 	public List<ArticleVendu> RecuperationArticleEtUtilisateur () throws BLLException{
-		
-		
-		
+	
 		
 		try {
 			return DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
@@ -72,6 +70,42 @@ public class UtilisateurManagerImplAngelo  {
 		
 		
 		
+	}
+	
+	
+	public List<ArticleVendu> FiltreSuivantCategorie (String categorie) throws BLLException{
+		List<ArticleVendu> lstAReturn = new ArrayList<>();
+		try {
+			List<ArticleVendu> lstGlobal = DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
+			
+			if (!categorie.equals("Toutes")) {
+				
+				for (ArticleVendu articleVendu : lstGlobal) {
+					//TODO : risque de problème entre la catégorie de l'ihm Sport et loisir et de la base Sport&Loisirs
+					if (articleVendu.getCategorieArticle().getLibelle().equals(categorie)) {
+						//si la categorie de l'objet est la même que celle passer en paramêtre on ajoute l'article a la liste
+						lstAReturn.add(articleVendu);
+					}
+				}
+			}else {
+				lstAReturn =lstGlobal;
+			}
+			
+				
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw new BLLException(e);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		return lstAReturn;
 	}
 	
 	

@@ -11,5 +11,5 @@ public interface ArticleVenduDAO {
 	void ajouterArticleVendu(ArticleVendu articleVendu) throws DALException;
 	List<ArticleVendu> getAllArticleVendu() throws DALException;
 	List<ArticleVendu> selectJointArticleUtilisateur() throws DALException;
-
+	
 }

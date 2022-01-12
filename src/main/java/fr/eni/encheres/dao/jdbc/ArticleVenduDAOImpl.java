@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.ArticleVenduDAO;
 import fr.eni.encheres.dao.DALException;
@@ -23,17 +25,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	//Rajouter categorie article et lieu retrait
 	private final static String INSERT = "INSERT INTO ARTICLES_VENDUS (nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix) VALUES (?,?,?,?,?,?)";
 	private final static String SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, prix_vente, no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
-	private final static String SELECT_ARTICLE_JOINTED_UTILISATEUR = "SELECT \r\n"
-			+ "	nom_article,\r\n"
-			+ "	description,\r\n"
-			+ "	prix_initial,\r\n"
-			+ "	date_fin_encheres,\r\n"
-			+ "	pseudo\r\n"
-			+ "FROM ARTICLES_VENDUS av\r\n"
-			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur\r\n"
-			+ "GROUP BY nom_article, description, prix_initial, date_fin_encheres, pseudo\r\n"
-			+ "";
-	//TODO : REmplacer par ce select la méthode qui remonte une liste article 
 	private final static String SELECT_ARTICLE_BY_USER = "SELECT \r\n"
 			+ "    nom_article,\r\n"
 			+ "    description,\r\n"
@@ -106,19 +97,26 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	//methode qui permet de recuperer une map avec comme clef un objet articles et en valeur un objet Utilisateur;
 	public List<ArticleVendu> selectJointArticleUtilisateur() throws DALException  {
 		List<ArticleVendu> lstArticleVendus = new ArrayList<ArticleVendu>();
-		Utilisateur utilisateur = null ;
+		Utilisateur utilisateur ;
+		Categorie categorie ;
+		Retrait retrait;
 		
 		
 		try(Connection cnx = JdbcTools.getConnection()) {
 			Statement stmt = cnx.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ARTICLE_JOINTED_UTILISATEUR);
+			ResultSet rs = stmt.executeQuery(SELECT_ARTICLE_BY_USER);
 			while(rs.next()) {
 			
 				utilisateur = new Utilisateur(rs.getString("pseudo"));
+			
+				categorie = new Categorie(rs.getString("categorie"));
 				
-				ArticleVendu articleAvecUtilisateur = new ArticleVendu(rs.getString("nom_article"), rs.getString("description"), (rs.getDate("date_fin_encheres")).toLocalDate(), rs.getInt("prix_initial"), utilisateur);
+				retrait = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"));
+				
+				ArticleVendu articleAvecUtilisateuretCategorie = new ArticleVendu(rs.getString("nom_article"),  rs.getString("description"), (rs.getDate("date_fin_encheres")).toLocalDate(), rs.getInt("prix"), utilisateur, categorie, retrait);
+				
 		
-				lstArticleVendus.add(articleAvecUtilisateur);
+				lstArticleVendus.add(articleAvecUtilisateuretCategorie);
 				
 						
 				
@@ -130,7 +128,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		
 		return lstArticleVendus;
 	}
-
 
 	private ArticleVendu map(ResultSet rs) throws SQLException {
 		Integer noArticle = rs.getInt("noArticle");

@@ -1,4 +1,4 @@
-"upackage fr.eni.encheres.ihm;
+package fr.eni.encheres.ihm;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

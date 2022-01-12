@@ -17,6 +17,18 @@ public class Retrait {
 	 */
 	public Retrait() {
 	}
+	
+	
+	
+	public Retrait(String lieu, String codePostal, String ville) {
+		super();
+		this.lieu = lieu;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+
+
+
 	/**
 	 * Constructeur.
 	 * @param lieu

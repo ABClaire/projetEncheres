@@ -23,24 +23,26 @@ public class AccueilServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String option = "Toutes";
 		
-		if (request.getParameter("recherche2")!= null) {
-			String option = "rien";
+		if (request.getParameter("recherche")!= null) {
 			option = request.getParameter("listeDeroulante");
-			System.out.println(option);
+			
+			
 			// je récupère sous forme de String l'option choisie quand le bouton recherche est choisie
 			
 			
 		}
 		
 		
-		
 		try {
-			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RecuperationArticleEtUtilisateur());
+			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option));
 		} catch (BLLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		
 		
 		

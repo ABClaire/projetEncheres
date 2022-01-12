@@ -42,7 +42,6 @@ public class TestDAL {
 //		}
 		
 
-		System.out.println("pp");
 	
 		List<ArticleVendu> Lst = new ArrayList<ArticleVendu>();
 		try {
@@ -54,11 +53,13 @@ public class TestDAL {
 			e.printStackTrace();
 		}
 		
-		
 		for (ArticleVendu articleVendu : Lst) {
 			System.out.println(articleVendu.getUtilisateur().getPseudo());
 			System.out.println(articleVendu);
+			System.out.println(articleVendu.getLieuRetrait());
+			System.out.println(articleVendu.getCategorieArticle());
 		}
+		System.out.println("l");
 		
 	}
 
