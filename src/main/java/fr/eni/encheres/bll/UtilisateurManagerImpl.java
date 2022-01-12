@@ -36,6 +36,14 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		BLLException be = new BLLException();
 		
+		verificationPseudo(nouvelUtilisateur.getPseudo(), be);
+		verificationNom(nouvelUtilisateur.getNom(), be);
+		verificationPrenom(nouvelUtilisateur.getPrenom(), be);
+		verificationEmail(nouvelUtilisateur.getEmail(), be);
+		verificationTelephone(nouvelUtilisateur.getTelephone(), be);
+		verificationRue(nouvelUtilisateur.getRue(), be);
+		verificationCp(nouvelUtilisateur.getCodePostal(), be);	
+		verificationVille(nouvelUtilisateur.getVille(), be);
 		verificationCaracteresPseudo(nouvelUtilisateur.getPseudo(), be);
 		verificationPseudoUnique(nouvelUtilisateur.getPseudo(), be);
 		verificationEMailUnique(nouvelUtilisateur.getEmail(), be);
@@ -194,27 +202,39 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	 * M�thode en charge de mofidier un utilisateur existant par l'utilisateur
 	 */
 	@Override
-	public void modifierUtilisateur(Utilisateur utilisateur) throws BLLException {
+	public void modifierUtilisateur(Utilisateur utilisateur, Utilisateur utilisateurModif) throws BLLException {
 		BLLException be= new BLLException();
 	
-		verificationPseudo(utilisateur.getPseudo(), be);
-		verificationNom(utilisateur.getNom(), be);
-		verificationPrenom(utilisateur.getPrenom(), be);
-		verificationEmail(utilisateur.getEmail(), be);
-		verificationTelephone(utilisateur.getTelephone(), be);
-		verificationRue(utilisateur.getRue(), be);
-		verificationCp(utilisateur.getCodePostal(), be);	
-		verificationVille(utilisateur.getVille(), be);
-		verificationCaracteresPseudo(utilisateur.getPseudo(), be);
-		verificationPseudoUnique(utilisateur.getPseudo(), be);
-		verificationEMailUnique(utilisateur.getEmail(), be);
+		verificationPseudo(utilisateurModif.getPseudo(), be);
+		verificationNom(utilisateurModif.getNom(), be);
+		verificationPrenom(utilisateurModif.getPrenom(), be);
+		verificationEmail(utilisateurModif.getEmail(), be);
+		verificationTelephone(utilisateurModif.getTelephone(), be);
+		verificationRue(utilisateurModif.getRue(), be);
+		verificationCp(utilisateurModif.getCodePostal(), be);	
+		verificationVille(utilisateurModif.getVille(), be);
+		verificationCaracteresPseudo(utilisateurModif.getPseudo(), be);
 		
+		//Verificiation du Pseudo unique et du Mail unique
+		
+		if(utilisateur.getPseudo().equals(utilisateurModif.getPseudo())) {	
+		}
+		else {
+		verificationPseudoUnique(utilisateur.getPseudo(), be);
+		}
+		
+		if(utilisateur.getEmail().equals(utilisateurModif.getEmail())){
+		}
+		else {
+		verificationEMailUnique(utilisateur.getEmail(), be);
+		}
+	
 		if(be.hasErreur()) {
 			throw be;
 		}
 			
 		try {
-			DAOFactory.getUtilisateurDAO().modifierUtilisateur(utilisateur);;
+			DAOFactory.getUtilisateurDAO().modifierUtilisateur(utilisateurModif);;
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e);

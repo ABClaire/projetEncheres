@@ -28,7 +28,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	private final static String SELECT_BY_PSEUDO ="SELECT no_utilisateur, pseudo, nom,prenom, email, telephone,rue, code_postal, ville FROM UTILISATEURS WHERE pseudo = ?";
 	
-	private final static String UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=? WHERE no_utilisateur=?";
+	private final static String UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=? WHERE pseudo=?";
 	
 	/**
 	 * Méthode en charge de retourner la liste de tous les utilisateurs du site
@@ -179,12 +179,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
 			pStmt.setString(1, utilisateurModif.getPseudo());
 			pStmt.setString(2, utilisateurModif.getNom());
-			pStmt.setString(3, utilisateurModif.getEmail());
-			pStmt.setString(4, utilisateurModif.getTelephone());
-			pStmt.setString(5, utilisateurModif.getRue());
-			pStmt.setString(6, utilisateurModif.getCodePostal());
-			pStmt.setString(7, utilisateurModif.getVille());
-			pStmt.setString(8, utilisateurModif.getMotDePasse());
+			pStmt.setString(3, utilisateurModif.getPrenom());
+			pStmt.setString(4, utilisateurModif.getEmail());
+			pStmt.setString(5, utilisateurModif.getTelephone());
+			pStmt.setString(6, utilisateurModif.getRue());
+			pStmt.setString(7, utilisateurModif.getCodePostal());
+			pStmt.setString(8, utilisateurModif.getVille());
+			pStmt.setString(9, utilisateurModif.getMotDePasse());
+			pStmt.setString(10, utilisateurModif.getPseudo());
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {

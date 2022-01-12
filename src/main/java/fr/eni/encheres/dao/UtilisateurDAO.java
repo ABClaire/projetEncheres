@@ -19,7 +19,7 @@ public interface UtilisateurDAO {
 
 	Utilisateur getById(int idUtilisateur) throws DALException;
 	Utilisateur getByPseudo(String pseudoUtilisateur) throws DALException;
-	void modifierUtilisateur(Utilisateur utilisateur) throws DALException;
+	void modifierUtilisateur(Utilisateur utilisateurModif) throws DALException;
 
 
 }
