@@ -244,6 +244,31 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			throw new BLLException(e);
 		}
 	}
+	
+	
+	
+	/*
+	 * Méthode en charge de supprimier un profil utilisateur par l'utilisateur
+	 */
+	
+	
+	@Override
+	public void supprimerUtilisateur(int idUtilisateur) throws BLLException, DALException {
+			BLLException be = new BLLException();
+			if(be.hasErreur()) {
+				throw be;
+			}
+			DAOFactory.getUtilisateurDAO().supprimerUtilisateur(idUtilisateur);	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/********************CONTRAINTES ET VERIFICATIONS*********************
 	 * 
 	 *********************************************************************/
@@ -356,4 +381,5 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 	}
 	
+
 }
