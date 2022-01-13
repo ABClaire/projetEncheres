@@ -12,6 +12,7 @@
 </head>
 <body>
 
+
     <header>
     <!-- Titre pages + menu-->
     <div class="container-fluid">
@@ -21,6 +22,7 @@
                     ENI-Enchères
                 </h1>
             </div>
+            <form action="AccueilConnecte" method="POST">
             <div class="col-md-6">
                 <ul class="nav">
                     <li class="nav-item">
@@ -30,13 +32,15 @@
                         <a class="nav-link" href="/ProjetEncheres/NouvelleVente">Vendre un article</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
+                        <a class="nav-link" href="/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Déconnexion</a>
+                        <input class="nav-link" type="submit" name="deconnexion" value="Déconnexion"/>
                     </li>
                 </ul>
             </div>
+            </form>
+      
         </div>
         <!--Sous titre-->
         <div class="container-fluid">

@@ -27,12 +27,17 @@ public class AccueilConnecte extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nextScreen = "WEB-INF/AccueilConnecte.jsp";
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		Integer noUtilisateur = utilisateur.getNoUtilisateur();
 		
 		System.out.println(noUtilisateur);
 		
-		request.getRequestDispatcher("WEB-INF/AccueilConnecte.jsp").forward(request, response);
+		if(request.getParameter("deconnexion") != null) {
+			nextScreen = "AccueilServlet";
+		}
+		
+		request.getRequestDispatcher(nextScreen).forward(request, response);
 	}
 
 	/**

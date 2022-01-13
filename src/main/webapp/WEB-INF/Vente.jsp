@@ -51,10 +51,13 @@
          </fieldset>
          
          <input type="submit" name="enregistrer" value="Enregistrer"/>
-         <input type="submit" name="annuler" value="Annuler"/>
-         <input type="submit" name="retour_accueil" value="Retourner aux enchères"/>
-				
+         <input type="submit" name="annuler" value="Annuler"/>	
 	</form>
+	
+	<form action="NouvelleVente" method="POST">
+	      <input type="submit" name="retour_accueil" value="Retourner aux enchères"/>
+    </form>    
+     
 	<p> ${message}</p>
 
 </body>
