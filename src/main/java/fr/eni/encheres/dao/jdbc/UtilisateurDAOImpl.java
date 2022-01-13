@@ -30,6 +30,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
 	private final static String UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=? WHERE no_utilisateur=?";
 	
+	private final static String DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
+	
 	/**
 	 * Méthode en charge de retourner la liste de tous les utilisateurs du site
 	 * @return liste des utilisateurs
@@ -174,6 +176,10 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		return utilisateur;
 	}
 
+	/*
+	 * Modifier son compte utilisateur
+	 */
+	
 	public void modifierUtilisateur(Utilisateur utilisateurModif) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
@@ -193,9 +199,23 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
-		
-		
+	}
 
+	/*
+	 * Supprimer son compte utilisateur
+	 */
+	
+	@Override
+	public void supprimerUtilisateur(int idUtilisateur) throws DALException {
+		try(Connection cnx= JdbcTools.getConnection()){
+			PreparedStatement pStmt = cnx.prepareStatement(DELETE);
+			pStmt.setInt(1, idUtilisateur);
+			pStmt.executeUpdate();			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
 	}
 	
 }

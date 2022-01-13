@@ -117,14 +117,14 @@
 		<!-- NOUVEAU MOT DE PASSE -->
 			<div class = "formulaire">
 				<label for="nouveauMotDePasse" class="form-label"> Nouveau mot de passe: </label>
-				<input class="form-field" type="password" id="nouveauMotDePasse" name="nouveauMotDePasse" required
+				<input class="form-field" type="password" id="nouveauMotDePasse" name="nouveauMotDePasse" 
 				pattern="{1,10}" title="Le mot de passe ne doit pas dépasser 10 caractères" placeholder="Nouveau mot de passe"/> 
 			</div>
 		</div>
 		<div class="col-md-6">
 			<div class = "formulaire">
 				<label for="confirmationMotDePasse" class="form-label"> Confirmation : </label>
-				<input class="form-field" type="password" id="confirmationMotDePasse" name="confirmationMotDePasse"  required
+				<input class="form-field" type="password" id="confirmationMotDePasse" name="confirmationMotDePasse"  
 			pattern="{1,10}" title="Le mot de passe ne doit pas dépasser 10 caractères" placeholder="Nouveau mot de passe"/> 
 			</div>
 		
@@ -137,8 +137,10 @@
 		<div class="col-md-4">
 		</div>
 		<div class="col-md-4">		
-			<input type="submit" name="modifierUtilisateur" class="btn btn-primary" value="Enregistrer"/>
-			<input type="submit" name="supprimerUtilisateur" class="btn btn-warning" value="Supprimer"/>
+			<input type="submit" name="modifierUtilisateur" class="btn btn-primary" value="Enregistrer"/>	
+			<input type="submit" name="suppressionCompte" class="btn btn-warning" value="Supprimer"/>
+			
+			
 		<p> ${message} </p>
 		</div>
 		<div class="col-md-4">		</div>
