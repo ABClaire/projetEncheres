@@ -71,27 +71,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <select class="form-control search-slt" name="listeDeroulante" value="listeDeroulante">
-                                        <option name="Toutes" value="Toutes">
-                                            <!-- Toutes les catégories-->
-                                            <a><p>Toutes</p></a>
-                                        </option>
-                                        <!-- Informatique -->
-                                        <option name="Informatique" value="Informatique">
-                                            <a><p>Informatique</p></a>
-                                        </option>
-                                        <!--Ameublement -->
-                                        <option name="Ameublement" value="Ameublement">
-                                            <a><p>Ameublement</p></a>
-                                        </option>
-                                        <!--Vêtement-->
-                                        <option name="Vêtement" value="Vêtement">
-                                            <a><p>Vêtement</p></a>
-                                        </option>
-                                        <!--Sport & Loisirs-->
-                                        <option name="Sports&Loisirs" value="Sports&Loisirs">
-                                            <a><p>Sports et loisirs</p></a>
-                                        </option>
-                                    </select>
+										<option name="Toutes" value="Toutes">
+											<!-- Toutes les catégories--> <a><p>Toutes</p></a>
+										</option>
+										 <c:forEach items="${lstCategories}" var="categorie">
+								 			 <option value="${categorie.libelle}">${categorie.libelle}</option>
+								 		</c:forEach>			
+									</select>
                                 </div>
                             </div>
                             <!-- Filtre Achat ou Mes ventes-->

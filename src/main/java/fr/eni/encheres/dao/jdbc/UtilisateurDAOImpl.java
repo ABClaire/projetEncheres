@@ -85,15 +85,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		try (Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement pStmt;
 				pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-				pStmt.setString(1, utilisateur.getPseudo());
-				pStmt.setString(2, utilisateur.getNom());
-				pStmt.setString(3, utilisateur.getPrenom());
-				pStmt.setString(4, utilisateur.getEmail());
-				pStmt.setString(5, utilisateur.getTelephone());
-				pStmt.setString(6, utilisateur.getRue());
-				pStmt.setString(7, utilisateur.getCodePostal());
-				pStmt.setString(8, utilisateur.getVille());
-				pStmt.setString(9, utilisateur.getMotDePasse());
+				mappStmt(utilisateur, pStmt);
 				pStmt.setInt(10, utilisateur.getCredit());
 				pStmt.setBoolean(11, utilisateur.getAdministrateur());
 				pStmt.executeUpdate();
@@ -109,52 +101,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			}
 		}
 	
-	
-	/**
-	 * Méthode en charge de traiter le résultat d'une requête SQL
-	 * @param rs
-	 * @return un utilisateur
-	 * @throws SQLException 
-	 */
-	private Utilisateur map(ResultSet rs) throws SQLException {
-		Integer noUtilisateur = rs.getInt("no_utilisateur");
-		String pseudo = rs.getString("pseudo");
-		String nom = rs.getString("nom");
-		String prenom  = rs.getString("prenom");
-		String email  = rs.getString("email");
-		String telephone  = rs.getString("telephone");
-		String rue  = rs.getString("rue");
-		String codePostal  = rs.getString("code_postal");
-		String ville  = rs.getString("ville");
-		String motDePasse  = rs.getString("mot_de_passe");
-		Integer credit  = rs.getInt("credit");
-		Boolean administrateur  = rs.getBoolean("administrateur");
-		
-		Utilisateur utilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-		
-		return utilisateur;
-	}
-
-	/*
-	 * Selectionne un utilisateur par son ID
-	 */
-	
-	@Override
-	public Utilisateur getById(int idUtilisateur) throws DALException {
-		Utilisateur utilisateur = null;
-		try(Connection cnx = JdbcTools.getConnection()) {
-			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID);
-			pStmt.setInt(1, idUtilisateur);
-			ResultSet rs= pStmt.executeQuery();
-			while(rs.next()) {
-				utilisateur = map(rs);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DALException(e.getMessage());
-		}
-		return utilisateur;
-	}
 
 	/*
 	 * Selectionne un utilisateur par son pseudo
@@ -183,15 +129,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	public void modifierUtilisateur(Utilisateur utilisateurModif) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
-			pStmt.setString(1, utilisateurModif.getPseudo());
-			pStmt.setString(2, utilisateurModif.getNom());
-			pStmt.setString(3, utilisateurModif.getPrenom());
-			pStmt.setString(4, utilisateurModif.getEmail());
-			pStmt.setString(5, utilisateurModif.getTelephone());
-			pStmt.setString(6, utilisateurModif.getRue());
-			pStmt.setString(7, utilisateurModif.getCodePostal());
-			pStmt.setString(8, utilisateurModif.getVille());
-			pStmt.setString(9, utilisateurModif.getMotDePasse());
+			mappStmt(utilisateurModif, pStmt);
 			pStmt.setInt(10, utilisateurModif.getNoUtilisateur());
 			pStmt.executeUpdate();
 			
@@ -200,6 +138,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			throw new DALException(e.getMessage());
 		}
 	}
+
 
 	/*
 	 * Supprimer son compte utilisateur
@@ -217,5 +156,49 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		
 	}
+	
+	/**
+	 * Méthode en charge de préparer une requête SQL
+	 * @param un objet Utilisateur
+	 * @param pStmt
+	 * @throws SQLException
+	 */
+	public void mappStmt(Utilisateur utilisateurModif, PreparedStatement pStmt) throws SQLException {
+		pStmt.setString(1, utilisateurModif.getPseudo());
+		pStmt.setString(2, utilisateurModif.getNom());
+		pStmt.setString(3, utilisateurModif.getPrenom());
+		pStmt.setString(4, utilisateurModif.getEmail());
+		pStmt.setString(5, utilisateurModif.getTelephone());
+		pStmt.setString(6, utilisateurModif.getRue());
+		pStmt.setString(7, utilisateurModif.getCodePostal());
+		pStmt.setString(8, utilisateurModif.getVille());
+		pStmt.setString(9, utilisateurModif.getMotDePasse());
+	}
+
+	/**
+	 * Méthode en charge de traiter le résultat d'une requête SQL
+	 * @param rs
+	 * @return un objet Utilisateur
+	 * @throws SQLException 
+	 */
+	private Utilisateur map(ResultSet rs) throws SQLException {
+		Integer noUtilisateur = rs.getInt("no_utilisateur");
+		String pseudo = rs.getString("pseudo");
+		String nom = rs.getString("nom");
+		String prenom  = rs.getString("prenom");
+		String email  = rs.getString("email");
+		String telephone  = rs.getString("telephone");
+		String rue  = rs.getString("rue");
+		String codePostal  = rs.getString("code_postal");
+		String ville  = rs.getString("ville");
+		String motDePasse  = rs.getString("mot_de_passe");
+		Integer credit  = rs.getInt("credit");
+		Boolean administrateur  = rs.getBoolean("administrateur");
+		
+		Utilisateur utilisateur = new Utilisateur(noUtilisateur, pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
+		
+		return utilisateur;
+	}
+
 	
 }

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
@@ -29,10 +28,10 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 	}
 	
 	@Override
-	public ArticleVendu ajouterUnArticle(ArticleVendu articleAVendre, Utilisateur utilisateur) throws BLLException {
+	public ArticleVendu ajouterUnArticle(ArticleVendu articleAVendre) throws BLLException {
 		ArticleVendu nouvelArticle;
 		try {
-			nouvelArticle = DAOFactory.getArticleVenduDAO().ajouterArticleAVendre(articleAVendre, utilisateur);
+			nouvelArticle = DAOFactory.getArticleVenduDAO().ajouterArticleAVendre(articleAVendre);
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e);
@@ -40,16 +39,5 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 		return nouvelArticle;
 	}
 	
-	public List<String> listeDesCategories(){
-		List<String> lstCategories = null;
-		try {
-			List<ArticleVendu> lstArticles = DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
-			lstCategories = lstArticles.stream().map(a -> a.getCategorieArticle().getLibelle()).collect(Collectors.toList());
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
-		return lstCategories;
-		
-	}
 
 }

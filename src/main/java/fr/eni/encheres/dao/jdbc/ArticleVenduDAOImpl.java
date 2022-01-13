@@ -44,13 +44,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
 			+ "GROUP BY nom_article, description, libelle, prix_initial,date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo";
 	
-	private final static String SELECT_CATEGORIES = "SELECT no_categorie, libelle FROM CATEGORIES";
 	
 	/**
 	 * Méthode en charge d'ajouter un nouvel article dans la BDD
 	 */
 	@Override
-	public ArticleVendu ajouterArticleAVendre (ArticleVendu articleVendu,Utilisateur utilisateur) throws DALException {
+	public ArticleVendu ajouterArticleAVendre (ArticleVendu articleVendu) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement pStmt;
 			pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -59,7 +58,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			pStmt.setDate(3,Date.valueOf(articleVendu.getDateDebutEncheres()));
 			pStmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
 			pStmt.setInt(5, articleVendu.getMiseAPrix());
-			pStmt.setInt(6, utilisateur.getNoUtilisateur());
+			pStmt.setInt(6, articleVendu.getUtilisateur().getNoUtilisateur());
 			pStmt.setInt(7, articleVendu.getCategorieArticle().getNoCategorie());
 
 			pStmt.executeUpdate();

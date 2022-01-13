@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.BLLException;
+import fr.eni.encheres.bll.CategorieManagerImpl;
 import fr.eni.encheres.bll.UtilisateurManagerImplAngelo;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -36,6 +38,14 @@ public class AccueilConnecte extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		Integer noUtilisateur = utilisateur.getNoUtilisateur();
 	
+		// Remonter la liste des catégories disponibles
+				try {
+					List<Categorie> lstCategories = CategorieManagerImpl.getInstance().listeDesCategories();
+					request.getServletContext().setAttribute("lstCategories", lstCategories);
+				} catch (BLLException e1) {
+					e1.printStackTrace();
+				}
+				
 		//----------------------------------------- Copie fonction recherche--------------------------------------------------
 		String option = "Toutes";
 		String motClef = null;

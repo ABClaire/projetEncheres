@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.encheres.bll.BLLException;
+import fr.eni.encheres.bll.CategorieManagerImpl;
 import fr.eni.encheres.bll.UtilisateurManagerImplAngelo;
 import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.dao.DALException;
-import fr.eni.encheres.dao.DAOFactory;
+import fr.eni.encheres.bo.Categorie;
 
 
 @WebServlet("/AccueilServlet")
@@ -30,16 +30,25 @@ public class AccueilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String option = "Toutes";
 		String motClef = null;
+		
 		List<ArticleVendu> lstARetouner = new ArrayList<ArticleVendu>();
- 		
-		//Au clique sur rechercher on récupère la catégorie et un possible motClef
+		
+		// Remonter la liste des catÃ©gories disponibles
+		try {
+			List<Categorie> lstCategories = CategorieManagerImpl.getInstance().listeDesCategories();
+			request.getServletContext().setAttribute("lstCategories", lstCategories);
+		} catch (BLLException e1) {
+			e1.printStackTrace();
+		}
+		
+		//Au clique sur rechercher on rï¿½cupï¿½re la catï¿½gorie et un possible motClef
 		if (request.getParameter("recherche")!= null) {
 			option = request.getParameter("listeDeroulante");
 			motClef = request.getParameter("nomArticle");
 		}
 		
 		
-		// si il n'y a pas de mot clée on retourne la Liste global filtrer par le choix de catégorie 
+		// si il n'y a pas de mot clï¿½e on retourne la Liste global filtrer par le choix de catï¿½gorie 
 		if (motClef == null || motClef.isBlank()) {
 			
 			try {
@@ -47,13 +56,12 @@ public class AccueilServlet extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			//si il y a un mot clée je récupère la liste trié par catégorie puis je la trie par recherche par mot clé avant de la renvoyer 
+			//si il y a un mot clï¿½e je rï¿½cupï¿½re la liste triï¿½ par catï¿½gorie puis je la trie par recherche par mot clï¿½ avant de la renvoyer 
 		}else {
 			
 			try {
 				lstARetouner = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option);
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			

@@ -81,9 +81,6 @@ public class TestBLL {
 //		System.out.println(recuperer);
 //
 //		
-
-		List<String> lstCategories = ArticleVenduManagerImpl.getInstance().listeDesCategories();
-		lstCategories.forEach(System.out::println);
 	}
 
 }

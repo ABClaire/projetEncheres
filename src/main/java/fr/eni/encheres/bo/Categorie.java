@@ -20,25 +20,14 @@ public class Categorie {
 	}
 	
 	
-	
-	public Categorie(String libelle) {
-		super();
-		this.libelle = libelle;
-	}
-
-
-
 	/**
 	 * Constructeur.
-	 * @param noCategorie
 	 * @param libelle
-	 * @param lstArticlesVendus
 	 */
-	public Categorie(Integer noCategorie, String libelle, List<ArticleVendu> lstArticlesVendus) {
-		this(noCategorie);
+	public Categorie(String libelle) {
 		this.libelle = libelle;
-		this.lstArticlesVendus = lstArticlesVendus;
 	}
+
 	/**
 	 * Constructeur.
 	 * @param noCategorie
@@ -46,6 +35,29 @@ public class Categorie {
 	public Categorie(Integer noCategorie) {
 		this.noCategorie = noCategorie;
 	}
+
+	/**
+	 * Constructeur.
+	 * @param noCategorie
+	 * @param libelle
+	 * @param lstArticlesVendus
+	 */
+	public Categorie(Integer noCategorie, String libelle) {
+		this(noCategorie);
+		this.libelle = libelle;
+	}
+	
+	/**
+	 * Constructeur.
+	 * @param noCategorie
+	 * @param libelle
+	 * @param lstArticlesVendus
+	 */
+	public Categorie(Integer noCategorie, String libelle, List<ArticleVendu> lstArticlesVendus) {
+		this(noCategorie, libelle);
+		this.lstArticlesVendus = lstArticlesVendus;
+	}
+
 	/**
 	 * Getter pour noCategorie.
 	 * @return the noCategorie

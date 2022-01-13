@@ -31,6 +31,9 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 	}
 	
+	/**
+	 * Méthode en charge d'ajouter un nouvel utilisateur en BDD après vérifications de ses informations
+	 */
 	@Override
 	public Utilisateur ajouterNouvelUtilisateur(Utilisateur nouvelUtilisateur) throws BLLException {
 		
@@ -93,53 +96,6 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		return utilisateur;
 	}
 
-	/**
-	 * Méthode en charge de vérifier la connexion de l'utilistaeur.
-	 * @return l'utilisateur connecté
-	 */
-	public Utilisateur verificationLogin (Utilisateur utilisateur) throws BLLException {
-		Boolean combinaisonValide = false;
-		
-		// récupération de la saisie utilisateur
-		String identifiant = utilisateur.getEmail();
-		String motDePasse = utilisateur.getMotDePasse();
-		String pseudo = utilisateur.getPseudo();
-		Utilisateur compteAAssocier = utilisateur;
-		
-		//récupération de la liste des comptes
-		List<Utilisateur> LstCompteUtilisateur;
-		
-		// DAl exception passer en BLL exception
-		try {
-			LstCompteUtilisateur = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
-		} catch (DALException e) {
-			e.printStackTrace();
-			throw new BLLException(e);
-		}
-		
-		// Vérification de l'existance d'un compte utilisateur
-		for (Utilisateur compte : LstCompteUtilisateur) {	
-			if ((identifiant.equals(compte.getEmail()) && motDePasse.equals(compte.getMotDePasse())) || (pseudo.equals(compte.getPseudo()) && motDePasse.equals(compte.getMotDePasse()))) {
-				// le compte existe
-				combinaisonValide = true;
-				compteAAssocier = compte;
-				break;
-			}
-			
-			
-		}
-		
-		// si le compte n'exite pas: exception
-		if (combinaisonValide == false) {
-			BLLException be = new BLLException();
-
-			be.ajouterErreur(new ParameterException("Identifiant ou mot de passe incorrect. Veuillez réessayer ou cliquez sur le bouton de création d'un compte."));
-			
-			throw be;
-		}
-
-		return compteAAssocier;
-	}
 		
 		/**
 		 * Méthode en charge d'afficher un message de récupération de mot de passe à l'utilisateur
@@ -172,11 +128,11 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 		
 	/*
-	 * R�cuperer un utilisateur par son ID
+	 * Récuperer un utilisateur par son ID
 	 */
 	public Utilisateur getByIdUtilisateur (int IdUtilisateur) throws BLLException {
 		try {
-			return DAOFactory.getUtilisateurDAO().getById(IdUtilisateur);
+			return DAOFactory.getUtilisateurDAO().selectUtilisateurById(IdUtilisateur);
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e);
@@ -184,7 +140,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 	
 	/*
-	 * R�cuperer un utilisateur par son Pseudo
+	 * Récuperer un utilisateur par son Pseudo
 	 */
 	public Utilisateur getByPseudoUtilisateur (String pseudoUtilisateur) throws BLLException {
 		try {
@@ -248,10 +204,8 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	
 	
 	/*
-	 * M�thode en charge de supprimier un profil utilisateur par l'utilisateur
-	 */
-	
-	
+	 * M�thode en charge de supprimier un profil utilisateur par l'utilisateur
+	 */	
 	@Override
 	public void supprimerUtilisateur(int idUtilisateur) throws BLLException, DALException {
 			BLLException be = new BLLException();
@@ -264,14 +218,57 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	
 	
 	
-	
-	
-	
-	
-	
 	/********************CONTRAINTES ET VERIFICATIONS*********************
-	 * 
+	 
 	 *********************************************************************/
+
+	/**
+	 * Méthode en charge de vérifier la connexion de l'utilistaeur.
+	 * @return l'utilisateur connecté
+	 */
+	public Utilisateur verificationLogin (Utilisateur utilisateur) throws BLLException {
+		Boolean combinaisonValide = false;
+		
+		// récupération de la saisie utilisateur
+		String identifiant = utilisateur.getEmail();
+		String motDePasse = utilisateur.getMotDePasse();
+		String pseudo = utilisateur.getPseudo();
+		Utilisateur compteAAssocier = utilisateur;
+		
+		//récupération de la liste des comptes
+		List<Utilisateur> LstCompteUtilisateur;
+		
+		// DAl exception passer en BLL exception
+		try {
+			LstCompteUtilisateur = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e);
+		}
+		
+		// Vérification de l'existance d'un compte utilisateur
+		for (Utilisateur compte : LstCompteUtilisateur) {	
+			if ((identifiant.equals(compte.getEmail()) && motDePasse.equals(compte.getMotDePasse())) || (pseudo.equals(compte.getPseudo()) && motDePasse.equals(compte.getMotDePasse()))) {
+				// le compte existe
+				combinaisonValide = true;
+				compteAAssocier = compte;
+				break;
+			}
+			
+			
+		}
+		
+		// si le compte n'exite pas: exception
+		if (combinaisonValide == false) {
+			BLLException be = new BLLException();
+
+			be.ajouterErreur(new ParameterException("Identifiant ou mot de passe incorrect. Veuillez réessayer ou cliquez sur le bouton de création d'un compte."));
+			
+			throw be;
+		}
+
+		return compteAAssocier;
+	}
 	
 	/**
 	 * Méthode en charge de vérfiier que le pseudo ne possède que des caractères alphanumériques

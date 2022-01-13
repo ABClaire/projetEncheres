@@ -66,7 +66,7 @@ public class VenteServlet extends HttpServlet {
 			model.setRetrait(retrait);
 			
 			try {
-				ArticleVendu nouvelArticle = ArticleVenduManagerImpl.getInstance().ajouterUnArticle(articleAVendre, utilisateur);
+				ArticleVendu nouvelArticle = ArticleVenduManagerImpl.getInstance().ajouterUnArticle(articleAVendre);
 				retrait.setArticleVendu(nouvelArticle);
 				RetraitManagerImpl.getInstance().ajouterNouveauRetrait(retrait);
 				request.setAttribute("message", "Vente ajoutée");

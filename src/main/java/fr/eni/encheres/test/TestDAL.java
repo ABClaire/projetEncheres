@@ -56,24 +56,24 @@ public class TestDAL {
 
 
 	
-		List<ArticleVendu> Lst = new ArrayList<ArticleVendu>();
-		
-		try {
-			Lst = DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
-			
-			
-		} catch (DALException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		for (ArticleVendu articleVendu : Lst) {
-			System.out.println(articleVendu.getUtilisateur().getPseudo());
-			System.out.println(articleVendu);
-			System.out.println(articleVendu.getLieuRetrait());
-			System.out.println(articleVendu.getCategorieArticle());
-		}
-		System.out.println("l");
+//		List<ArticleVendu> Lst = new ArrayList<ArticleVendu>();
+//		
+//		try {
+//			Lst = DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
+//			
+//			
+//		} catch (DALException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		for (ArticleVendu articleVendu : Lst) {
+//			System.out.println(articleVendu.getUtilisateur().getPseudo());
+//			System.out.println(articleVendu);
+//			System.out.println(articleVendu.getLieuRetrait());
+//			System.out.println(articleVendu.getCategorieArticle());
+//		}
+//		System.out.println("l");
 
 		
 		/*
@@ -142,6 +142,13 @@ public class TestDAL {
 //		} catch (DALException e) {
 //			e.printStackTrace();
 //		}
+		
+		try {
+			List<Categorie> lstCategorie = DAOFactory.getCategorieDAO().listeDesCategories();
+			lstCategorie.forEach(System.out::println);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 		
 		
 	}

@@ -1,6 +1,9 @@
 package fr.eni.encheres.ihm;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -16,11 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 @WebFilter("/*")
 public class SessionFiltrer implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public SessionFiltrer() {
-    }
+	/**
+	 * Default constructor.
+	 */
+	public SessionFiltrer() {
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -31,16 +34,21 @@ public class SessionFiltrer implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		String login = (String) ((HttpServletRequest)request).getSession().getAttribute("login");
-		if(login == null) {
-			request.getRequestDispatcher("Connexion").forward(request, response);
-		}
-		else {
-			chain.doFilter(request, response);
-		}
-	}
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		String login = (String) ((HttpServletRequest) request).getSession().getAttribute("login");
 
+		String path = ((HttpServletRequest) request).getRequestURI();
+
+		if (!path.endsWith("AccueilServlet")) {
+			if (login == null) {
+				request.getRequestDispatcher("Connexion").forward(request, response);
+			}
+		}
+		
+		chain.doFilter(request, response);
+
+	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
