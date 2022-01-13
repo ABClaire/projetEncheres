@@ -3,6 +3,7 @@
  */
 package fr.eni.encheres.bll;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,9 +73,12 @@ public class UtilisateurManagerImplAngelo  {
 		
 	}
 	
+	//TODO: faire remonter en premier les plus récente 
 	
+	//Filtre la liste global des Articles pour ramener seulement les éléments de la catégorie choisie 
 	public List<ArticleVendu> FiltreSuivantCategorie (String categorie) throws BLLException{
 		List<ArticleVendu> lstAReturn = new ArrayList<>();
+		List<ArticleVendu> lstFinal = new ArrayList<>();
 		try {
 			List<ArticleVendu> lstGlobal = DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
 			
@@ -98,15 +102,34 @@ public class UtilisateurManagerImplAngelo  {
 			throw new BLLException(e);
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		return lstAReturn;
+		//Récupère les enchères en cours (date d'enchère inférieur à la date du jour) 
+		for (ArticleVendu articleVendu : lstAReturn) {
+			
+			if (articleVendu.getDateFinEncheres().isAfter(LocalDate.now())) {		
+				lstFinal.add(articleVendu);
+			}
+		}
+
+		return lstFinal;
 	}
+	
+	//Méthode pour faire une recherche par mot clée prend en entrée la liste issue du chois de la catégorie et retourne une list 
+	// trié par les mots clée choisie
+	
+	
+	public List<ArticleVendu> RechercheDansLeNomDelArticle (List<ArticleVendu> lstEntree , String motClef){
+		List<ArticleVendu> LstIssueDeLaRecherche = new ArrayList<ArticleVendu>();
+		
+		for (ArticleVendu articleVendu : lstEntree) {
+			
+			if (articleVendu.getNomArticle().toUpperCase().contains(motClef.toUpperCase())) {
+				 LstIssueDeLaRecherche.add(articleVendu);
+			}
+		}
+		return LstIssueDeLaRecherche;
+		// si retourne listVide mettre un message "Aucun n'article correspondant à votre Recherche"
+	}
+	
 	
 	
 }

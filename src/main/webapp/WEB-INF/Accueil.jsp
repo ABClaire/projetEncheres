@@ -55,7 +55,7 @@
 					<p>Filtres</p>
 					<!-- Formulaire de recherche-->
 					<input type="text" class="form-control search-slt"
-						placeholder="Le nom de l'article contient" name="nomArticle">
+						placeholder="Le nom de l'article contient" name="nomArticle" >
 					<!-- Choix des catégories-->
 					<div class="row">
 						<div class="col-md-6">
