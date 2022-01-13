@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -56,37 +58,37 @@
         <!--Recherche-->
         <section class="search-sec">
             <div class="container-fluid">
-                <form action="#" method="post" novalidate="novalidate">
+                <form action="AccueilConnecte" method="post" novalidate="novalidate">
                     <dv class="row">
                         <div class="col-md-6">
                             <p>Filtres</p>
                             <!-- Formulaire de recherche-->
-                            <input type="text" class="form-control search-slt" placeholder="Le nom de l'article contient">
+                            <input type="text" class="form-control search-slt" placeholder="Le nom de l'article contient" name="nomArticle">
                             <!-- Choix des catégories-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <p>Catégories</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <select class="form-control search-slt">
-                                        <option>
+                                    <select class="form-control search-slt" name="listeDeroulante" value="listeDeroulante">
+                                        <option name="Toutes" value="Toutes">
                                             <!-- Toutes les catégories-->
                                             <a><p>Toutes</p></a>
                                         </option>
                                         <!-- Informatique -->
-                                        <option>
+                                        <option name="Informatique" value="Informatique">
                                             <a><p>Informatique</p></a>
                                         </option>
                                         <!--Ameublement -->
-                                        <option>
+                                        <option name="Ameublement" value="Ameublement">
                                             <a><p>Ameublement</p></a>
                                         </option>
                                         <!--Vêtement-->
-                                        <option>
+                                        <option name="Vêtement" value="Vêtement">
                                             <a><p>Vêtement</p></a>
                                         </option>
                                         <!--Sport & Loisirs-->
-                                        <option>
+                                        <option name="Sports&Loisirs" value="Sports&Loisirs">
                                             <a><p>Sports et loisirs</p></a>
                                         </option>
                                     </select>
@@ -158,13 +160,26 @@
                         </div>
                         <!--Boutons Rechercher-->
                         <div class="col-md-6 text-center">
-                            <button type="button" class="btn btn-primary search-btn">Rechercher</button>
+                            <button type="submit" class="btn btn-primary search-btn" name="recherche" value="recherche">Rechercher</button>
                         </div>
                 </form>
             </div>
         </section>
         <!-- Fin du formulaire de recherche-->
     </div>
+
+
+<!-- Début Affichage des Articles -->
+	<c:forEach items="${Liste}" var="sc">
+		<p>-------------------------------------------------------</p>
+		<p>${sc.nomArticle}</p>
+		<p>Prix :${sc.prixVente}</p>
+		<p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
+		<p>Vendeur : ${sc.utilisateur.pseudo}</p>
+		<p>-------------------------------------------------------</p>
+	</c:forEach>
+	<!-- Fin Affichage des Articles-->
+
 
 </body>
 </html>
