@@ -28,7 +28,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	private final static String SELECT_BY_PSEUDO ="SELECT no_utilisateur, pseudo, nom,prenom, email, telephone,rue, code_postal, ville FROM UTILISATEURS WHERE pseudo = ?";
 	
-	private final static String UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=? WHERE pseudo=?";
+	private final static String UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=? WHERE no_utilisateur=?";
 	
 	/**
 	 * Méthode en charge de retourner la liste de tous les utilisateurs du site
@@ -186,7 +186,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			pStmt.setString(7, utilisateurModif.getCodePostal());
 			pStmt.setString(8, utilisateurModif.getVille());
 			pStmt.setString(9, utilisateurModif.getMotDePasse());
-			pStmt.setString(10, utilisateurModif.getPseudo());
+			pStmt.setInt(10, utilisateurModif.getNoUtilisateur());
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {

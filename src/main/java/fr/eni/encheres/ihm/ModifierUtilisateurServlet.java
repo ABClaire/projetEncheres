@@ -73,9 +73,10 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 				String nouveauMotDePasse = request.getParameter("nouveauMotDePasse");
 				System.out.println(codePostal);
 				//Verifier si il y a une modification de mot de passe :
-				if((request.getParameter("nouveauMotDePasse").equals(request.getParameter("confirmationMotDePasse")) || ((request.getParameter("nouveauMotDePasse").isEmpty() && request.getParameter("confirmationMotDePasse").isEmpty())))) {
+				if(((request.getParameter("nouveauMotDePasse").equals(request.getParameter("confirmationMotDePasse"))) || ((request.getParameter("nouveauMotDePasse").isEmpty() && request.getParameter("confirmationMotDePasse").isEmpty())))) {
 					System.out.println(request.getParameter("confirmationMotDePasse"));
-					Utilisateur utilisateurModif = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, nouveauMotDePasse, 100, false);				
+					
+					Utilisateur utilisateurModif = new Utilisateur(utilisateur.getNoUtilisateur(),pseudo, nom, prenom, email, telephone, rue, codePostal, ville, nouveauMotDePasse, 100, false);
 									
 					try {
 					UtilisateurManagerImpl.getInstance().modifierUtilisateur(model.getUtilisateur(),utilisateurModif);

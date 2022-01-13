@@ -25,3 +25,34 @@
     height: calc(3rem + 2px) !important;
     border-radius: 0;
 }
+
+/*Formulaire modifier profil*/
+
+input[type=text], input[type=password], input[type=email] {
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  float:right;
+  margin-right:10%;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  margin-left : 10%;
+}
+
+input[type=submit] {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
