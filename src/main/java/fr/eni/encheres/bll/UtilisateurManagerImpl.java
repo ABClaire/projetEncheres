@@ -217,16 +217,23 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		//Verificiation du Pseudo unique et du Mail unique
 		
-		if(utilisateur.getPseudo().equals(utilisateurModif.getPseudo())) {	
+		if(utilisateur.getPseudo().equals(utilisateurModif.getPseudo())) {
+			System.out.println("Le pseudo de l'utilisateur reste le même");	
 		}
 		else {
-		verificationPseudoUnique(utilisateur.getPseudo(), be);
+			verificationPseudoUnique(utilisateurModif.getPseudo(), be);
+			System.out.println("Vérifier si le pseudo existe déjà");
+			System.out.println(utilisateurModif.getPseudo());
 		}
 		
 		if(utilisateur.getEmail().equals(utilisateurModif.getEmail())){
+			System.out.println("L'email de l'utilisateur reste le même");
 		}
 		else {
-		verificationEMailUnique(utilisateur.getEmail(), be);
+			verificationEMailUnique(utilisateurModif.getEmail(), be);
+			System.out.println("Vérifier si l'email existe déjà");
+			System.out.println(utilisateurModif.getEmail());
+
 		}
 	
 		if(be.hasErreur()) {
@@ -234,7 +241,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		}
 			
 		try {
-			DAOFactory.getUtilisateurDAO().modifierUtilisateur(utilisateurModif);;
+			DAOFactory.getUtilisateurDAO().modifierUtilisateur(utilisateurModif);
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e);

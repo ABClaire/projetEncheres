@@ -4,11 +4,10 @@
 package fr.eni.encheres.dao;
 
 import fr.eni.encheres.dao.jdbc.ArticleVenduDAOImpl;
+import fr.eni.encheres.dao.jdbc.RetraitDAOImpl;
 import fr.eni.encheres.dao.jdbc.UtilisateurDAOImpl;
 
-/**
- * Classe en charge de 
- */
+
 public class DAOFactory {
 	
 	public static UtilisateurDAO getUtilisateurDAO() {
@@ -17,6 +16,10 @@ public class DAOFactory {
 	
 	public static ArticleVenduDAO getArticleVenduDAO() {
 		return new ArticleVenduDAOImpl();
+	}
+	
+	public static RetraitDAO getRetraitDAO() {
+		return new RetraitDAOImpl();
 	}
 
 }

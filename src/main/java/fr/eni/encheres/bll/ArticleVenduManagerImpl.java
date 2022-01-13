@@ -25,13 +25,15 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 	}
 	
 	@Override
-	public void ajouterUnArticle(ArticleVendu articleAVendre, Utilisateur utilisateur) throws BLLException {
+	public ArticleVendu ajouterUnArticle(ArticleVendu articleAVendre, Utilisateur utilisateur) throws BLLException {
+		ArticleVendu nouvelArticle;
 		try {
-			DAOFactory.getArticleVenduDAO().ajouterArticleAVendre(articleAVendre, utilisateur);
+			nouvelArticle = DAOFactory.getArticleVenduDAO().ajouterArticleAVendre(articleAVendre, utilisateur);
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e);
 		}
+		return nouvelArticle;
 	}
 
 }

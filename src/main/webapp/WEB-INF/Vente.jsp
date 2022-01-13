@@ -28,9 +28,10 @@
 			</select>
 			<br>
 		<label for="photo_article"> Photo de l'article: </label>
-			<input type="text" name="photo_article"/><br>
+			<button type="button" name="photo_article" disabled>Télécharger </button><br>
 			
-		<label for="prix_article"> Mise à prix: </label>
+			
+		<label for="prix_article"> Mise à prix (en point): </label>
 			<input type="number" name="prix_article" value="${model.article.miseAPrix}"/><br>
 			
 		<label for="debut_enchere"> Début de l'enchère: </label>
@@ -41,16 +42,17 @@
 			
 		<fieldset> 
             <legend>Retrait</legend> 
-            <label for="rue"> Rue: </label><br>
-				<input type="text" name="rue" value="${model.retrait.lieu}"/>
-			<label for="cp"> Code postal: </label><br>
-				<input type="text" name="cp" value="${model.retrait.codePostal}"/>
-			<label for="ville"> Ville: </label><br>
-				<input type="text" name="ville" value="${model.retrait.ville}"/>			
+            <label for="rue"> Rue: </label>
+				<input type="text" name="rue" value="${model.retrait.lieu}"/><br>
+			<label for="cp"> Code postal: </label>
+				<input type="text" name="cp" value="${model.retrait.codePostal}"/><br>
+			<label for="ville"> Ville: </label>
+				<input type="text" name="ville" value="${model.retrait.ville}"/><br>		
          </fieldset>
          
          <input type="submit" name="enregistrer" value="Enregistrer"/>
          <input type="submit" name="annuler" value="Annuler"/>
+         <input type="submit" name="retour_accueil" value="Retourner aux enchères"/>
 				
 	</form>
 	<p> ${message}</p>

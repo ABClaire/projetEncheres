@@ -64,7 +64,12 @@
 		</div>
 
 		<input type="submit" name="creerUtilisateur" value="Créer"/>
-		<input type="button" name="annulerUtilisateur" value="Annuler"/>
+		</form>
+		
+		<!--  Nécessaire d'avoir deux formulaires pour gérer l'annulation de l'inscription -->
+		<form action="Inscription" method="POST" class="dialog-form" >
+			<input type="submit" name="annulerUtilisateur" value="Annuler"/>
+		</form>
 		
 		<p> ${message} </p>
 

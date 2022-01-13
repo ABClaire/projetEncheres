@@ -27,10 +27,10 @@
                         <a class="nav-link active" href="#">Enchères</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Vendre un article</a>
+                        <a class="nav-link" href="/ProjetEncheres/NouvelleVente">Vendre un article</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mon profil</a>
+                        <a class="nav-link" href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Déconnexion</a>

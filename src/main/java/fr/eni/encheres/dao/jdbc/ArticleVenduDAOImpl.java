@@ -24,7 +24,7 @@ import fr.eni.encheres.dao.DALException;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
-	//TODO Rajouter categorie article et lieu retrait
+	//TODO vérifier si le SELECT_ALL est toujours utile
 	private final static String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article,description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?)";
 	private final static String SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, prix_vente, no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
 	private final static String SELECT_ARTICLE_BY_USER = "SELECT \r\n"
@@ -48,7 +48,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	 * Méthode en charge d'ajouter un nouvel article dans la BDD
 	 */
 	@Override
-	public void ajouterArticleAVendre (ArticleVendu articleVendu,Utilisateur utilisateur) throws DALException {
+	public ArticleVendu ajouterArticleAVendre (ArticleVendu articleVendu,Utilisateur utilisateur) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement pStmt;
 			pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -58,7 +58,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			pStmt.setDate(4, Date.valueOf(articleVendu.getDateFinEncheres()));
 			pStmt.setInt(5, articleVendu.getMiseAPrix());
 			pStmt.setInt(6, utilisateur.getNoUtilisateur());
-			pStmt.setInt(7, articleVendu.getCategorieArticle().getNoCategorie());;
+			pStmt.setInt(7, articleVendu.getCategorieArticle().getNoCategorie());
 
 			pStmt.executeUpdate();
 
@@ -67,12 +67,12 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				Integer idGenere = rs.getInt(1);
 				articleVendu.setNoArticle(idGenere);
 			}
-			
+					
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
-		
+		return articleVendu;
 	}
 
 

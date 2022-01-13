@@ -32,8 +32,7 @@
 					<p>Code Postal : ${model.utilisateur.codePostal}</p>
 					<p>Ville : ${model.utilisateur.ville}</p>		
 				<!-- Bouton Modifier utilisateur -->
-				<input type="button" name="modifierUtilisateur" value="Modifier"/>
-				
+				<a href="http://localhost:8080/ProjetEncheres/ModifierUtilisateur" class="btn btn-primary">Modifier</a>				
 				</div>
 				<div class="col-md-4">
 				</div>

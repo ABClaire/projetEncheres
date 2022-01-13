@@ -105,6 +105,44 @@ public class TestDAL {
 //		}
 
 
+		/*
+		 * =========================================================
+		 * 			TEST AJOUT RETRAIT
+		 * =========================================================
+		*/
+		
+		
+		// Récupération d'un utilisateur
+//		Utilisateur grandBrother = null;
+//		
+//		try {
+//			grandBrother = DAOFactory.getUtilisateurDAO().getById(19);
+//		} catch (DALException e1) {
+//			e1.printStackTrace();
+//		}
+//		
+//		// Création d'un objet retrait
+//		Retrait monRetrait = new Retrait("Chateau D'Arendel", "35000", "RENNES");
+//		
+//		// Création d'une nouvelle catégorie
+//		Categorie categorie = new Categorie(4);
+//		
+//		// Création d'un nouvel article et insertion en BDD
+//		ArticleVendu monArticle = new ArticleVendu("Nom d'un article", "Sa description", LocalDate.now(),LocalDate.now().plusDays(10), 200, grandBrother, categorie, monRetrait);
+//		try {
+//			DAOFactory.getArticleVenduDAO().ajouterArticleAVendre(monArticle, grandBrother);
+//		} catch (DALException e1) {
+//			e1.printStackTrace();
+//		}
+//		
+//		// Mise à jour du lieu de retrait et insertion en BDD
+//		monRetrait.setArticleVendu(monArticle);
+//		try {
+//			DAOFactory.getRetraitDAO().ajouterRetrait(monRetrait);
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
+		
 		
 	}
 

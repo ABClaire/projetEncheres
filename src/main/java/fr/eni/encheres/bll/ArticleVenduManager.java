@@ -11,6 +11,6 @@ import fr.eni.encheres.bo.Utilisateur;
  */
 public interface ArticleVenduManager {
 	
-	void ajouterUnArticle(ArticleVendu articleAVendre, Utilisateur utilisateur) throws BLLException;
+	ArticleVendu ajouterUnArticle(ArticleVendu articleAVendre, Utilisateur utilisateur) throws BLLException;
 
 }

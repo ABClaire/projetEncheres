@@ -57,7 +57,7 @@ public class ConnectionServlet extends HttpServlet {
 
 		}
 		if (request.getParameter("Creation Compte") != null) {
-			nextScreen = "WEB-INF/inscription.jsp";
+			nextScreen = "Inscription";
 		}
 		
 		
