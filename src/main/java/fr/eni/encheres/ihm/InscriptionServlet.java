@@ -28,7 +28,7 @@ public class InscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nextScreen = "WEB-INF/inscription.jsp";
+		String nextScreen = "WEB-INF/Inscription.jsp";
 		
 		if(request.getParameter("creerUtilisateur") != null) {
 			if(request.getParameter("motDePasse").equals(request.getParameter("confirmationMotDePasse"))) {
@@ -55,6 +55,10 @@ public class InscriptionServlet extends HttpServlet {
 			} else {
 				request.setAttribute("message", "Attention, vous avez saisi deux mots de passes différents. Veuillez recommancer s'il vous plait");
 			}
+		}
+		
+		if(request.getParameter("annulerUtilisateur") != null) {
+			nextScreen = "Connexion";
 		}
 		
 		

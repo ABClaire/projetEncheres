@@ -17,12 +17,6 @@ public class Retrait {
 	 */
 	public Retrait() {
 	}
-	
-	
-	
-
-
-
 
 	/**
 	 * Constructeur.
