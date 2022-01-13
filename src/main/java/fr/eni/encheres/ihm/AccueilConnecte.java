@@ -36,20 +36,19 @@ public class AccueilConnecte extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		Integer noUtilisateur = utilisateur.getNoUtilisateur();
 	
-		System.out.println(noUtilisateur);
 		//----------------------------------------- Copie fonction recherche--------------------------------------------------
 		String option = "Toutes";
 		String motClef = null;
 		List<ArticleVendu> lstARetouner = new ArrayList<ArticleVendu>();
  		
-		//Au clique sur rechercher on récupère la catégorie et un possible motClef
+		//Au clique sur rechercher on rï¿½cupï¿½re la catï¿½gorie et un possible motClef
 		if (request.getParameter("recherche")!= null) {
 			option = request.getParameter("listeDeroulante");
 			motClef = request.getParameter("nomArticle");
 		}
 		
 		
-		// si il n'y a pas de mot clée on retourne la Liste global filtrer par le choix de catégorie 
+		// si il n'y a pas de mot clï¿½e on retourne la Liste global filtrer par le choix de catï¿½gorie 
 		if (motClef == null || motClef.isBlank()) {
 			
 			try {
@@ -57,7 +56,7 @@ public class AccueilConnecte extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			//si il y a un mot clée je récupère la liste trié par catégorie puis je la trie par recherche par mot clé avant de la renvoyer 
+			//si il y a un mot clï¿½e je rï¿½cupï¿½re la liste triï¿½ par catï¿½gorie puis je la trie par recherche par mot clï¿½ avant de la renvoyer 
 		}else {
 			
 			try {
@@ -72,6 +71,7 @@ public class AccueilConnecte extends HttpServlet {
 		//-----------------------------------------------------fin copie fonction recherche---------------------------------------------------
 		
 		if(request.getParameter("deconnexion") != null) {
+			request.getSession().setAttribute("utilisateur", "");
 			nextScreen = "AccueilServlet";
 		}
 		

@@ -44,6 +44,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
 			+ "GROUP BY nom_article, description, libelle, prix_initial,date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo";
 	
+	private final static String SELECT_CATEGORIES = "SELECT no_categorie, libelle FROM CATEGORIES";
+	
 	/**
 	 * Méthode en charge d'ajouter un nouvel article dans la BDD
 	 */

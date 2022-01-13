@@ -92,10 +92,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		return utilisateur;
 	}
-	/*
-	 * Mï¿½thode en charge de 
-	 */
-	
+
 	/**
 	 * MÃ©thode en charge de vÃ©rifier la connexion de l'utilistaeur.
 	 * @return l'utilisateur connectÃ©
@@ -218,20 +215,20 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		//Verificiation du Pseudo unique et du Mail unique
 		
 		if(utilisateur.getPseudo().equals(utilisateurModif.getPseudo())) {
-			System.out.println("Le pseudo de l'utilisateur reste le même");	
+			System.out.println("Le pseudo de l'utilisateur reste le mï¿½me");	
 		}
 		else {
 			verificationPseudoUnique(utilisateurModif.getPseudo(), be);
-			System.out.println("Vérifier si le pseudo existe déjà");
+			System.out.println("Vï¿½rifier si le pseudo existe dï¿½jï¿½");
 			System.out.println(utilisateurModif.getPseudo());
 		}
 		
 		if(utilisateur.getEmail().equals(utilisateurModif.getEmail())){
-			System.out.println("L'email de l'utilisateur reste le même");
+			System.out.println("L'email de l'utilisateur reste le mï¿½me");
 		}
 		else {
 			verificationEMailUnique(utilisateurModif.getEmail(), be);
-			System.out.println("Vérifier si l'email existe déjà");
+			System.out.println("Vï¿½rifier si l'email existe dï¿½jï¿½");
 			System.out.println(utilisateurModif.getEmail());
 
 		}

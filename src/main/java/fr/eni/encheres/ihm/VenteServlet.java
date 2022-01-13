@@ -2,7 +2,6 @@ package fr.eni.encheres.ihm;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -75,13 +74,15 @@ public class VenteServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			if(request.getParameter("annuler")!=null) {
-				model = new VenteModel();
-			}
 			
-			if(request.getParameter("retour_accueil") != null) {
-				nextScreen = "AccueilConnecte";
-			}
+		}
+		
+		if(request.getParameter("annuler")!=null) {
+			model = new VenteModel();
+		}
+		
+		if(request.getParameter("retour_accueil") != null) {
+			nextScreen = "AccueilConnecte";
 		}
 		request.setAttribute("model", model);
 		request.getRequestDispatcher(nextScreen).forward(request, response);
