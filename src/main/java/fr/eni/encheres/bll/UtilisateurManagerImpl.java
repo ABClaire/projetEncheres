@@ -43,7 +43,10 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		verificationNom(nouvelUtilisateur.getNom(), be);
 		verificationPrenom(nouvelUtilisateur.getPrenom(), be);
 		verificationEmail(nouvelUtilisateur.getEmail(), be);
-		verificationTelephone(nouvelUtilisateur.getTelephone(), be);
+		/*
+		 * Vérification téléphone renvoit erreur null à l'inscription
+		 */
+		//verificationTelephone(nouvelUtilisateur.getTelephone(), be);
 		verificationRue(nouvelUtilisateur.getRue(), be);
 		verificationCp(nouvelUtilisateur.getCodePostal(), be);	
 		verificationVille(nouvelUtilisateur.getVille(), be);
