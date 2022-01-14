@@ -119,9 +119,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				ArticleVendu articleAvecUtilisateuretCategorie = new ArticleVendu(rs.getString("nom_article"),  rs.getString("description"), (rs.getDate("date_fin_encheres")).toLocalDate(), rs.getInt("prix"), utilisateur, categorie, retrait);
 				
 		
-				lstArticleVendus.add(articleAvecUtilisateuretCategorie);
-				
-						
+				lstArticleVendus.add(articleAvecUtilisateuretCategorie);				
 				
 			}
 		} catch (SQLException e) {

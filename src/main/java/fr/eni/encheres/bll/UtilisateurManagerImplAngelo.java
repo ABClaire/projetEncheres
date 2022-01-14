@@ -36,7 +36,7 @@ public class UtilisateurManagerImplAngelo  {
 	public String RecuperationMotDePasse (String email) throws BLLException {
 		
 		List<Utilisateur> lstUtilisateur = new ArrayList<>();
-		String message = "Aucun compte correspondant à cette adresse mail";
+		String message = "Aucun compte correspondant ï¿½ cette adresse mail";
 		try {
 			lstUtilisateur = DAOFactory.getUtilisateurDAO().getAllUtilisateurs();
 			
@@ -48,7 +48,7 @@ public class UtilisateurManagerImplAngelo  {
 		for (Utilisateur utilisateur : lstUtilisateur) {
 			
 			if (email.equals(utilisateur.getEmail())) {
-				message = "Votre mot de passe vous à été renvoyé par mail";
+				message = "Votre mot de passe vous ï¿½ ï¿½tï¿½ renvoyï¿½ par mail";
 			}
 		}
 		
@@ -73,9 +73,9 @@ public class UtilisateurManagerImplAngelo  {
 		
 	}
 	
-	//TODO: faire remonter en premier les plus récente 
+	//TODO: faire remonter en premier les plus rï¿½cente 
 	
-	//Filtre la liste global des Articles pour ramener seulement les éléments de la catégorie choisie 
+	//Filtre la liste global des Articles pour ramener seulement les ï¿½lï¿½ments de la catï¿½gorie choisie 
 	public List<ArticleVendu> FiltreSuivantCategorie (String categorie) throws BLLException{
 		List<ArticleVendu> lstAReturn = new ArrayList<>();
 		List<ArticleVendu> lstFinal = new ArrayList<>();
@@ -85,9 +85,9 @@ public class UtilisateurManagerImplAngelo  {
 			if (!categorie.equals("Toutes")) {
 				
 				for (ArticleVendu articleVendu : lstGlobal) {
-					//TODO : risque de problème entre la catégorie de l'ihm Sport et loisir et de la base Sport&Loisirs
+					//TODO : risque de problï¿½me entre la catï¿½gorie de l'ihm Sport et loisir et de la base Sport&Loisirs
 					if (articleVendu.getCategorieArticle().getLibelle().equals(categorie)) {
-						//si la categorie de l'objet est la même que celle passer en paramêtre on ajoute l'article a la liste
+						//si la categorie de l'objet est la mï¿½me que celle passer en paramï¿½tre on ajoute l'article a la liste
 						lstAReturn.add(articleVendu);
 					}
 				}
@@ -97,12 +97,11 @@ public class UtilisateurManagerImplAngelo  {
 			
 				
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BLLException(e);
 		}
 		
-		//Récupère les enchères en cours (date d'enchère inférieur à la date du jour) 
+		//Rï¿½cupï¿½re les enchï¿½res en cours (date d'enchï¿½re infï¿½rieur ï¿½ la date du jour) 
 		for (ArticleVendu articleVendu : lstAReturn) {
 			
 			if (articleVendu.getDateFinEncheres().isAfter(LocalDate.now())) {		
@@ -113,8 +112,8 @@ public class UtilisateurManagerImplAngelo  {
 		return lstFinal;
 	}
 	
-	//Méthode pour faire une recherche par mot clée prend en entrée la liste issue du chois de la catégorie et retourne une list 
-	// trié par les mots clée choisie
+	//Mï¿½thode pour faire une recherche par mot clï¿½e prend en entrï¿½e la liste issue du chois de la catï¿½gorie et retourne une list 
+	// triï¿½ par les mots clï¿½e choisie
 	
 	
 	public List<ArticleVendu> RechercheDansLeNomDelArticle (List<ArticleVendu> lstEntree , String motClef){
@@ -127,7 +126,7 @@ public class UtilisateurManagerImplAngelo  {
 			}
 		}
 		return LstIssueDeLaRecherche;
-		// si retourne listVide mettre un message "Aucun n'article correspondant à votre Recherche"
+		// si retourne listVide mettre un message "Aucun n'article correspondant ï¿½ votre Recherche"
 	}
 	
 	
