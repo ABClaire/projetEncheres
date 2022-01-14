@@ -161,7 +161,9 @@
 		<p>${sc.nomArticle}</p>
 		<p>Prix :${sc.prixVente}</p>
 		<p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
-		<p>Vendeur : ${sc.utilisateur.pseudo}</p>
+		<label name="${sc.utilisateur.pseudo}"></label>
+		<!-- Envoi un paramètre par l'URL  -->
+		<p >Vendeur : <a href="<c:url value="/AfficherProfilVendeurServlet?pseudoVendeur=${sc.utilisateur.pseudo}"/>" >${sc.utilisateur.pseudo} </a></p>
 		<p>-------------------------------------------------------</p>
 	</c:forEach>
 	<!-- Fin Affichage des Articles-->
