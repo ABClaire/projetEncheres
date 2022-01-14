@@ -80,11 +80,12 @@ public class AccueilConnecte extends HttpServlet {
 		}
 		//-----------------------------------------------------fin copie fonction recherche---------------------------------------------------
 		
+	
 		if(request.getParameter("deconnexion") != null) {
 			request.getSession().setAttribute("utilisateur", "");
 			nextScreen = "AccueilServlet";
 		}
-		
+					
 		request.getRequestDispatcher(nextScreen).forward(request, response);
 	}
 

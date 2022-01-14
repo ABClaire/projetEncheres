@@ -43,7 +43,10 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		verificationNom(nouvelUtilisateur.getNom(), be);
 		verificationPrenom(nouvelUtilisateur.getPrenom(), be);
 		verificationEmail(nouvelUtilisateur.getEmail(), be);
-		verificationTelephone(nouvelUtilisateur.getTelephone(), be);
+		/*
+		 * Vérification téléphone renvoit erreur null à l'inscription
+		 */
+		//verificationTelephone(nouvelUtilisateur.getTelephone(), be);
 		verificationRue(nouvelUtilisateur.getRue(), be);
 		verificationCp(nouvelUtilisateur.getCodePostal(), be);	
 		verificationVille(nouvelUtilisateur.getVille(), be);
@@ -373,7 +376,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 	
 	private void verificationVille(String ville, BLLException be) {
-		if(ville == null || ville.isBlank() || ville.length()>10) {
+		if(ville == null || ville.isBlank() || ville.length()>50) {
 			be.ajouterErreur(new ParameterException("La ville est obligatoire et doit ï¿½tre <=50 caractï¿½res" ));
 		}
 	}
