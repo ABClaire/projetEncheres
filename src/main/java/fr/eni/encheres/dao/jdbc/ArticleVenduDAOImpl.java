@@ -12,6 +12,7 @@ import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.ArticleVenduDAO;
@@ -27,6 +28,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	//TODO vérifier si le SELECT_ALL est toujours utile
 	private final static String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article,description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?)";
 	private final static String SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, prix_vente, no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	
+	//TODO supprimer cette requête?
 	private final static String SELECT_ARTICLE_BY_USER = "SELECT \r\n"
 			+ "    nom_article,\r\n"
 			+ "    description,\r\n"
@@ -44,6 +47,46 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
 			+ "GROUP BY nom_article, description, libelle, prix_initial,date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo";
 	
+	private final static String SELECT_BY_ID = "SELECT TOP 1\r\n"
+			+ "	av.no_article,\r\n"
+			+ "    nom_article,\r\n"
+			+ "    description,\r\n"
+			+ "    libelle AS categorie,\r\n"
+			+ "	prix_initial,\r\n"
+			+ "    date_fin_encheres,\r\n"
+			+ "    r.rue,\r\n"
+			+ "    r.code_postal,\r\n"
+			+ "    r.ville,\r\n"
+			+ "    pseudo AS vendeur,\r\n"
+			+ "	ISNULL(MAX(montant_enchere), prix_initial) AS \"meilleure offre\",\r\n"
+			+ "	e.no_utilisateur AS encheriste\r\n"
+			+ "FROM ARTICLES_VENDUS av\r\n"
+			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur\r\n"
+			+ "LEFT JOIN ENCHERES e ON av.no_article = e.no_article\r\n"
+			+ "INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie\r\n"
+			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
+			+ "WHERE av.no_article = ?\r\n"
+			+ "GROUP BY av.no_article, nom_article, description, libelle, prix_initial, date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo, e.no_utilisateur\r\n"
+			+ "ORDER BY no_article, \"meilleure offre\" DESC\r\n";
+	
+	@Override
+	public ArticleVendu selectArticleById(Integer idArticle) throws DALException {		
+		ArticleVendu article = null;
+
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID);
+			pStmt.setInt(1, idArticle);
+			ResultSet rs = pStmt.executeQuery();
+			while(rs.next()) {
+				article = map(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return article;
+	}
 	
 	/**
 	 * Méthode en charge d'ajouter un nouvel article dans la BDD
@@ -131,22 +174,36 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	}
 
 	private ArticleVendu map(ResultSet rs) throws SQLException {
+		Utilisateur utilisateurVendeur;
+		Utilisateur utilisateurEncheriste;
+		Categorie categorie;
+		Retrait retrait;
+		Enchere enchere;
+		List<Enchere> lstEncheres = new ArrayList<Enchere>();
+		ArticleVendu article;
+		
 		Integer noArticle = rs.getInt("no_article");
 		String nom = rs.getString("nom_article");
 		String description = rs.getString("description");
-		LocalDate dateDebutEncheres = (rs.getDate("date_debut_encheres")).toLocalDate();
-		LocalDate dateFinEncheres = (rs.getDate("date_fin_encheres")).toLocalDate();
 		Integer prixInitial = rs.getInt("prix_initial");
-		Integer prixVente = rs.getInt("prix_vente");
-						
-		return null;
+		LocalDate dateFinEncheres = (rs.getDate("date_fin_encheres")).toLocalDate();
+		
+		
+		utilisateurVendeur = new Utilisateur(rs.getString("vendeur"));
+		utilisateurEncheriste = new Utilisateur(rs.getString("encheriste"));
+		
+		categorie = new Categorie(rs.getString("categorie"));
+		retrait = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"));
+		article = new ArticleVendu(noArticle, nom, description, dateFinEncheres, prixInitial, utilisateurVendeur, categorie, retrait);
+		
+		enchere = new Enchere(rs.getInt("meilleure offre"), article, utilisateurEncheriste);
+		
+		lstEncheres.add(enchere);
+		
+		article.setLstEncheres(lstEncheres);
+		
+		return article;
 	}
-	
-
-	
-	
-	
-	
 	
 	
 }

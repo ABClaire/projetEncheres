@@ -12,5 +12,7 @@ import fr.eni.encheres.bo.Utilisateur;
 public interface ArticleVenduManager {
 	
 	ArticleVendu ajouterUnArticle(ArticleVendu articleAVendre) throws BLLException;
+	
+	ArticleVendu selectByNoArticle(Integer noArticle) throws BLLException;
 
 }

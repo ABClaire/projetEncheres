@@ -26,11 +26,21 @@ public class Enchere {
 	 * @param articleVendu
 	 * @param utilisateur
 	 */
-	public Enchere(LocalDate dateEnchere, Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
-		this.dateEnchere = dateEnchere;
+	public Enchere(Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
 		this.montantEnchere = montantEnchere;
 		this.articleVendu = articleVendu;
 		this.utilisateur = utilisateur;
+	}
+	/**
+	 * Constructeur.
+	 * @param dateEnchere
+	 * @param montantEnchere
+	 * @param articleVendu
+	 * @param utilisateur
+	 */
+	public Enchere(LocalDate dateEnchere, Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
+		this(montantEnchere, articleVendu, utilisateur);
+		this.dateEnchere = dateEnchere;
 	}
 	/**
 	 * Getter pour dateEnchere.

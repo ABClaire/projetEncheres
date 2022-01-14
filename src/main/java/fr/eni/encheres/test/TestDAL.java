@@ -4,14 +4,9 @@
 package fr.eni.encheres.test;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.bo.Categorie;
-import fr.eni.encheres.bo.Retrait;
-import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
 
@@ -143,12 +138,28 @@ public class TestDAL {
 //			e.printStackTrace();
 //		}
 		
-		try {
-			List<Categorie> lstCategorie = DAOFactory.getCategorieDAO().listeDesCategories();
-			lstCategorie.forEach(System.out::println);
-		} catch (DALException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			List<Categorie> lstCategorie = DAOFactory.getCategorieDAO().listeDesCategories();
+//			lstCategorie.forEach(System.out::println);
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		/*
+		 * =========================================================
+		 * 			TEST SELECTION ARTICLE BY ID
+		 * =========================================================
+		*/
+		
+//		try {
+//			ArticleVendu monArticle = DAOFactory.getArticleVenduDAO().selectArticleById(1);
+//			//monArticle.getLstEncheres().forEach(a -> System.out.println(a));
+//			String nomEncheriste = monArticle.getLstEncheres().stream().map(Enchere::getUtilisateur).toString();
+//			System.out.println(nomEncheriste);
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
 		
 		
 	}

@@ -1,8 +1,6 @@
 package fr.eni.encheres.ihm;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;

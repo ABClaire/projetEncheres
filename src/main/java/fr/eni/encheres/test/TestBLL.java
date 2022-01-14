@@ -3,12 +3,11 @@
  */
 package fr.eni.encheres.test;
 
-import java.util.List;
-
 import fr.eni.encheres.bll.ArticleVenduManagerImpl;
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bll.UtilisateurManagerImpl;
-import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.ArticleVendu;
 
 /**
  * Classe en charge de tester la couche BLL
@@ -81,6 +80,20 @@ public class TestBLL {
 //		System.out.println(recuperer);
 //
 //		
+		/*
+		 * =========================================================
+		 * 				TEST ARTICLE BY ID
+		 * =========================================================
+		*/
+		
+		try {
+			ArticleVendu monArticle = ArticleVenduManagerImpl.getInstance().selectByNoArticle(1);
+			System.out.println(monArticle);
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

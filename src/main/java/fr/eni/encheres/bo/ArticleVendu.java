@@ -124,6 +124,31 @@ public class ArticleVendu {
 		this.categorieArticle = categorieArticle;
 		this.lieuRetrait = lieuRetrait;
 	}
+	
+	/**
+	 * Constructeur.
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param utilisateur
+	 * @param categorieArticle
+	 * @param lieuRetrait
+	 */
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateFinEncheres,
+			Integer miseAPrix, Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.utilisateur = utilisateur;
+		this.categorieArticle = categorieArticle;
+		this.lieuRetrait = lieuRetrait;
+	}
+
 	/**
 	 * Getter pour noArticle.
 	 * @return the noArticle
@@ -292,6 +317,7 @@ public class ArticleVendu {
 	public void setLieuRetrait(Retrait lieuRetrait) {
 		this.lieuRetrait = lieuRetrait;
 	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -299,11 +325,12 @@ public class ArticleVendu {
 				.append(", description=").append(description).append(", dateDebutEncheres=").append(dateDebutEncheres)
 				.append(", dateFinEncheres=").append(dateFinEncheres).append(", miseAPrix=").append(miseAPrix)
 				.append(", prixVente=").append(prixVente).append(", etatVente=").append(etatVente)
-				.append(", utilisateur=").append(utilisateur).append(", lstEncheres=").append(lstEncheres)
+				.append(", utilisateur=").append(utilisateur)
 				.append(", categorieArticle=").append(categorieArticle).append(", lieuRetrait=").append(lieuRetrait)
 				.append("]");
 		return builder.toString();
 	}
+
 	
 
 }

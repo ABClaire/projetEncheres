@@ -3,11 +3,7 @@
  */
 package fr.eni.encheres.bll;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
 
@@ -37,6 +33,18 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 			throw new BLLException(e);
 		}
 		return nouvelArticle;
+	}
+	
+	//TODO: supprimer cette requête?
+
+	@Override
+	public ArticleVendu selectByNoArticle(Integer noArticle) throws BLLException {
+		try {
+			return DAOFactory.getArticleVenduDAO().selectArticleById(noArticle);
+		} catch (DALException e) {
+			e.printStackTrace();
+			throw new BLLException(e);
+		}
 	}
 	
 
