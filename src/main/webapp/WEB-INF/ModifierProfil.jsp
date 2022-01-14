@@ -131,6 +131,11 @@
 		</div>
 	</div>
 	
+	
+	
+	
+						<p>Crédit : ${model.utilisateur.credit}</p>
+	
 	<!-- BOUTONS -->
 
 	<div class="row">

@@ -373,7 +373,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 	
 	private void verificationVille(String ville, BLLException be) {
-		if(ville == null || ville.isBlank() || ville.length()>10) {
+		if(ville == null || ville.isBlank() || ville.length()>50) {
 			be.ajouterErreur(new ParameterException("La ville est obligatoire et doit �tre <=50 caract�res" ));
 		}
 	}

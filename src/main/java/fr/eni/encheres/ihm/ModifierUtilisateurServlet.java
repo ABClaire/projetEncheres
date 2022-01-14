@@ -79,12 +79,11 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 			}
 		}
 				
-		//BOUTON SUPPRIMER
+		// SUPPRIMER
 		if(request.getParameter("suppressionCompte")!=null) {
-		System.out.println("Clic sur le bouton supprimer");
 			try {				
-				System.out.println("Rentre dans la suppresion du compte");
-				UtilisateurManagerImpl.getInstance().supprimerUtilisateur(model.getUtilisateur().getNoUtilisateur());	
+				UtilisateurManagerImpl.getInstance().supprimerUtilisateur(model.getUtilisateur().getNoUtilisateur());
+				request.getSession().setAttribute("utilisateur", "");
 			} catch (BLLException e) {
 				e.printStackTrace();
 				//request.setAttribute("message", e.toString());

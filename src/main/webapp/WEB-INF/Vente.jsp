@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,21 +23,21 @@
 				<option></option>
 				<option value="1"><a><p>Informatique</p></a></option>
 				<option value="2"><a><p>Ameublement</p></a></option>
-				<option value="3"><a><p>VÃªtement</p></a></option>
+				<option value="3"><a><p>Vêtement</p></a></option>
 				<option value="4"><a><p>Sports et loisirs</p></a></option>
 			</select>
 			<br>
 		<label for="photo_article"> Photo de l'article: </label>
-			<button type="button" name="photo_article" disabled>TÃ©lÃ©charger </button><br>
+			<button type="button" name="photo_article" disabled>Télécharger </button><br>
 			
 			
-		<label for="prix_article"> Mise Ã  prix (en point): </label>
+		<label for="prix_article"> Mise à prix (en point): </label>
 			<input type="number" name="prix_article" value="${model.article.miseAPrix}"/><br>
 			
-		<label for="debut_enchere"> DÃ©but de l'enchÃ¨re: </label>
+		<label for="debut_enchere"> Début de l'enchère: </label>
 			<input type="date" name="debut_enchere" value="${model.article.dateDebutEncheres}"/><br>
 			
-		<label for="fin_enchere"> Fin de l'enchÃ¨re: </label>
+		<label for="fin_enchere"> Fin de l'enchère: </label>
 			<input type="date" name="fin_enchere" value="${model.article.dateFinEncheres}"/><br>
 			
 		<fieldset> 
@@ -55,7 +55,7 @@
 	</form>
 	
 	<form action="NouvelleVente" method="POST">
-	      <input type="submit" name="retour_accueil" value="Retourner aux enchÃ¨res"/>
+	      <input type="submit" name="retour_accueil" value="Retourner aux enchères"/>
     </form>    
      
 	<p> ${message}</p>
