@@ -38,9 +38,9 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager{
 	//TODO: supprimer cette requête?
 
 	@Override
-	public ArticleVendu selectByNoArticle(Integer noArticle) throws BLLException {
+	public ArticleVendu selectBestEnchereByNoArticle(Integer noArticle) throws BLLException {
 		try {
-			return DAOFactory.getArticleVenduDAO().selectArticleById(noArticle);
+			return DAOFactory.getArticleVenduDAO().selectArticleByIdBestEnchere(noArticle);
 		} catch (DALException e) {
 			e.printStackTrace();
 			throw new BLLException(e);

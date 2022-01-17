@@ -9,6 +9,6 @@ public interface ArticleVenduDAO {
 	ArticleVendu ajouterArticleAVendre(ArticleVendu articleVendu) throws DALException;
 	List<ArticleVendu> getAllArticleVendu() throws DALException;
 	List<ArticleVendu> selectJointArticleUtilisateur() throws DALException;
-	ArticleVendu selectArticleById(Integer idArticle) throws DALException;
+	ArticleVendu selectArticleByIdBestEnchere(Integer idArticle) throws DALException;
 	
 }

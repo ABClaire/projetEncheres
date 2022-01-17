@@ -153,15 +153,27 @@ public class TestDAL {
 		*/
 		
 //		try {
-//			ArticleVendu monArticle = DAOFactory.getArticleVenduDAO().selectArticleById(1);
-//			//monArticle.getLstEncheres().forEach(a -> System.out.println(a));
-//			String nomEncheriste = monArticle.getLstEncheres().stream().map(Enchere::getUtilisateur).toString();
-//			System.out.println(nomEncheriste);
+//			ArticleVendu monArticle = DAOFactory.getArticleVenduDAO().selectArticleByIdBestEnchere(1);
+//			Integer noEncheriste = monArticle.getEnchereMaximum().getUtilisateur().getNoUtilisateur();
+//			Integer noVendeur = monArticle.getUtilisateur().getNoUtilisateur();
+//			System.out.println("no encheriste " + noEncheriste);
+//			System.out.println("no_vendeur " + noVendeur);
 //		} catch (DALException e) {
 //			e.printStackTrace();
 //		}
 		
 		
+		/*
+		 * =========================================================
+		 * 			TEST AJOUTER NOUVELLE ENCHERE
+		 * =========================================================
+		*/
+		
+//		try {
+//			DAOFactory.getEnchereDAO().ajouterNouvelleEnchere(2, 2, 150);
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 }

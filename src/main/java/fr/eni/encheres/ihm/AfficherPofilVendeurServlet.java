@@ -41,7 +41,6 @@ public class AfficherPofilVendeurServlet extends HttpServlet {
 		try {
 			utilisateurVendeur = UtilisateurManagerImpl.getInstance().getByPseudoUtilisateur(pseudoVendeur);
 			model.setUtilisateur(utilisateurVendeur);
-			System.out.println(utilisateurVendeur.toString());
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}

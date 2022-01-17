@@ -158,8 +158,8 @@
 <!-- Début Affichage des Articles -->
 	<c:forEach items="${Liste}" var="sc">
 		<p>-------------------------------------------------------</p>
-		<p>${sc.nomArticle}</p>
-		<p>Prix :${sc.prixVente}</p>
+		<p><a href="<c:url value="/DetailEnchere?noArticle=${sc.noArticle}"/>" >${sc.nomArticle}</a></p>
+		<p>Prix :${sc.miseAPrix}</p>
 		<p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
 		<label name="${sc.utilisateur.pseudo}"></label>
 		<!-- Envoi un paramètre par l'URL  -->

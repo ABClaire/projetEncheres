@@ -3,10 +3,12 @@
  */
 package fr.eni.encheres.test;
 
-import fr.eni.encheres.bll.ArticleVenduManagerImpl;
+import java.util.List;
+
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bll.UtilisateurManagerImpl;
+import fr.eni.encheres.bll.UtilisateurManagerImplAngelo;
 import fr.eni.encheres.bo.ArticleVendu;
 
 /**
@@ -86,9 +88,23 @@ public class TestBLL {
 		 * =========================================================
 		*/
 		
+//		try {
+//			ArticleVendu monArticle = ArticleVenduManagerImpl.getInstance().selectBestEnchereByNoArticle(1);
+//			System.out.println(monArticle);
+//		} catch (BLLException e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		/*
+		 * =========================================================
+		 * 				TEST Liste des articles
+		 * =========================================================
+		*/
+		
 		try {
-			ArticleVendu monArticle = ArticleVenduManagerImpl.getInstance().selectByNoArticle(1);
-			System.out.println(monArticle);
+		List<ArticleVendu> lstArticles=	UtilisateurManagerImplAngelo.getInstance().RecuperationArticleEtUtilisateur();
+		lstArticles.forEach(System.out::println);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}

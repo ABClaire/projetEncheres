@@ -59,7 +59,6 @@ public class UtilisateurManagerImplAngelo {
 		try {
 			return DAOFactory.getArticleVenduDAO().selectJointArticleUtilisateur();
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BLLException(e);
 		}
@@ -139,7 +138,7 @@ public class UtilisateurManagerImplAngelo {
 		return lstAretourner;
 	}
 	
-	//-------Methode pour EnchèreOuverte/MesEnchèrs/MesEnchèreRemporter----------
+	//-------Methode pour Enchï¿½reOuverte/MesEnchï¿½rs/MesEnchï¿½reRemporter----------
 	
 		public List<ArticleVendu> AchatSwitchPourCheckbox (List<ArticleVendu> lstEntree, String pseudoSession, Integer choix){
 			
@@ -148,23 +147,23 @@ public class UtilisateurManagerImplAngelo {
 			for (ArticleVendu articleVendu : lstEntree) {
 				
 				switch (choix) {
-				case 1://Enchère ouverte
-					System.out.println("Enchère ouverte");
+				case 1://Enchï¿½re ouverte
+					System.out.println("Enchï¿½re ouverte");
 					if (articleVendu.getDateFinEncheres().isBefore(LocalDate.now())) {
 						lstRetourner.add(articleVendu);
 						System.out.println("dans le if");
 					}
 					break;
 					
-				case 2://Mes Enchères
-					System.out.println("Enchère ouverte");
+				case 2://Mes Enchï¿½res
+					System.out.println("Enchï¿½re ouverte");
 					
 				
 					break;
 					
-				case 3://Mes Enchère rapporter
+				case 3://Mes Enchï¿½re rapporter
 					
-					System.out.println("Mes Enchère rapporter");
+					System.out.println("Mes Enchï¿½re rapporter");
 					break;
 					
 				default://Aucun choix

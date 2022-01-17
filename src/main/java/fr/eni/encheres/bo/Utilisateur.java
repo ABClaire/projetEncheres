@@ -35,8 +35,16 @@ public class Utilisateur {
 	
 	
 	public Utilisateur(String pseudo) {
-		super();
 		this.pseudo = pseudo;
+	}
+	
+	public Utilisateur(Integer noUtilisateur,String pseudo) {
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+	}
+	
+	public Utilisateur(Integer noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
 	}
 
 

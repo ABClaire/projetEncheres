@@ -85,6 +85,7 @@ public class AccueilConnecte extends HttpServlet {
 			request.getSession().setAttribute("utilisateur", "");
 			nextScreen = "AccueilServlet";
 		}
+		
 					
 		request.getRequestDispatcher(nextScreen).forward(request, response);
 	}

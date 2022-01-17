@@ -13,6 +13,6 @@ public interface ArticleVenduManager {
 	
 	ArticleVendu ajouterUnArticle(ArticleVendu articleAVendre) throws BLLException;
 	
-	ArticleVendu selectByNoArticle(Integer noArticle) throws BLLException;
-
+	ArticleVendu selectBestEnchereByNoArticle(Integer noArticle) throws BLLException;
+	
 }

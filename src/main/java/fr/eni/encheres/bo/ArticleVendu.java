@@ -20,6 +20,7 @@ public class ArticleVendu {
 	Integer miseAPrix;
 	Integer prixVente;
 	String etatVente;
+	Enchere enchereMaximum;
 	Utilisateur utilisateur;
 	List<Enchere> lstEncheres;
 	Categorie categorieArticle;
@@ -92,7 +93,38 @@ public class ArticleVendu {
 	}
 
 
-
+	/**
+	 * Constructeur.
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 * @param utilisateur
+	 * @param lstEncheres
+	 * @param categorieArticle
+	 * @param lieuRetrait
+	 */
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
+			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, String etatVente, Utilisateur utilisateur,
+			Enchere enchereMaximum, Categorie categorieArticle, Retrait lieuRetrait) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.utilisateur = utilisateur;
+		this.enchereMaximum = enchereMaximum;
+		this.categorieArticle = categorieArticle;
+		this.lieuRetrait = lieuRetrait;
+	}
+	
 	/**
 	 * Constructeur.
 	 * @param noArticle
@@ -138,7 +170,6 @@ public class ArticleVendu {
 	 */
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateFinEncheres,
 			Integer miseAPrix, Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait) {
-		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -147,6 +178,23 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		this.categorieArticle = categorieArticle;
 		this.lieuRetrait = lieuRetrait;
+	}
+	
+
+	/**
+	 * Getter pour enchereMaximum.
+	 * @return the enchereMaximum
+	 */
+	public Enchere getEnchereMaximum() {
+		return enchereMaximum;
+	}
+
+	/**
+	 * Setter pour enchereMaximum.
+	 * @param enchereMaximum the enchereMaximum to set
+	 */
+	public void setEnchereMaximum(Enchere enchereMaximum) {
+		this.enchereMaximum = enchereMaximum;
 	}
 
 	/**

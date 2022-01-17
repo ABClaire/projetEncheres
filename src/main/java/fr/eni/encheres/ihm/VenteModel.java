@@ -18,8 +18,6 @@ public class VenteModel {
 	 * Constructeur.
 	 */
 	public VenteModel() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 	/**
 	 * Constructeur.

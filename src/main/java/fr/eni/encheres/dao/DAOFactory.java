@@ -5,6 +5,7 @@ package fr.eni.encheres.dao;
 
 import fr.eni.encheres.dao.jdbc.ArticleVenduDAOImpl;
 import fr.eni.encheres.dao.jdbc.CategorieDAOImpl;
+import fr.eni.encheres.dao.jdbc.EnchereDAOImpl;
 import fr.eni.encheres.dao.jdbc.RetraitDAOImpl;
 import fr.eni.encheres.dao.jdbc.UtilisateurDAOImpl;
 
@@ -27,4 +28,8 @@ public class DAOFactory {
 		return new CategorieDAOImpl();
 	}
 
+	
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOImpl();
+	}
 }
