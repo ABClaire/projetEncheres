@@ -28,9 +28,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h1>ENI-Enchères</h1>
-					<img     src="https://c.tenor.com/tHTUQ_Xflz8AAAAC/its-modelo-time-modelo-time.gif"  
-					alt="alt ?">
-				
+<a href="https://zupimages.net/viewer.php?id=22/02/vjjd.gif"><img src="https://zupimages.net/up/22/02/vjjd.gif" alt="" /></a>
 					
 				</div>
 				<div class="col-md-6">
