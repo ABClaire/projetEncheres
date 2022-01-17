@@ -26,9 +26,9 @@ public class EnchereManagerImpl implements EnchereManager{
 	public void ajouterNouvelleEnchere(Integer noArticle, Integer noEncheriste, Integer montantNouvelleEnchere) throws BLLException  {
 		BLLException be = new BLLException();
 		
-		//verificationIdentiteEncheriste(noArticle, noEncheriste, be);
-		//verificationMontantEnchere(noArticle, montantNouvelleEnchere, be);
-		//verificationNombrePointEncheriste(montantNouvelleEnchere, noEncheriste, be);
+		verificationIdentiteEncheriste(noArticle, noEncheriste, be);
+		verificationMontantEnchere(noArticle, montantNouvelleEnchere, be);
+		verificationNombrePointEncheriste(montantNouvelleEnchere, noEncheriste, be);
 		
 		if(be.hasErreur()) {
 			throw be;
@@ -43,6 +43,34 @@ public class EnchereManagerImpl implements EnchereManager{
 		
 	}
 
+	/**
+	 * Méthode en charge de vérifier l'identité de l'enchériste. Un vendeur ne peut pas enchérir sur son propre article
+	 * @param noEncheriste
+	 * @param be
+	 */
+	private void verificationIdentiteEncheriste(Integer noArticle, Integer noEncheriste, BLLException be) throws BLLException{
+		ArticleVendu article = selectArticleById(noArticle);
+		if(article.getUtilisateur().getNoUtilisateur() == noEncheriste) {
+			be.ajouterErreur(new ParameterException("Vous ne pouvez pas enchérir sur votre propre article"));
+		}
+	}
+	
+	/**
+	 * Méthode en charge de vérifier que la proposition de l'enchériste soit supérieure
+	 * au montant de l'enchère maximale actuelle
+	 * @param montantNouvelleEnchere
+	 * @param be
+	 * @throws BLLException 
+	 */
+	private void verificationMontantEnchere(Integer noArticle, Integer montantNouvelleEnchere, BLLException be) throws BLLException {
+		ArticleVendu article = selectArticleById(noArticle);
+		
+		if(montantNouvelleEnchere <= article.getEnchereMaximum().getMontantEnchere()) {
+			be.ajouterErreur(new ParameterException("Le montant de votre proposition doit être supérieure à l'enchère maximale actuelle" ));
+		}
+		
+	}
+	
 	/**
 	 * Méthode en charge de vérifier que l'enchériste possède suffisament de point pour enchérir
 	 * @param montantNouvelleEnchere
@@ -65,33 +93,7 @@ public class EnchereManagerImpl implements EnchereManager{
 		}
 	}
 
-	/**
-	 * Méthode en charge de vérifier l'identité de l'enchériste. Un vendeur ne peut pas enchérir sur son propre article
-	 * @param noEncheriste
-	 * @param be
-	 */
-	private void verificationIdentiteEncheriste(Integer noArticle, Integer noEncheriste, BLLException be) throws BLLException{
-		ArticleVendu article = selectArticleById(noArticle);
-		if(article.getUtilisateur().getNoUtilisateur() != noEncheriste) {
-			be.ajouterErreur(new ParameterException("Vous ne pouvez pas enchérir sur votre propre article"));
-		}
-	}
 
-	/**
-	 * Méthode en charge de vérifier que la proposition de l'enchériste soit supérieure
-	 * au montant de l'enchère maximale actuelle
-	 * @param montantNouvelleEnchere
-	 * @param be
-	 * @throws BLLException 
-	 */
-	private void verificationMontantEnchere(Integer noArticle, Integer montantNouvelleEnchere, BLLException be) throws BLLException {
-		ArticleVendu article = selectArticleById(noArticle);
-		
-		if(article.getEnchereMaximum().getMontantEnchere() <= montantNouvelleEnchere) {
-			be.ajouterErreur(new ParameterException("Le montant de votre proposition doit être supérieure à l'enchère maximale actuelle" ));
-		}
-		
-	}
 
 	/**
 	 * Méthode en charge de remonter un article par son ID

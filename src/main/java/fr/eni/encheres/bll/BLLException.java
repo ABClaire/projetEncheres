@@ -31,10 +31,9 @@ public class BLLException extends Exception{
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(System.lineSeparator());
 		for(Exception e : erreurs) {
 			sb.append(e.getMessage())
-				.append(System.lineSeparator());
+			.append("\r");
 		}
 		return sb.toString();
 	}
