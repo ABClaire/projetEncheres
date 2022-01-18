@@ -155,7 +155,7 @@
                         </div>
 
 
-                        <div class="row top-margin">
+                        <div class="row top-margin pt-5">
                             <div class="col-sm-6">
                                 <input type="submit" name="modifierUtilisateur" class="btn btn-primary w-100 py-3" value="Enregistrer" />
                             </div>
