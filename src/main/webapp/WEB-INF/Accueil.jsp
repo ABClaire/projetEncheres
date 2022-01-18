@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="ISO-8859-1" />
+<meta charset="UTF-8" />
 
 <title></title>
 
@@ -27,7 +27,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6">
-					<h1>ENI-Enchères</h1>
+					<h1>ENI-EnchÃ¨res</h1>
 <a href="https://zupimages.net/viewer.php?id=22/02/vjjd.gif"><img src="https://zupimages.net/up/22/02/vjjd.gif" alt="" /></a>
 					
 				</div>
@@ -43,7 +43,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>Liste des enchères</h2>
+						<h2>Liste des enchÃ¨res</h2>
 					</div>
 				</div>
 			</div>
@@ -63,15 +63,15 @@
 					<!-- Formulaire de recherche-->
 					<input type="text" class="form-control search-slt"
 						placeholder="Le nom de l'article contient" name="nomArticle" >
-					<!-- Choix des catégories-->
+					<!-- Choix des catÃ©gories-->
 					<div class="row">
 						<div class="col-md-6">
-							<p>Catégories</p>
+							<p>CatÃ©gories</p>
 						</div>
 						<div class="col-md-6">
 							<select name="listeDeroulante" value="listeDeroulante" class="form-control search-slt">
 								<option value="Toutes">
-									<!-- Toutes les catégories--> <a><p>Toutes</p></a>
+									<!-- Toutes les catÃ©gories--> <a><p>Toutes</p></a>
 								</option>
 								 <c:forEach items="${lstCategories}" var="categorie">
 						 			 <option value="${categorie.libelle}">${categorie.libelle}</option>
@@ -91,12 +91,12 @@
 	<!-- Fin du formulaire de recherche-->
 
 
-	<!-- Début Affichage des Articles -->
+	<!-- DÃ©but Affichage des Articles -->
 	<c:forEach items="${Liste}" var="sc">
 		<p>-------------------------------------------------------</p>
 		<p>${sc.nomArticle}</p>
 		<p>Prix :${sc.miseAPrix}</p>
-		<p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
+		<p>Fin de l'enchÃ¨re : ${sc.dateFinEncheres}</p>
 		<p>Vendeur : ${sc.utilisateur.pseudo}</p>
 		<p>-------------------------------------------------------</p>
 	</c:forEach>
