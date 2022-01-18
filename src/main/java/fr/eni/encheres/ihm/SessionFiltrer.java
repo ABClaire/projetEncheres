@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.eni.encheres.bll.ArticleVenduManagerImpl;
 import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.EnchereManagerImpl;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -59,7 +58,7 @@ public class SessionFiltrer implements Filter {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		
+
 		
 		chain.doFilter(request, response);
 

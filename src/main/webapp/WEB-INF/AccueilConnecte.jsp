@@ -5,169 +5,256 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <title>Restoran - Bootstrap Restaurant Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-    <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="Style.css" />
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body>
-
-
-    <header>
-    <!-- Titre pages + menu-->
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <h1>
-                    ENI-EnchËres
-                </h1>
+    <div class="container-xxl bg-white p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
             </div>
-            <form action="AccueilConnecte" method="POST">
-            <div class="col-md-6">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">EnchËres</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/ProjetEncheres/NouvelleVente">Vendre un article</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <input class="nav-link" type="submit" name="deconnexion" value="DÈconnexion"/>
-                    </li>
-                </ul>
-            </div>
-            </form>
-      
         </div>
-        <!--Sous titre-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2>Liste des enchËres</h2>
+        <!-- Spinner End -->
+        <!-- Navbar & Hero Start -->
+        <div class="container-xxl bg-white py-5">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+
+                <a href="accueilConnecte.html" class="navbar-brand p-0">
+                    <h1 class="text-primary m-0"></i>Grandma's Store</h1>
+                    <img src="img/logo.gif" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav ms-auto py-0 pe-4">
+                        <a href="accueilConnecte.html" class="nav-item nav-link">Ench√®res</a>
+                        <a href="vendreArticle.html" class="nav-item nav-link">Vendre un article</a>
+                        <a href="monProfil.html" class="nav-item nav-link">Mon profil</a>
+                    </div>
+                    <a href="###" class="btn btn-primary py-2 px-4">D√©connexion</a>
+                </div>
+            </nav>
+        </div>
+        <!-- Navbar & Hero End -->
+        <!-- Recherche -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Ench√®res & Ventes</h5>
+                    <h1 class="mb-5">Recherche</h1>
+                </div>
+
+                <div class="tab-class wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="row">
+                        <!--Recherche-->
+                        <section class="search-sec">
+                            <div class="container-fluid">
+                                <form action="AccueilConnecte" method="post" novalidate="novalidate">
+                                    <dv class="row">
+                                        <div class="col-md-6">
+                                            <p>Filtres</p>
+                                            <!-- Formulaire de recherche-->
+                                            <input type="text" class="form-control search-slt" placeholder="Le nom de l'article contient" name="nomArticle">
+                                            <!-- Choix des cat√©gories-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <p>Cat√©gories</p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <select class="form-control search-slt" name="listeDeroulante" value="listeDeroulante">
+                                                        <option name="Toutes" value="Toutes">
+                                                            <!-- Toutes les cat√©gories--> <a><p>Toutes</p></a>
+                                                        </option>
+                                                        <c:forEach items="${lstCategories}" var="categorie">
+                                                            <option value="${categorie.libelle}">${categorie.libelle}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- Filtre Achat ou Mes ventes-->
+                                            <!--Achats-->
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" id="achats" onclick="onClickAchats()">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            Achats
+                                                        </label>
+                                                        <!-- Choix types achats-->
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="Ench√®res ouvertes" id="enchOuvertes">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Ench√®res ouvertes
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="Mes ench√®res" id="mesEnch">
+                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                Mes ench√®res
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="Mes ench√®res remport√©es" id="enchRemportees">
+                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                Mes ench√®res remport√©es
+                                                            </label>
+                                                        </div>
+                                                        <!--Fin choix type achats-->
+                                                    </div>
+                                                </div>
+
+                                                <!--Mes ventes-->
+                                                <div class="col-md-6">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" id="ventes" onclick="onClickVentes()">
+                                                        <label class="form-check-label" for="flexRadioDefault2">
+                                                            Mes ventes
+                                                        </label>
+                                                        <!-- Choix types achats-->
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="Ventes en cours" id="ventesEnCours">
+                                                            <label class="form-check-label" for="flexCheckDefault">
+                                                                Mes ventes en cours
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="Ventes non d√©but√©es" id="ventesNonDebut">
+                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                Ventes non d√©but√©es
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="Ventes termin√©es" id="ventesTerminees">
+                                                            <label class="form-check-label" for="flexCheckChecked">
+                                                                Ventes termin√©es
+                                                            </label>
+                                                        </div>
+                                                        <!--Fin choix type achats-->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Fin filtre Achats ou Mes ventes-->
+                                        </div>
+                                        <!--Boutons Rechercher-->
+                                        <div class="col-md-6 text-center">
+                                            <button type="submit" class="btn btn-primary search-btn" name="recherche" value="recherche">Rechercher</button>
+                                        </div>
+                                </form>
+                            </div>
+                        </section>
+                        <!-- Fin du formulaire de recherche-->
+                    </div> <!-- /row  -->
+                </div>
+
+
+
+            </div>
+            <!-- Fin de la recherche -->
+            <!-- Liste des r√©sultats-->
+            <div class="container-xxl py-5">
+                <div class="container">
+                    <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Ench√®res & Ventes</h5>
+                        <h1 class="mb-5">Liste des r√©sultats</h1>
+                    </div>
+                    <div class="tab-class wow fadeInUp" data-wow-delay="0.1s">
+
+                        <div class="row">
+                            <c:forEach items="${Liste}" var="sc">
+                                <p>-------------------------------------------------------</p>
+                                <p>${sc.nomArticle}</p>
+                                <p>Prix :${sc.prixVente}</p>
+                                <p>Fin de l'ench√®re : ${sc.dateFinEncheres}</p>
+                                <label name="${sc.utilisateur.pseudo}"></label>
+                                <!-- Envoi un param√®tre par l'URL  -->
+                                <p>Vendeur : <a href="<c:url value=" /AfficherProfilVendeurServlet?pseudoVendeur =${sc.utilisateur.pseudo}" />" >${sc.utilisateur.pseudo} </a></p>
+                                <p>-------------------------------------------------------</p>
+                            </c:forEach>
+                        </div> <!-- /row -->
+
+
+
+
+                    </div>
                 </div>
             </div>
+            <!--Fin liste des r√©sultats -->
+            <!-- Footer Start -->
+            <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+                <div class="container">
+                    <div class="copyright">
+                        <div class="row">
+                            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                                &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+
+                                <!--/*** This template is free as long as you keep the footer author‚Äôs credit link/attribution link/backlink. If you'd like to use the template without the footer author‚Äôs credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
+                                Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                            </div>
+                            <div class="col-md-6 text-center text-md-end">
+                                <div class="footer-menu">
+                                    <a href="">Home</a>
+                                    <a href="">Cookies</a>
+                                    <a href="">Help</a>
+                                    <a href="">FQAs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         </div>
 
-     </header>
 
-        <!--Recherche-->
-        <section class="search-sec">
-            <div class="container-fluid">
-                <form action="AccueilConnecte" method="post" novalidate="novalidate">
-                    <dv class="row">
-                        <div class="col-md-6">
-                            <p>Filtres</p>
-                            <!-- Formulaire de recherche-->
-                            <input type="text" class="form-control search-slt" placeholder="Le nom de l'article contient" name="nomArticle">
-                            <!-- Choix des catÈgories-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p>CatÈgories</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <select class="form-control search-slt" name="listeDeroulante" value="listeDeroulante">
-										<option name="Toutes" value="Toutes">
-											<!-- Toutes les catÈgories--> <a><p>Toutes</p></a>
-										</option>
-										 <c:forEach items="${lstCategories}" var="categorie">
-								 			 <option value="${categorie.libelle}">${categorie.libelle}</option>
-								 		</c:forEach>			
-									</select>
-                                </div>
-                            </div>
-                            <!-- Filtre Achat ou Mes ventes-->
-                            <!--Achats-->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Achats
-                                        </label>
-                                        <!-- Choix types achats-->
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                EnchËres ouvertes
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Mes enchËres
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Mes enchËres remportÈes
-                                            </label>
-                                        </div>
-                                        <!--Fin choix type achats-->
-                                    </div>
-                                </div>
-
-                                <!--Mes ventes-->
-                                <div class="col-md-6">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Mes ventes
-                                        </label>
-                                        <!-- Choix types achats-->
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                            <label class="form-check-label" for="flexCheckDefault">
-                                                Mes ventes en cours
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Ventes non dÈbutÈes
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Ventes terminÈes
-                                            </label>
-                                        </div>
-                                        <!--Fin choix type achats-->
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Fin filtre Achats ou Mes ventes-->
-                        </div>
-                        <!--Boutons Rechercher-->
-                        <div class="col-md-6 text-center">
-                            <button type="submit" class="btn btn-primary search-btn" name="recherche" value="recherche">Rechercher</button>
-                        </div>
-                </form>
-            </div>
-        </section>
-        <!-- Fin du formulaire de recherche-->
-    </div>
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        <!--  SCRIPT POUR DISABLED LES BOUTONS -->
+        <script src="lib/eni/checkDisabled.js"></script>
 
 
-<!-- DÈbut Affichage des Articles -->
-	<c:forEach items="${Liste}" var="sc">
-		<p>-------------------------------------------------------</p>
-		<p><a href="<c:url value="/DetailEnchere?noArticle=${sc.noArticle}"/>" >${sc.nomArticle}</a></p>
-		<p>Prix :${sc.miseAPrix}</p>
-		<p>Fin de l'enchËre : ${sc.dateFinEncheres}</p>
-		<label name="${sc.utilisateur.pseudo}"></label>
-		<!-- Envoi un paramËtre par l'URL  -->
-		<p >Vendeur : <a href="<c:url value="/AfficherProfilVendeurServlet?pseudoVendeur=${sc.utilisateur.pseudo}"/>" >${sc.utilisateur.pseudo} </a></p>
-		<p>-------------------------------------------------------</p>
-	</c:forEach>
-	<!-- Fin Affichage des Articles-->
-
-
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
 </body>
 </html>
