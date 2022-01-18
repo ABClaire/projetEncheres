@@ -24,7 +24,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6">
-					<h1>ENI-Enchères</h1>
+					<h1>ENI-EnchÃ¨res</h1>
 				</div>
 				<div class="col-md-6">					
 				</div>
@@ -67,7 +67,7 @@
 				
 				</div>
 				<div class="col-md-6">		
-				<a href="http://localhost:8080/ProjetEncheres/MotDePasseOublie">Mot de passe oublié ?</a>
+				<a href="http://localhost:8080/ProjetEncheres/MotDePasseOublie">Mot de passe oubliÃ© ?</a>
 				</div>				
 			</div>
 							<input type="submit" name="Creation Compte" value="Creation Compte" class="btn btn-secondary"/>		

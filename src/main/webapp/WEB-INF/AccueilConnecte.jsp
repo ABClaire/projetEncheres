@@ -6,7 +6,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
-    <title>Restoran - Bootstrap Restaurant Template</title>
+    <title>Accueil</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -44,12 +44,13 @@
             </div>
         </div>
         <!-- Spinner End -->
+        
         <!-- Navbar & Hero Start -->
         <div class="container-xxl bg-white py-5">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
 
                 <a href="accueilConnecte.html" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"></i>Grandma's Store</h1>
+                    <h1 class="text-primary m-0">Grandma's Store</h1>
                     <img src="img/logo.gif" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -57,20 +58,22 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="accueilConnecte.html" class="nav-item nav-link">Enchères</a>
+                        <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte" class="nav-item nav-link">Encheres</a>
                         <a href="vendreArticle.html" class="nav-item nav-link">Vendre un article</a>
-                        <a href="monProfil.html" class="nav-item nav-link">Mon profil</a>
+                        <a href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet" class="nav-item nav-link">Mon profil</a>
                     </div>
-                    <a href="###" class="btn btn-primary py-2 px-4">Déconnexion</a>
+                    <input type="submit" name="deconnexion" value="Deconnexion" class="btn btn-primary py-2 px-4">
                 </div>
             </nav>
         </div>
         <!-- Navbar & Hero End -->
+        
+        
         <!-- Recherche -->
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Enchères & Ventes</h5>
+                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Encheres & Ventes</h5>
                     <h1 class="mb-5">Recherche</h1>
                 </div>
 
@@ -88,7 +91,7 @@
                                             <!-- Choix des catégories-->
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <p>Catégories</p>
+                                                    <p>Categories</p>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <select class="form-control search-slt" name="listeDeroulante" value="listeDeroulante">
@@ -114,19 +117,19 @@
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="Enchères ouvertes" id="enchOuvertes">
                                                             <label class="form-check-label" for="flexCheckDefault">
-                                                                Enchères ouvertes
+                                                                Encheres ouvertes
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="Mes enchères" id="mesEnch">
                                                             <label class="form-check-label" for="flexCheckChecked">
-                                                                Mes enchères
+                                                                Mes encheres
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="Mes enchères remportées" id="enchRemportees">
                                                             <label class="form-check-label" for="flexCheckChecked">
-                                                                Mes enchères remportées
+                                                                Mes encheres remportees
                                                             </label>
                                                         </div>
                                                         <!--Fin choix type achats-->
@@ -150,13 +153,13 @@
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="Ventes non débutées" id="ventesNonDebut">
                                                             <label class="form-check-label" for="flexCheckChecked">
-                                                                Ventes non débutées
+                                                                Ventes non debutees
                                                             </label>
                                                         </div>
                                                         <div class="form-check">
                                                             <input class="form-check-input" type="checkbox" value="Ventes terminées" id="ventesTerminees">
                                                             <label class="form-check-label" for="flexCheckChecked">
-                                                                Ventes terminées
+                                                                Ventes terminees
                                                             </label>
                                                         </div>
                                                         <!--Fin choix type achats-->
@@ -175,8 +178,7 @@
                         <!-- Fin du formulaire de recherche-->
                     </div> <!-- /row  -->
                 </div>
-
-
+			</div>
 
             </div>
             <!-- Fin de la recherche -->
@@ -184,8 +186,8 @@
             <div class="container-xxl py-5">
                 <div class="container">
                     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Enchères & Ventes</h5>
-                        <h1 class="mb-5">Liste des résultats</h1>
+                        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Encheres & Ventes</h5>
+                        <h1 class="mb-5">Liste des resultats</h1>
                     </div>
                     <div class="tab-class wow fadeInUp" data-wow-delay="0.1s">
 
@@ -194,10 +196,10 @@
                                 <p>-------------------------------------------------------</p>
                                 <p>${sc.nomArticle}</p>
                                 <p>Prix :${sc.prixVente}</p>
-                                <p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
+                                <p>Fin de l'enchere : ${sc.dateFinEncheres}</p>
                                 <label name="${sc.utilisateur.pseudo}"></label>
                                 <!-- Envoi un paramètre par l'URL  -->
-                                <p>Vendeur : <a href="<c:url value=" /AfficherProfilVendeurServlet?pseudoVendeur =${sc.utilisateur.pseudo}" />" >${sc.utilisateur.pseudo} </a></p>
+                                <p>Vendeur : <a href="<c:url value="/AfficherProfilVendeurServlet?pseudoVendeur =${sc.utilisateur.pseudo}" />" >${sc.utilisateur.pseudo} </a></p>
                                 <p>-------------------------------------------------------</p>
                             </c:forEach>
                         </div> <!-- /row -->
