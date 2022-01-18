@@ -6,7 +6,6 @@ package fr.eni.encheres.dao;
 import java.util.List;
 
 import fr.eni.encheres.bo.Categorie;
-import fr.eni.encheres.dao.DALException;
 
 public interface CategorieDAO {
 	

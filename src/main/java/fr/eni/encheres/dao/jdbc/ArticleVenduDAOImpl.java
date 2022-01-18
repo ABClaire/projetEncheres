@@ -25,21 +25,15 @@ import fr.eni.encheres.dao.DALException;
 
 public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
-	//TODO vérifier si le SELECT_ALL est toujours utile
 	private final static String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article,description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?)";
+	
 	private final static String UPDATE_PRIX_VENTE = "UPDATE ARTICLES_VENDUS SET prix_vente=? WHERE no_article=?";
+	
+	private final static String UPDATE_ETAT_VENTE = "UPDATE ARTICLES_VENDUS SET etat_article=? WHERE no_article=?";
+	
 	private final static String SELECT_ALL = "SELECT no_article, nom_article, date_debut_encheres, date_fin_encheres, prix_vente, no_utilisateur,etat_article FROM ARTICLES_VENDUS";
-	private final static String SELECT_ARTICLE_BY_USER = "SELECT \r\n"
-			+ "    av.no_article,\r\n"
-			+ "    nom_article,\r\n"
-			+ "    description,\r\n"
-			+ "    libelle AS categorie,\r\n"
-			+ "    ISNULL(MAX(montant_enchere), prix_initial) AS prix,\r\n"
-			+ "    date_fin_encheres,\r\n"
-			+ "    r.rue,\r\n"
-			+ "    r.code_postal,\r\n"
-			+ "    r.ville,\r\n"
-			+ "    pseudo\r\n"
+	
+	private final static String SELECT_ARTICLE_BY_USER = "SELECT av.no_article,nom_article,description, libelle AS categorie,ISNULL(MAX(montant_enchere), prix_initial) AS prix, date_fin_encheres,r.rue,r.code_postal,r.ville, pseudo\r\n"
 			+ "FROM ARTICLES_VENDUS av\r\n"
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur\r\n"
 			+ "LEFT JOIN ENCHERES e ON av.no_article = e.no_article\r\n"
@@ -47,20 +41,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
 			+ "GROUP BY av.no_article, nom_article, description, libelle, prix_initial,date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo";
 	
-	private final static String SELECT_BY_ID_BEST_ENCHERE = "SELECT TOP 1\r\n"
-			+ "	   av.no_article,\r\n"
-			+ "    nom_article,\r\n"
-			+ "    description,\r\n"
-			+ "    libelle AS categorie,\r\n"
-			+ "	   prix_initial,\r\n"
-			+ "    date_fin_encheres,\r\n"
-			+ "    r.rue,\r\n"
-			+ "    r.code_postal,\r\n"
-			+ "    r.ville,\r\n"
-			+ "    pseudo AS vendeur,\r\n"
-			+ "    av.no_utilisateur AS no_vendeur,\r\n"
-			+ "	ISNULL(MAX(montant_enchere), 0) AS \"meilleure offre\",\r\n"
-			+ "	e.no_utilisateur AS encheriste\r\n"
+	private final static String SELECT_BY_ID_BEST_ENCHERE = "SELECT TOP 1 av.no_article, nom_article,description,libelle AS categorie, prix_initial, date_fin_encheres,r.rue, r.code_postal,r.ville, pseudo AS vendeur,av.no_utilisateur AS no_vendeur,ISNULL(MAX(montant_enchere), 0) AS \"meilleure offre\",e.no_utilisateur AS encheriste\r\n"
 			+ "FROM ARTICLES_VENDUS av\r\n"
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur\r\n"
 			+ "LEFT JOIN ENCHERES e ON av.no_article = e.no_article\r\n"
@@ -68,7 +49,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
 			+ "WHERE av.no_article = ?\r\n"
 			+ "GROUP BY av.no_article, nom_article, description, libelle, prix_initial, date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo, av.no_utilisateur, e.no_utilisateur\r\n"
-			+ "ORDER BY no_article, \"meilleure offre\" DESC\r\n";
+			+ "ORDER BY no_article, \"meilleure offre\" DESC";
 	
 	
 	/**
@@ -118,26 +99,19 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	}
 	
 	@Override
-	public ArticleVendu selectArticleByIdBestEnchere(Integer idArticle) throws DALException {		
-		ArticleVendu article = null;
-
-		try(Connection cnx = JdbcTools.getConnection()) {
-			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID_BEST_ENCHERE);
-			pStmt.setInt(1, idArticle);
-			ResultSet rs = pStmt.executeQuery();
-			while(rs.next()) {
-				article = map(rs);
-			}
+	public void updateEtatVente(ArticleVendu article) throws DALException {
+		try (Connection cnx = JdbcTools.getConnection()){
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_ETAT_VENTE);
+			pStmt.setString(1, article.getEtatVente());
+			pStmt.setInt(2, article.getNoArticle());
+			pStmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new DALException(e.getMessage());
-		}
-		
-		return article;
+		}		
 	}
 	
-
-
 	@Override
 	public List<ArticleVendu> getAllArticleVendu() throws DALException {
 		List<ArticleVendu> articlesVendus = new ArrayList<ArticleVendu>();
@@ -148,17 +122,16 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while(rs.next()) {
-				
+		
 				Integer noArticle = rs.getInt("no_article");
 				String nom = rs.getString("nom_article");
-				Integer prixVente = rs.getInt("prix_vente");
-				LocalDate dateFinEncheres = (rs.getDate("date_fin_encheres")).toLocalDate();
 				LocalDate dateDebutEncheres = (rs.getDate("date_debut_encheres")).toLocalDate();
+				LocalDate dateFinEncheres = (rs.getDate("date_fin_encheres")).toLocalDate();
+				Integer prixVente = rs.getInt("prix_vente");
+				utilisateurVendeur = new Utilisateur(rs.getInt("no_utilisateur"));
 				String etatVente = rs.getString("etat_article");
-				utilisateurVendeur = new Utilisateur(rs.getInt("no_vendeur"), rs.getString("vendeur"));
 					
-				ArticleVendu articleVendu = new ArticleVendu(noArticle, nom, dateDebutEncheres, dateFinEncheres,
-						prixVente, utilisateurVendeur, etatVente);
+				ArticleVendu articleVendu = new ArticleVendu(noArticle, nom, dateDebutEncheres, dateFinEncheres, prixVente, etatVente, utilisateurVendeur);
 				
 				articlesVendus.add(articleVendu);
 			}
@@ -170,8 +143,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		return articlesVendus;
 	}
 	
-	
 	@Override
+	//TODO modifier le nom
 	//methode qui permet de recuperer une map avec comme clef un objet articles et en valeur un objet Utilisateur;
 	public List<ArticleVendu> selectJointArticleUtilisateur() throws DALException  {
 		List<ArticleVendu> lstArticleVendus = new ArrayList<ArticleVendu>();
@@ -205,6 +178,29 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		return lstArticleVendus;
 	}
 
+	
+	@Override
+	public ArticleVendu selectArticleByIdBestEnchere(Integer idArticle) throws DALException {		
+		ArticleVendu article = null;
+
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID_BEST_ENCHERE);
+			pStmt.setInt(1, idArticle);
+			ResultSet rs = pStmt.executeQuery();
+			while(rs.next()) {
+				article = map(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return article;
+	}
+	
+	
+	
+	
 	private ArticleVendu map(ResultSet rs) throws SQLException {
 		Utilisateur utilisateurVendeur;
 		Utilisateur utilisateurEncheriste;
