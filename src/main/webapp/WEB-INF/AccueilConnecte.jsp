@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
@@ -192,12 +192,12 @@
                         <div class="row">
                             <c:forEach items="${Liste}" var="sc">
                                 <p>-------------------------------------------------------</p>
-                                <p>${sc.nomArticle}</p>
-                                <p>Prix :${sc.prixVente}</p>
+                                <p><a href="<c:url value="/DetailEnchere?noArticle=${sc.noArticle}"/>">${sc.nomArticle}</a></p>
+                                <p>Prix :${sc.miseAPrix}</p>
                                 <p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
                                 <label name="${sc.utilisateur.pseudo}"></label>
                                 <!-- Envoi un paramètre par l'URL  -->
-                                <p>Vendeur : <a href="<c:url value=" /AfficherProfilVendeurServlet?pseudoVendeur =${sc.utilisateur.pseudo}" />" >${sc.utilisateur.pseudo} </a></p>
+                                <p>Vendeur : <a href="<c:url value="/AfficherProfilVendeurServlet?pseudoVendeur=${sc.utilisateur.pseudo}" />" >${sc.utilisateur.pseudo} </a></p>
                                 <p>-------------------------------------------------------</p>
                             </c:forEach>
                         </div> <!-- /row -->

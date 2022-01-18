@@ -95,7 +95,7 @@
 	<c:forEach items="${Liste}" var="sc">
 		<p>-------------------------------------------------------</p>
 		<p>${sc.nomArticle}</p>
-		<p>Prix :${sc.prixVente}</p>
+		<p>Prix :${sc.miseAPrix}</p>
 		<p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
 		<p>Vendeur : ${sc.utilisateur.pseudo}</p>
 		<p>-------------------------------------------------------</p>
