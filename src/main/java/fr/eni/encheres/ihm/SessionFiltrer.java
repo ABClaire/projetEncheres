@@ -53,7 +53,7 @@ public class SessionFiltrer implements Filter {
 		LocalDate dateDuJour = LocalDate.now();
 		
 		// Envoi de la date du jour en BLL
-		ArticleVenduManagerImpl.getInstance().actualisationEtatEnchereBDD(dateDuJour);
+		//ArticleVenduManagerImpl.getInstance().actualisationEtatEnchereBDD(dateDuJour);
 		
 		
 		chain.doFilter(request, response);
