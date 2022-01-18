@@ -88,10 +88,10 @@ public class PageEnchereServlet extends HttpServlet {
 				// Mise à jour du prix de vente du produit
 				ArticleVenduManagerImpl.getInstance().miseAJourPrixVente(noArticleEnchere, proposition);
 				
-				// Modification du crédit de point de l'enchériste
+				// Modification du crédit de point de l'enchériste (moins)
 				UtilisateurManagerImpl.getInstance().modifierCreditEncheriste(nouvelEncheriste, proposition);
 				
-				// TODO crédit du vendeur au moment où la vente se termine dans le filtre global
+				// Modification du crédit de point de l'ancien enchériste (plus)
 				UtilisateurManagerImpl.getInstance().modifierCreditAncienEncheriste(ancienEncheriste, enchereMax);
 				
 				// Mise à jour de l'article en cours

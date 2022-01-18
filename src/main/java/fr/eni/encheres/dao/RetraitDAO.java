@@ -3,8 +3,6 @@
  */
 package fr.eni.encheres.dao;
 
-import java.sql.SQLException;
-
 import fr.eni.encheres.bo.Retrait;
 
 public interface RetraitDAO {

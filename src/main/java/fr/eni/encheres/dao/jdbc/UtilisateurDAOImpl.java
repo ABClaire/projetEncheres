@@ -30,7 +30,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
 	private final static String UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=? WHERE no_utilisateur=?";
 	
-	private final static String UPDATE_CREDIT = "UPDATE UTILISATEURS SET credit=? WHERE no_utilisateur=?";
+	private final static String UPDATE_CREDIT = "UPDATE UTILISATEURS SET credit = (SELECT credit FROM UTILISATEURS WHERE no_utilisateur=?) + ? WHERE no_utilisateur=?";
 	
 	private final static String DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	
@@ -155,8 +155,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	public void modifierCreditUtilisateur(Integer noEncheriste, Integer montantCredit) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_CREDIT);
-			pStmt.setInt(1, montantCredit);
-			pStmt.setInt(2, noEncheriste);
+			pStmt.setInt(1, noEncheriste);
+			pStmt.setInt(2, montantCredit);
+			pStmt.setInt(3, noEncheriste);
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {

@@ -4,9 +4,9 @@
 package fr.eni.encheres.test;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
 
@@ -186,6 +186,20 @@ public class TestDAL {
 //		} catch (DALException e) {
 //			e.printStackTrace();
 //		}
+		
+		
+		/*
+		 * =========================================================
+		 * 			TEST LISTE TOUS LES ARTICLES
+		 * =========================================================
+		*/
+		
+		try {
+			List<ArticleVendu> lstArticles = DAOFactory.getArticleVenduDAO().getAllArticleVendu();
+			lstArticles.forEach(System.out::println);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
