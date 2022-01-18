@@ -21,6 +21,8 @@ public interface UtilisateurDAO {
 	
 	void modifierUtilisateur(Utilisateur utilisateurModif) throws DALException;
 	
-	void supprimerUtilisateur(int idUtilisateur) throws DALException;
+	void supprimerUtilisateur(Integer idUtilisateur) throws DALException;
+	
+	void modifierCreditUtilisateur(Integer noEncheriste, Integer montantCredit) throws DALException;
 
 }

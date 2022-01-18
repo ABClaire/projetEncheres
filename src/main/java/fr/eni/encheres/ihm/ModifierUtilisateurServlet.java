@@ -41,7 +41,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		//MODIFIER SON PROFIL
 		if(request.getParameter("modifierUtilisateur") != null) {
 			System.out.println("Clic sur le bouton");
-			//Vérifier si l'utilisateur a le bon mot de passe avant d'appliquer les modifications :
+			//Vï¿½rifier si l'utilisateur a le bon mot de passe avant d'appliquer les modifications :
 			if(request.getParameter("motDePasse").equals(utilisateur.getMotDePasse())) {
 				String pseudo = request.getParameter("pseudo");
 				String nom = request.getParameter("nom");
@@ -57,7 +57,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 				//Verifier si il y a une modification de mot de passe :
 				Utilisateur utilisateurModif;
 				
-				//Si le nv mdp = confirmation nv mp ET le nv mdp n'est pas vide alors donner nv mdp à l'utilisateur
+				//Si le nv mdp = confirmation nv mp ET le nv mdp n'est pas vide alors donner nv mdp ï¿½ l'utilisateur
 				if((request.getParameter("nouveauMotDePasse").equals(request.getParameter("confirmationMotDePasse")) && (! request.getParameter("nouveauMotDePasse").isBlank())))  {
 					System.out.println(request.getParameter("confirmationMotDePasse"));
 					utilisateurModif = new Utilisateur(utilisateur.getNoUtilisateur(),pseudo, nom, prenom, email, telephone, rue, codePostal, ville, nouveauMotDePasse, 100, false);
@@ -87,9 +87,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 				//request.setAttribute("message", e.toString());
-			} catch (DALException e) {
-				e.printStackTrace();
-			}
+			} 
 			request.getRequestDispatcher("WEB-INF/Accueil.jsp").forward(request, response);			
 		}
 		request.getRequestDispatcher("WEB-INF/ModifierProfil.jsp").forward(request, response);

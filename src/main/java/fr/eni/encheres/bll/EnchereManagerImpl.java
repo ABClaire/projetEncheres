@@ -3,6 +3,8 @@
  */
 package fr.eni.encheres.bll;
 
+import java.time.LocalDate;
+
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.DALException;
@@ -111,5 +113,6 @@ public class EnchereManagerImpl implements EnchereManager{
 		}
 		return article;
 	}
+		
 
 }

@@ -30,6 +30,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
 	private final static String UPDATE = "UPDATE UTILISATEURS SET pseudo=?, nom=?, prenom=?, email=?,telephone=?,rue=?,code_postal=?,ville=?,mot_de_passe=? WHERE no_utilisateur=?";
 	
+	private final static String UPDATE_CREDIT = "UPDATE UTILISATEURS SET credit=? WHERE no_utilisateur=?";
+	
 	private final static String DELETE ="DELETE FROM UTILISATEURS WHERE no_utilisateur=?";
 	
 	/**
@@ -132,12 +134,29 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	/*
 	 * Modifier son compte utilisateur
 	 */
-	
+	@Override
 	public void modifierUtilisateur(Utilisateur utilisateurModif) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
 			mappStmt(utilisateurModif, pStmt);
 			pStmt.setInt(10, utilisateurModif.getNoUtilisateur());
+			pStmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+	}
+	
+	/*
+	 * Modifier le crédit de l'utilisateur
+	 */
+	@Override
+	public void modifierCreditUtilisateur(Integer noEncheriste, Integer montantCredit) throws DALException {
+		try (Connection cnx = JdbcTools.getConnection()){
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_CREDIT);
+			pStmt.setInt(1, montantCredit);
+			pStmt.setInt(2, noEncheriste);
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -152,7 +171,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	 */
 	
 	@Override
-	public void supprimerUtilisateur(int idUtilisateur) throws DALException {
+	public void supprimerUtilisateur(Integer idUtilisateur) throws DALException {
 		try(Connection cnx= JdbcTools.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(DELETE);
 			pStmt.setInt(1, idUtilisateur);

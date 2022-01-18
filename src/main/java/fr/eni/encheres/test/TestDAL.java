@@ -174,6 +174,18 @@ public class TestDAL {
 //		} catch (DALException e) {
 //			e.printStackTrace();
 //		}
+		
+		/*
+		 * =========================================================
+		 * 			TEST UPDATE CREDIT UTILISATEUR
+		 * =========================================================
+		*/
+		
+//		try {
+//			DAOFactory.getUtilisateurDAO().modifierCreditUtilisateur(2, 50);
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 }

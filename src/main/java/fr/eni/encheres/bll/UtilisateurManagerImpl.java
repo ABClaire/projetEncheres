@@ -44,7 +44,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		verificationPrenom(nouvelUtilisateur.getPrenom(), be);
 		verificationEmail(nouvelUtilisateur.getEmail(), be);
 		/*
-		 * Vérification téléphone renvoit erreur null à l'inscription
+		 * Vï¿½rification tï¿½lï¿½phone renvoit erreur null ï¿½ l'inscription
 		 */
 		//verificationTelephone(nouvelUtilisateur.getTelephone(), be);
 		verificationRue(nouvelUtilisateur.getRue(), be);
@@ -133,6 +133,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	/*
 	 * RÃ©cuperer un utilisateur par son ID
 	 */
+	@Override
 	public Utilisateur getByIdUtilisateur (int IdUtilisateur) throws BLLException {
 		try {
 			return DAOFactory.getUtilisateurDAO().selectUtilisateurById(IdUtilisateur);
@@ -145,6 +146,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	/*
 	 * RÃ©cuperer un utilisateur par son Pseudo
 	 */
+	@Override
 	public Utilisateur getByPseudoUtilisateur (String pseudoUtilisateur) throws BLLException {
 		try {
 			return DAOFactory.getUtilisateurDAO().getByPseudo(pseudoUtilisateur);
@@ -155,7 +157,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	}
 
 	/*
-	 * Mï¿½thode en charge de mofidier un utilisateur existant par l'utilisateur
+	 * MÃ©thode en charge de mofidier un utilisateur existant par l'utilisateur
 	 */
 	@Override
 	public void modifierUtilisateur(Utilisateur utilisateur, Utilisateur utilisateurModif) throws BLLException {
@@ -210,12 +212,39 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	 * Mï¿½thode en charge de supprimier un profil utilisateur par l'utilisateur
 	 */	
 	@Override
-	public void supprimerUtilisateur(int idUtilisateur) throws BLLException, DALException {
+	public void supprimerUtilisateur(Integer idUtilisateur) throws BLLException {
 			BLLException be = new BLLException();
 			if(be.hasErreur()) {
 				throw be;
 			}
-			DAOFactory.getUtilisateurDAO().supprimerUtilisateur(idUtilisateur);	
+			try {
+				DAOFactory.getUtilisateurDAO().supprimerUtilisateur(idUtilisateur);
+			} catch (DALException e) {
+				e.printStackTrace();
+				throw new BLLException(e);
+			}	
+	}
+	
+	@Override
+	public void modifierCreditEncheriste(Utilisateur utilisateur, Integer montantEnchere) throws BLLException {
+		Integer nouveauCredit = utilisateur.getCredit() - montantEnchere;
+		updateCredit(utilisateur.getNoUtilisateur(), nouveauCredit);
+	}
+	
+
+	@Override
+	public void modifierCreditAncienEncheriste(Utilisateur ancienEncheriste, Integer enchereMax) throws BLLException {
+		Integer nouveauCredit = ancienEncheriste.getCredit() + enchereMax;
+		updateCredit(ancienEncheriste.getNoUtilisateur(), nouveauCredit);
+	}
+	
+	
+	public void updateCredit(Integer noUtilistaeur, Integer montantCredit) throws BLLException {		
+		try {
+			DAOFactory.getUtilisateurDAO().modifierCreditUtilisateur(noUtilistaeur, montantCredit);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -380,6 +409,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 			be.ajouterErreur(new ParameterException("La ville est obligatoire et doit ï¿½tre <=50 caractï¿½res" ));
 		}
 	}
-	
+
+
 
 }

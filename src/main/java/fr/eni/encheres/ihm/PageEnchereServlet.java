@@ -21,8 +21,7 @@ import fr.eni.encheres.bo.Utilisateur;
 @WebServlet("/DetailEnchere")
 public class PageEnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Integer noArticleEnchere;
-	ArticleVendu detailArticle;
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -35,24 +34,34 @@ public class PageEnchereServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PageEnchereModel model = new PageEnchereModel();
-		Utilisateur encheriste = null;
+		Utilisateur ancienEncheriste = null;
+		Utilisateur nouvelEncheriste = null;
+		Integer noArticleEnchere;
+		ArticleVendu detailArticle = null;
+		Integer enchereMax;
 
+		// Réccupération du noArticle envoyé par la requête en "hidden" via l'url
 		noArticleEnchere = Integer.valueOf(request.getParameter("noArticle"));
 		
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		Integer noEncheriste = utilisateur.getNoUtilisateur();
 		
 		try {
+			// Réccupération de l'article en cours et de sa meilleure enchère
 			detailArticle = ArticleVenduManagerImpl.getInstance().selectBestEnchereByNoArticle(noArticleEnchere);
+			
+			// Réccupération des informations du vendeur
 			Utilisateur vendeur = UtilisateurManagerImpl.getInstance().getByIdUtilisateur(detailArticle.getUtilisateur().getNoUtilisateur());
 			request.setAttribute("nomVendeur", vendeur.getPseudo());
 			
-			encheriste = UtilisateurManagerImpl.getInstance().getByIdUtilisateur(detailArticle.getEnchereMaximum().getUtilisateur().getNoUtilisateur());	
-			if(encheriste == null) {
+			// Réccupération des informations de l'ancien enchériste
+			ancienEncheriste = UtilisateurManagerImpl.getInstance().getByIdUtilisateur(detailArticle.getEnchereMaximum().getUtilisateur().getNoUtilisateur());	
+			if(ancienEncheriste == null) {
 				request.setAttribute("nomEncheriste", "aucune enchère actuellement");
 			} else {
-				model.setEncheriste(encheriste);
+				model.setEncheriste(ancienEncheriste);
 			}
+			
 			model.setArticle(detailArticle);
 			model.setVendeur(vendeur);
 			
@@ -64,13 +73,39 @@ public class PageEnchereServlet extends HttpServlet {
 				
 		if(request.getParameter("nouvelleEnchere") != null) {
 			try {
-				EnchereManagerImpl.getInstance().ajouterNouvelleEnchere(noArticleEnchere, noEncheriste, Integer.parseInt(request.getParameter("proposition")));
-				detailArticle.getEnchereMaximum().setMontantEnchere(Integer.parseInt(request.getParameter("proposition")));
-				encheriste = UtilisateurManagerImpl.getInstance().getByIdUtilisateur(noEncheriste);
-				detailArticle.getEnchereMaximum().setUtilisateur(encheriste);
+				// Récupération des informations de l'enchériste
+				nouvelEncheriste = UtilisateurManagerImpl.getInstance().getByIdUtilisateur(noEncheriste);
+				
+				// Récupération de la proposition effectuée
+				Integer proposition = Integer.parseInt(request.getParameter("proposition"));
+				
+				// Récupération de l'ancienne proposition maximale
+				enchereMax = detailArticle.getEnchereMaximum().getMontantEnchere();
+				
+				// Ajout d'une nouvelle enchère
+				EnchereManagerImpl.getInstance().ajouterNouvelleEnchere(noArticleEnchere, noEncheriste, proposition);
+			
+				// Mise à jour du prix de vente du produit
+				ArticleVenduManagerImpl.getInstance().miseAJourPrixVente(noArticleEnchere, proposition);
+				
+				// Modification du crédit de point de l'enchériste
+				UtilisateurManagerImpl.getInstance().modifierCreditEncheriste(nouvelEncheriste, proposition);
+				
+				// TODO crédit du vendeur au moment où la vente se termine dans le filtre global
+				UtilisateurManagerImpl.getInstance().modifierCreditAncienEncheriste(ancienEncheriste, enchereMax);
+				
+				// Mise à jour de l'article en cours
+				detailArticle.getEnchereMaximum().setMontantEnchere(proposition);
+				
+				// Mise à jour de l'enchériste ayant effectué la plus haute enchère
+				detailArticle.getEnchereMaximum().setUtilisateur(nouvelEncheriste);
+				
+				
+				// Mise à jour du model
 				model.setArticle(detailArticle);
-				model.setEncheriste(encheriste);
+				model.setEncheriste(nouvelEncheriste);
 				model.setMessage("Votre enchère est bien enregistrée");
+				
 			} catch (BLLException e) {
 				e.printStackTrace();
 				request.setAttribute("messageErreur", e.toString());

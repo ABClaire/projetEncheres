@@ -10,5 +10,6 @@ public interface ArticleVenduDAO {
 	List<ArticleVendu> getAllArticleVendu() throws DALException;
 	List<ArticleVendu> selectJointArticleUtilisateur() throws DALException;
 	ArticleVendu selectArticleByIdBestEnchere(Integer idArticle) throws DALException;
+	void updatePrixVente(Integer noArticleEnchere, Integer proposition) throws DALException;
 	
 }

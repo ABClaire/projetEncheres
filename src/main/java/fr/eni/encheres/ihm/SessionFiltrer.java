@@ -1,6 +1,7 @@
 package fr.eni.encheres.ihm;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -10,6 +11,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+
+import fr.eni.encheres.bll.ArticleVenduManagerImpl;
+import fr.eni.encheres.bll.EnchereManagerImpl;
+import fr.eni.encheres.bo.Utilisateur;
 
 /**
  * Servlet Filter implementation class SessionFiltrer
@@ -34,7 +39,7 @@ public class SessionFiltrer implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		String login = (String) ((HttpServletRequest) request).getSession().getAttribute("login");
+		Utilisateur login = (Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("utilisateur");
 
 		String path = ((HttpServletRequest) request).getRequestURI();
 
@@ -43,6 +48,13 @@ public class SessionFiltrer implements Filter {
 				request.getRequestDispatcher("Connexion").forward(request, response);
 			}
 		}
+		
+		// Récupération de la date du jour
+		LocalDate dateDuJour = LocalDate.now();
+		
+		// Envoi de la date du jour en BLL
+		ArticleVenduManagerImpl.getInstance().actualisationEtatEnchereBDD(dateDuJour);
+		
 		
 		chain.doFilter(request, response);
 

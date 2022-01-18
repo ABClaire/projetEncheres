@@ -27,7 +27,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 
 	//TODO vérifier si le SELECT_ALL est toujours utile
 	private final static String INSERT = "INSERT INTO ARTICLES_VENDUS (nom_article,description, date_debut_encheres, date_fin_encheres, prix_initial, no_utilisateur, no_categorie) VALUES (?,?,?,?,?,?,?)";
-	private final static String SELECT_ALL = "SELECT no_article, nom_article, description, date_debut_encheres, date_fin_encheres,prix_initial, prix_vente, no_utilisateur,no_categorie FROM ARTICLES_VENDUS";
+	private final static String UPDATE_PRIX_VENTE = "UPDATE ARTICLES_VENDUS SET prix_vente=? WHERE no_article=?";
+	private final static String SELECT_ALL = "SELECT no_article, nom_article, date_debut_encheres, date_fin_encheres, prix_vente, no_utilisateur,etat_article FROM ARTICLES_VENDUS";
 	private final static String SELECT_ARTICLE_BY_USER = "SELECT \r\n"
 			+ "    av.no_article,\r\n"
 			+ "    nom_article,\r\n"
@@ -70,26 +71,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "ORDER BY no_article, \"meilleure offre\" DESC\r\n";
 	
 	
-	
-	@Override
-	public ArticleVendu selectArticleByIdBestEnchere(Integer idArticle) throws DALException {		
-		ArticleVendu article = null;
-
-		try(Connection cnx = JdbcTools.getConnection()) {
-			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID_BEST_ENCHERE);
-			pStmt.setInt(1, idArticle);
-			ResultSet rs = pStmt.executeQuery();
-			while(rs.next()) {
-				article = map(rs);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new DALException(e.getMessage());
-		}
-		
-		return article;
-	}
-	
 	/**
 	 * Méthode en charge d'ajouter un nouvel article dans la BDD
 	 */
@@ -121,15 +102,64 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		return articleVendu;
 	}
 
+	
+	@Override
+	public void updatePrixVente(Integer noArticleEnchere, Integer proposition) throws DALException {
+		try (Connection cnx = JdbcTools.getConnection()){
+			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_PRIX_VENTE);
+			pStmt.setInt(1, proposition);
+			pStmt.setInt(2, noArticleEnchere);
+			pStmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}		
+	}
+	
+	@Override
+	public ArticleVendu selectArticleByIdBestEnchere(Integer idArticle) throws DALException {		
+		ArticleVendu article = null;
+
+		try(Connection cnx = JdbcTools.getConnection()) {
+			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID_BEST_ENCHERE);
+			pStmt.setInt(1, idArticle);
+			ResultSet rs = pStmt.executeQuery();
+			while(rs.next()) {
+				article = map(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new DALException(e.getMessage());
+		}
+		
+		return article;
+	}
+	
+
 
 	@Override
 	public List<ArticleVendu> getAllArticleVendu() throws DALException {
 		List<ArticleVendu> articlesVendus = new ArrayList<ArticleVendu>();
+		Utilisateur utilisateurVendeur;
+		Categorie categorie;
+		Retrait retrait;
 		try(Connection cnx = JdbcTools.getConnection()) {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while(rs.next()) {
-				ArticleVendu articleVendu = map(rs);
+				
+				Integer noArticle = rs.getInt("no_article");
+				String nom = rs.getString("nom_article");
+				Integer prixVente = rs.getInt("prix_vente");
+				LocalDate dateFinEncheres = (rs.getDate("date_fin_encheres")).toLocalDate();
+				LocalDate dateDebutEncheres = (rs.getDate("date_debut_encheres")).toLocalDate();
+				String etatVente = rs.getString("etat_article");
+				utilisateurVendeur = new Utilisateur(rs.getInt("no_vendeur"), rs.getString("vendeur"));
+					
+				ArticleVendu articleVendu = new ArticleVendu(noArticle, nom, dateDebutEncheres, dateFinEncheres,
+						prixVente, utilisateurVendeur, etatVente);
+				
 				articlesVendus.add(articleVendu);
 			}
 		} catch (SQLException e) {
@@ -204,7 +234,5 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		
 		return article;
 	}
-
-	
 	
 }
