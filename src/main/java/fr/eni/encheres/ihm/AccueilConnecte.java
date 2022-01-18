@@ -38,7 +38,7 @@ public class AccueilConnecte extends HttpServlet {
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		Integer noUtilisateur = utilisateur.getNoUtilisateur();
 	
-		// Remonter la liste des catÃ©gories disponibles
+		// Remonter la liste des categories disponibles
 				try {
 					List<Categorie> lstCategories = CategorieManagerImpl.getInstance().listeDesCategories();
 					request.getServletContext().setAttribute("lstCategories", lstCategories);
@@ -51,14 +51,14 @@ public class AccueilConnecte extends HttpServlet {
 		String motClef = null;
 		List<ArticleVendu> lstARetouner = new ArrayList<ArticleVendu>();
  		
-		//Au clique sur rechercher on rï¿½cupï¿½re la catï¿½gorie et un possible motClef
+		//Au clique sur rechercher on recupere la categorie et un possible motClef
 		if (request.getParameter("recherche")!= null) {
 			option = request.getParameter("listeDeroulante");
 			motClef = request.getParameter("nomArticle");
 		}
 		
 		
-		// si il n'y a pas de mot clï¿½e on retourne la Liste global filtrer par le choix de catï¿½gorie 
+		// si il n'y a pas de mot clee on retourne la Liste global filtrer par le choix de catï¿½gorie 
 		if (motClef == null || motClef.isBlank()) {
 			
 			try {
@@ -66,7 +66,7 @@ public class AccueilConnecte extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-			//si il y a un mot clï¿½e je rï¿½cupï¿½re la liste triï¿½ par catï¿½gorie puis je la trie par recherche par mot clï¿½ avant de la renvoyer 
+			//si il y a un mot clee je recupere la liste triee par categorie puis je la trie par recherche par mot clee avant de la renvoyer 
 		}else {
 			
 			try {
@@ -78,6 +78,19 @@ public class AccueilConnecte extends HttpServlet {
 			
 			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RechercheDansLeNomDelArticle(lstARetouner, motClef));
 		}
+		
+		//--Ajout méthode recherche ----------------------------------------------------------------------------------------------------
+		List<ArticleVendu> LstArticleRadio = new ArrayList<ArticleVendu>();
+		Utilisateur login = (Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("utilisateur");
+			// si bouton radio Achat selectionne - retourner la liste des produits achetable (on ecarte donc les produits du proprietaire)
+		
+				UtilisateurManagerImplAngelo.getInstance().FiltreListeParArticleDeLAcheteur(lstARetouner,login.getPseudo());
+				
+			// si bouton radio Mes ventes selectionne - retourner la liste des produits de l'utilisateur 
+		
+				UtilisateurManagerImplAngelo.getInstance().FiltreListeParArticleDeLAcheteur(LstArticleRadio, login.getPseudo());
+		
+		
 		//-----------------------------------------------------fin copie fonction recherche---------------------------------------------------
 		
 	

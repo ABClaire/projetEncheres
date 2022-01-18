@@ -138,7 +138,7 @@ public class UtilisateurManagerImplAngelo {
 		return lstAretourner;
 	}
 	
-	//-------Methode pour Ench�reOuverte/MesEnch�rs/MesEnch�reRemporter----------
+	//-------Methode pour EncherereOuverte/MesEncheres/MesEnchereRemporter----------
 	
 		public List<ArticleVendu> AchatSwitchPourCheckbox (List<ArticleVendu> lstEntree, String pseudoSession, Integer choix){
 			
@@ -147,7 +147,7 @@ public class UtilisateurManagerImplAngelo {
 			for (ArticleVendu articleVendu : lstEntree) {
 				
 				switch (choix) {
-				case 1://Ench�re ouverte
+				case 1://Enchere ouverte
 					System.out.println("Ench�re ouverte");
 					if (articleVendu.getDateFinEncheres().isBefore(LocalDate.now())) {
 						lstRetourner.add(articleVendu);
@@ -155,13 +155,13 @@ public class UtilisateurManagerImplAngelo {
 					}
 					break;
 					
-				case 2://Mes Ench�res
+				case 2://Mes Encheres
 					System.out.println("Ench�re ouverte");
 					
 				
 					break;
 					
-				case 3://Mes Ench�re rapporter
+				case 3://Mes Enchere rapporter
 					
 					System.out.println("Mes Ench�re rapporter");
 					break;
