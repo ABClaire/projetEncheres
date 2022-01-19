@@ -58,10 +58,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte" class="nav-item nav-link">Encheres</a>
-                        <a href="vendreArticle.html" class="nav-item nav-link">Vendre un article</a>
+                        <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte" class="nav-item nav-link">Enchères</a>
+                        <a href="http://localhost:8080/ProjetEncheres/NouvelleVente" class="nav-item nav-link">Vendre un article</a>
                         <a href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet" class="nav-item nav-link">Mon profil</a>
                     </div>
+
                    <form action="AccueilConnecte" method="POST"><input type="submit" name="deconnexion" value="Deconnexion" class="btn btn-primary py-2 px-4"></form>
                 </div>
             </nav>
@@ -182,6 +183,8 @@
 
             </div>
             <!-- Fin de la recherche -->
+            
+            
             <!-- Liste des résultats-->
             <div class="container-xxl py-5">
                 <div class="container">
@@ -213,13 +216,15 @@
                 </div>
             </div>
             <!--Fin liste des résultats -->
+            
+            
             <!-- Footer Start -->
-            <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
                 <div class="container">
                     <div class="copyright">
                         <div class="row">
                             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                 <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                                 <a class="border-bottom" href="#">GrandMa'S Store</a>, Tous droits réservés.
 
                                 <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                                 Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
@@ -227,10 +232,9 @@
                             </div>
                             <div class="col-md-6 text-center text-md-end">
                                 <div class="footer-menu">
-                                    <a href="">Home</a>
-                                    <a href="">Cookies</a>
-                                    <a href="">Help</a>
-                                    <a href="">FQAs</a>
+                                    <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte">Enchères</a>
+                                    <a href="http://localhost:8080/ProjetEncheres/NouvelleVente">Vendre un article</a>
+                                    <a href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
                                 </div>
                             </div>
                         </div>
@@ -238,6 +242,8 @@
                 </div>
             </div>
             <!-- Footer End -->
+            
+            
             <!-- Back to Top -->
             <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
         </div>
