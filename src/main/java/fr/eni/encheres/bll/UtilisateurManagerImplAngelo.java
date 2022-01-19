@@ -6,8 +6,10 @@ package fr.eni.encheres.bll;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dao.DALException;
 import fr.eni.encheres.dao.DAOFactory;
@@ -137,58 +139,123 @@ public class UtilisateurManagerImplAngelo {
 
 		return lstAretourner;
 	}
-	
-	//-------Methode pour EncherereOuverte/MesEncheres/MesEnchereRemporter----------
-	
-		public List<ArticleVendu> AchatSwitchPourCheckbox (List<ArticleVendu> lstEntree, String pseudoSession, Integer choix){
-			
-			List<ArticleVendu> lstRetourner = new ArrayList<ArticleVendu>();
-			
-			for (ArticleVendu articleVendu : lstEntree) {
-				
-				switch (choix) {
-				case 1://Enchere ouverte
-					System.out.println("Ench�re ouverte");
-					if (articleVendu.getDateFinEncheres().isBefore(LocalDate.now())) {
-						lstRetourner.add(articleVendu);
-						System.out.println("dans le if");
-					}
-					break;
-					
-				case 2://Mes Encheres
-					System.out.println("Ench�re ouverte");
-					
-				
-					break;
-					
-				case 3://Mes Enchere rapporter
-					
-					System.out.println("Mes Ench�re rapporter");
-					break;
-					
-				default://Aucun choix
-					
-					System.out.println("Aucun choix");
-					break;
+
+	// -------Methode pour
+	// EncherereOuverte/MesEncheres/MesEnchereRemporter----------
+
+	public List<ArticleVendu> AchatSwitchPourCheckbox(List<ArticleVendu> lstEntree, String pseudoSession,
+			Integer choix) {
+
+		List<ArticleVendu> lstRetourner = new ArrayList<ArticleVendu>();
+
+		for (ArticleVendu articleVendu : lstEntree) {
+
+			switch (choix) {
+			case 1:// Enchere ouverte
+				System.out.println("Ench�re ouverte");
+				if (articleVendu.getDateFinEncheres().isBefore(LocalDate.now())) {
+					lstRetourner.add(articleVendu);
+					System.out.println("dans le if");
 				}
-			}
-			
-			return lstRetourner;
-			}
-	
-	
-	
-	//Methode pour filtrer par Mes Ventes ---------------------------------------
-	public List<ArticleVendu> FiltreListeParArticleDeLAcheteur(List<ArticleVendu> lstEntree, String pseudoSession){
-		List<ArticleVendu> lstAretourner = new ArrayList<ArticleVendu>();
-		
-		for (ArticleVendu article : lstEntree) {
-			if (article.getUtilisateur().getPseudo().equals(pseudoSession)) {
-				lstAretourner.add(article);
+				break;
+
+			case 2:// Mes Encheres
+				System.out.println("Ench�re ouverte");
+
+				break;
+
+			case 3:// Mes Enchere rapporter
+
+				System.out.println("Mes Ench�re rapporter");
+				break;
+
+			default:// Aucun choix
+
+				System.out.println("Aucun choix");
+				break;
 			}
 		}
-		
-		return lstAretourner;	
+
+		return lstRetourner;
 	}
+
+	// Methode pour les checkbox D'Achat
+
+	public List<ArticleVendu> filtreCheckboxAchat(List<Integer> lstCheck, List<ArticleVendu> lstIssuDeRecherche,
+			Utilisateur utilisateurSession) {
+
+		List<ArticleVendu> lstReturn = new ArrayList<ArticleVendu>();
+
+		for (Integer integer : lstCheck) {
+			switch (integer) {
+			case 1: // Dans Achat -> Enchère Ouverte
+				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
+					if ("ENCOURS".equals(articleVendu.getEtatVente()) & articleVendu.getUtilisateur()
+							.getNoUtilisateur() != (utilisateurSession.getNoUtilisateur())) {
+						// je récupère les articles avec le statut ENCOURS et j'exclue les articles que
+						// l'utilisateur vend
+						lstReturn.add(articleVendu);
+					}
+				}
+				break;
+
+			case 2: // Achat -> mes enchères
+
+				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
+
+					for (Enchere enchere : articleVendu.getLstEncheres()) {
+
+						if (enchere.getNoEncheriste() == utilisateurSession.getNoUtilisateur()) {
+							// je récupère la liste des articles sur lesquels j'ai enchéris et je check si
+							// l'id de l'utilisateur en session est présent si oui j'ajoute à la liste à
+							// retourner
+							lstReturn.add(articleVendu);
+						}
+					}
+				}
+
+				break;
+			case 3:// mes enchères remportées
+				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
+						// TODO : ESSAYER de récuperer la BestEnchere en itérant dans la liste puis de set l'articles avec 
+				
+					
+					
+					if ("CLOTURE".equals(articleVendu.getEtatVente()) & articleVendu.getEnchereMaximum()
+							.getUtilisateur().getNoUtilisateur() == utilisateurSession.getNoUtilisateur()) {
+						// tu comprendras plus tard
+						lstReturn.add(articleVendu);
+					}
+
+				}
+
+				break;
+
+			default:
+				System.out.println("error tu es dans le default du switch de la boucle des choix");
+				break;
+
+			}
+
+		}
+
+		List<ArticleVendu> lstDesSurvivants = lstReturn.stream().distinct().collect(Collectors.toList());
+
+		return lstDesSurvivants;
+
+	}
+
+	//Methode pour filtrer par Mes Ventes ---------------------------------------
+    public List<ArticleVendu> FiltreListeParArticleDeLAcheteur(List<ArticleVendu> lstEntree, String pseudoSession){
+        List<ArticleVendu> lstAretourner = new ArrayList<ArticleVendu>();
+        
+        for (ArticleVendu article : lstEntree) {
+            if (article.getUtilisateur().getPseudo().equals(pseudoSession)) {
+                lstAretourner.add(article);
+            }
+        }
+        
+        return lstAretourner;   
+    }
 
 }

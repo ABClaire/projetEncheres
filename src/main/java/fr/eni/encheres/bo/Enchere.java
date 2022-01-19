@@ -14,11 +14,34 @@ public class Enchere {
 	Integer montantEnchere;
 	ArticleVendu articleVendu;
 	Utilisateur utilisateur;
+	Integer noEncheriste;
+	
+
+
 	/**
 	 * Constructeur.
 	 */
 	public Enchere() {
 	}
+	
+	
+	public Enchere(LocalDate dateEnchere, Integer montantEnchere, ArticleVendu articleVendu, Integer noEncheriste) {
+		super();
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.articleVendu = articleVendu;
+		this.noEncheriste = noEncheriste;
+	}
+
+
+	public Enchere(LocalDate dateEnchere, Integer montantEnchere, Utilisateur utilisateur) {
+		super();
+		this.dateEnchere = dateEnchere;
+		this.montantEnchere = montantEnchere;
+		this.utilisateur = utilisateur;
+	}
+
+
 	/**
 	 * Constructeur.
 	 * @param dateEnchere
@@ -26,6 +49,8 @@ public class Enchere {
 	 * @param articleVendu
 	 * @param utilisateur
 	 */
+	
+	
 	public Enchere(Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
 		this.montantEnchere = montantEnchere;
 		this.articleVendu = articleVendu;
@@ -97,6 +122,15 @@ public class Enchere {
 	 */
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
+	}
+	
+	public Integer getNoEncheriste() {
+		return noEncheriste;
+	}
+	
+	
+	public void setNoEncheriste(Integer noEncheriste) {
+		this.noEncheriste = noEncheriste;
 	}
 	@Override
 	public String toString() {

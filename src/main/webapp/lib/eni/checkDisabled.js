@@ -1,7 +1,7 @@
 /*
  * Team GrandMa's Squad - ENI
  * Script JS pour disabled mes Checkboxs 
- * selon sélection du Radio Bouton (Vente / Achat)
+ * selon sï¿½lection du Radio Bouton (Vente / Achat)
  */
 
 function onClickVentes() {
@@ -17,10 +17,7 @@ function onClickVentes() {
     enchRemportees.checked = false;
     enchRemportees.disabled = true;
 
-    var achats = document.getElementById("achats");
-    achats.checked = false;
-    achats.disabled = true;
-}
+  }
 
 function onClickAchats() {
     console.log("click achats");
@@ -36,7 +33,5 @@ function onClickAchats() {
     ventesTerminees.checked = false;
     ventesTerminees.disabled = true;
 
-    var ventes = document.getElementById("ventes");
-    ventes.checked = false;
-    ventes.disabled = true;
+ 
 }

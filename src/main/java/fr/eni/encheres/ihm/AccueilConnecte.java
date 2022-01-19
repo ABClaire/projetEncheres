@@ -59,8 +59,7 @@ public class AccueilConnecte extends HttpServlet {
 		
 		
 		// si il n'y a pas de mot clee on retourne la Liste global filtrer par le choix de cat�gorie 
-		if (motClef == null || motClef.isBlank()) {
-			
+		if (motClef == null || motClef.isBlank()) { 		
 			try {
 				request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option));
 			} catch (BLLException e) {
