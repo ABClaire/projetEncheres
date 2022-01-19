@@ -45,6 +45,7 @@ public class PageEnchereServlet extends HttpServlet {
 		
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
 		Integer noEncheriste = utilisateur.getNoUtilisateur();
+		request.setAttribute("pseudoUtilisateur", utilisateur.getPseudo());
 		
 		try {
 			// Réccupération de l'article en cours et de sa meilleure enchère
@@ -57,7 +58,7 @@ public class PageEnchereServlet extends HttpServlet {
 			// Réccupération des informations de l'ancien enchériste
 			ancienEncheriste = UtilisateurManagerImpl.getInstance().getByIdUtilisateur(detailArticle.getEnchereMaximum().getUtilisateur().getNoUtilisateur());	
 			if(ancienEncheriste == null) {
-				request.setAttribute("nomEncheriste", "aucune enchère actuellement");
+				request.setAttribute("aucuneEnchere", "aucune enchère actuellement");
 			} else {
 				model.setEncheriste(ancienEncheriste);
 			}

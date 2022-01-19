@@ -38,6 +38,34 @@ public class ArticleVendu {
 	 * @param description
 	 * @param dateFinEncheres
 	 * @param miseAPrix
+	 * @param etatVente
+	 * @param utilisateur
+	 * @param categorieArticle
+	 * @param lieuRetrait
+	 */
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateFinEncheres,
+			Integer miseAPrix, String etatVente, Utilisateur utilisateur, Categorie categorieArticle,
+			Retrait lieuRetrait) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.etatVente = etatVente;
+		this.utilisateur = utilisateur;
+		this.categorieArticle = categorieArticle;
+		this.lieuRetrait = lieuRetrait;
+	}
+
+	
+	/**
+	 * Constructeur.
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateFinEncheres
+	 * @param miseAPrix
 	 * @param utilisateur
 	 * @param etatVente
 	 */

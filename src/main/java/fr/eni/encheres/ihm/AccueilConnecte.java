@@ -79,7 +79,7 @@ public class AccueilConnecte extends HttpServlet {
 			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RechercheDansLeNomDelArticle(lstARetouner, motClef));
 		}
 		
-		//--Ajout méthode recherche ----------------------------------------------------------------------------------------------------
+		//--Ajout mï¿½thode recherche ----------------------------------------------------------------------------------------------------
 		List<ArticleVendu> LstArticleRadio = new ArrayList<ArticleVendu>();
 		Utilisateur login = (Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("utilisateur");
 			// si bouton radio Achat selectionne - retourner la liste des produits achetable (on ecarte donc les produits du proprietaire)
@@ -95,7 +95,7 @@ public class AccueilConnecte extends HttpServlet {
 		
 	
 		if(request.getParameter("deconnexion") != null) {
-			request.getSession().setAttribute("utilisateur", "");
+			request.getSession().setAttribute("utilisateur", null);
 			nextScreen = "AccueilServlet";
 		}
 		

@@ -39,7 +39,11 @@ public class SessionFiltrer implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		Utilisateur login = (Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("utilisateur");
+		Utilisateur login = null;
+		
+		if(((HttpServletRequest) request).getSession().getAttribute("utilisateur") != null) {
+			login = (Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("utilisateur");	
+		}
 
 		String path = ((HttpServletRequest) request).getRequestURI();
 

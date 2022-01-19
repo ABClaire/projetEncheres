@@ -41,14 +41,14 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
 			+ "GROUP BY av.no_article, nom_article, description, libelle, prix_initial,date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo";
 	
-	private final static String SELECT_BY_ID_BEST_ENCHERE = "SELECT TOP 1 av.no_article, nom_article,description,libelle AS categorie, prix_initial, date_fin_encheres,r.rue, r.code_postal,r.ville, pseudo AS vendeur,av.no_utilisateur AS no_vendeur,ISNULL(MAX(montant_enchere), 0) AS \"meilleure offre\",e.no_utilisateur AS encheriste\r\n"
+	private final static String SELECT_BY_ID_BEST_ENCHERE = "SELECT TOP 1 av.no_article, nom_article,description,etat_article,libelle AS categorie, prix_initial, date_fin_encheres,r.rue, r.code_postal,r.ville, pseudo AS vendeur,av.no_utilisateur AS no_vendeur,ISNULL(MAX(montant_enchere), 0) AS \"meilleure offre\",e.no_utilisateur AS encheriste\r\n"
 			+ "FROM ARTICLES_VENDUS av\r\n"
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur\r\n"
 			+ "LEFT JOIN ENCHERES e ON av.no_article = e.no_article\r\n"
 			+ "INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie\r\n"
 			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
 			+ "WHERE av.no_article = ?\r\n"
-			+ "GROUP BY av.no_article, nom_article, description, libelle, prix_initial, date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo, av.no_utilisateur, e.no_utilisateur\r\n"
+			+ "GROUP BY av.no_article, nom_article, description,etat_article, libelle, prix_initial, date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo, av.no_utilisateur, e.no_utilisateur\r\n"
 			+ "ORDER BY no_article, \"meilleure offre\" DESC";
 	
 	
@@ -215,6 +215,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		String description = rs.getString("description");
 		Integer prixInitial = rs.getInt("prix_initial");
 		LocalDate dateFinEncheres = (rs.getDate("date_fin_encheres")).toLocalDate();
+		String etatVente = rs.getString("etat_article");
 		
 		
 		utilisateurVendeur = new Utilisateur(rs.getInt("no_vendeur"), rs.getString("vendeur"));
@@ -222,7 +223,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		
 		categorie = new Categorie(rs.getString("categorie"));
 		retrait = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"));
-		article = new ArticleVendu(noArticle, nom, description, dateFinEncheres, prixInitial, utilisateurVendeur, categorie, retrait);
+		article = new ArticleVendu(noArticle, nom, description, dateFinEncheres, prixInitial, etatVente, utilisateurVendeur, categorie, retrait);
 		
 		enchere = new Enchere(rs.getInt("meilleure offre"), article, utilisateurEncheriste);
 				
