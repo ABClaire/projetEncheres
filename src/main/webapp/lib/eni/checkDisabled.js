@@ -1,42 +1,47 @@
 /*
  * Team GrandMa's Squad - ENI
  * Script JS pour disabled mes Checkboxs 
- * selon sélection du Radio Bouton (Vente / Achat)
+ * selon selection du Radio Bouton (Vente / Achat)
  */
+    var enchOuvertes = document.getElementById("enchOuvertes");
+    var mesEnch = document.getElementById("mesEnch");
+    var enchRemportees = document.getElementById("enchRemportees");
+
+    var ventesEnCours = document.getElementById("ventesEnCours");
+    var ventesNonDebut = document.getElementById("ventesNonDebut");
+    var ventesTerminees = document.getElementById("ventesTerminees");
+
 
 function onClickVentes() {
-    var enchOuvertes = document.getElementById("enchOuvertes");
-    enchOuvertes.checked = false;
-    enchOuvertes.disabled = true;
-
-    var mesEnch = document.getElementById("mesEnch");
-    mesEnch.checked = false;
+  	enchOuvertes.checked = false;
+ 	enchOuvertes.disabled = true;
+ 	
+	mesEnch.checked = false;
     mesEnch.disabled = true;
-
-    var enchRemportees = document.getElementById("enchRemportees");
-    enchRemportees.checked = false;
+	 
+ 	enchRemportees.checked = false;
     enchRemportees.disabled = true;
 
-    var achats = document.getElementById("achats");
-    achats.checked = false;
-    achats.disabled = true;
+    ventesEnCours.disabled = false;
+    ventesNonDebut.disabled = false;
+    ventesTerminees.disabled = false;
+
+
 }
 
 function onClickAchats() {
-    console.log("click achats");
-    var ventesEnCours = document.getElementById("ventesEnCours");
-    ventesEnCours.checked = false;
+	ventesEnCours.checked = false;
     ventesEnCours.disabled = true;
 
-    var ventesNonDebut = document.getElementById("ventesNonDebut");
-    ventesNonDebut.checked = false;
+	ventesNonDebut.checked = false;
     ventesNonDebut.disabled = true;
-
-    var ventesTerminees = document.getElementById("ventesTerminees");
-    ventesTerminees.checked = false;
+	
+	ventesTerminees.checked = false;
     ventesTerminees.disabled = true;
+    
+	enchOuvertes.disabled = false;
+    mesEnch.disabled = false;
+    enchRemportees.disabled = false;
 
-    var ventes = document.getElementById("ventes");
-    ventes.checked = false;
-    ventes.disabled = true;
+    
 }

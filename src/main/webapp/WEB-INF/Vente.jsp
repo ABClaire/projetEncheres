@@ -49,7 +49,7 @@
         <div class="container-xxl bg-white py-5">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
 
-                <a href="accueilConnecte.html" class="navbar-brand p-0">
+                <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte" class="navbar-brand p-0">
                     <h1 class="text-primary m-0">Grandma's Store</h1>
                     <img src="img/logo.gif" alt="logo">
                 </a>

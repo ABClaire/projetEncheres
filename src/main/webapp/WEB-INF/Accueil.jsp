@@ -49,7 +49,7 @@
         <div class="container-xxl bg-white py-5">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
 
-                <a href="accueilConnecte.html" class="navbar-brand p-0">
+                <a href="http://localhost:8080/ProjetEncheres/AccueilServlet" class="navbar-brand p-0">
                     <h1 class="text-primary m-0">Grandma's Store</h1>
                     <img src="img/logo.gif" alt="logo">
                 </a>
@@ -58,7 +58,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                     <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte" class="nav-item nav-link">Enchères</a>          
+                     <a href="http://localhost:8080/ProjetEncheres/AccueilServlet" class="nav-item nav-link">Enchères</a>          
                     </div>
                      <a href="http://localhost:8080/ProjetEncheres/Connexion" class="btn btn-primary py-2 px-4">Se connecter-S'inscrire</a>
                 </div>
