@@ -51,7 +51,7 @@ public class VenteServlet extends HttpServlet {
 			
 			// Traitement des données de l'article
 			String nom_article = request.getParameter("nom_article");
-			String description = request.getParameter("description_article");
+			String description = request.getParameter("description");
 			LocalDate dateDebutEnchere = LocalDate.parse(request.getParameter("debut_enchere"));
 			LocalDate dateFinEnchere = LocalDate.parse(request.getParameter("fin_enchere"));
 			prix_article = Integer.parseInt(request.getParameter("prix_article"));

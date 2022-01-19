@@ -61,13 +61,16 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 				if((request.getParameter("nouveauMotDePasse").equals(request.getParameter("confirmationMotDePasse")) && (! request.getParameter("nouveauMotDePasse").isBlank())))  {
 					System.out.println(request.getParameter("confirmationMotDePasse"));
 					utilisateurModif = new Utilisateur(utilisateur.getNoUtilisateur(),pseudo, nom, prenom, email, telephone, rue, codePostal, ville, nouveauMotDePasse, 100, false);
+
 				}else{
 					 utilisateurModif = new Utilisateur(utilisateur.getNoUtilisateur(),pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 100, false);
 				}				
 				try {
 					UtilisateurManagerImpl.getInstance().modifierUtilisateur(model.getUtilisateur(),utilisateurModif);				
-					model.setUtilisateur(utilisateurModif);			
+					model.setUtilisateur(utilisateurModif);
 					request.getSession().setAttribute("utilisateur", utilisateurModif);
+					request.setAttribute("message", "Modifications enregistrées");
+
 					
 				} catch (BLLException e) {
 					e.printStackTrace();

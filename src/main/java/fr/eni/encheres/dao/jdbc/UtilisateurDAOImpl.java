@@ -152,12 +152,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	 * Modifier le crédit de l'utilisateur
 	 */
 	@Override
-	public void modifierCreditUtilisateur(Integer noEncheriste, Integer montantCredit) throws DALException {
+	public void modifierCreditUtilisateur(Integer noUtilisateur, Integer montantCredit) throws DALException {
 		try (Connection cnx = JdbcTools.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_CREDIT);
-			pStmt.setInt(1, noEncheriste);
+			pStmt.setInt(1, noUtilisateur);
 			pStmt.setInt(2, montantCredit);
-			pStmt.setInt(3, noEncheriste);
+			pStmt.setInt(3, noUtilisateur);
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {

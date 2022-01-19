@@ -26,8 +26,10 @@ public class EnchereDAOImpl implements EnchereDAO {
 	
 	@Override
 	public void ajouterNouvelleEnchere(Integer noArticle, Integer noEncheriste, Integer montantNouvelleEnchere) throws DALException {
+		
 		try(Connection cnx = JdbcTools.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(INSERT);
+
 			pStmt.setDate(1, Date.valueOf(LocalDate.now()));
 			pStmt.setInt(2, montantNouvelleEnchere);
 			pStmt.setInt(3, noArticle);

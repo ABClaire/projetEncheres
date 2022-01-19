@@ -47,18 +47,18 @@
         <div class="container-xxl bg-white py-5">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
 
-                <a href="accueilConnecte.html" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0">Grandma's Store</h1>
-                    <img src="img/logo.gif" alt="logo">
+                <a href="/ProjetEncheres/AccueilConnecte" class="navbar-brand p-0">
+                  
+                    <img src="img/logo1.gif" alt="logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte" class="nav-item nav-link">Enchères</a>
-                        <a href="http://localhost:8080/ProjetEncheres/NouvelleVente" class="nav-item nav-link">Vendre un article</a>
-                        <a href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet" class="nav-item nav-link">Mon profil</a>
+                        <a href="/ProjetEncheres/AccueilConnecte" class="nav-item nav-link">Enchères</a>
+                        <a href="/ProjetEncheres/NouvelleVente" class="nav-item nav-link">Vendre un article</a>
+                        <a href="/ProjetEncheres/AfficherPofilServlet" class="nav-item nav-link">Mon profil</a>
                     </div>
 
                    <form action="AccueilConnecte" method="POST"><input type="submit" name="deconnexion" value="Deconnexion" class="btn btn-primary py-2 px-4"></form>
@@ -79,34 +79,35 @@
 				<!--  Affichage du détail de la vente -->
 				<h5 id="detailVente"> Detail vente</h5> 
 				<h5 id="venteRemportee"><strong> Vous avez remporté la vente </strong> </h5>
-					<div class="col-md-4">
-						<p>Nom Article : ${model.article.nomArticle}</p>
-						<p>Description : ${model.article.description}</p>
-						<p>Catégorie :  ${model.article.categorieArticle.libelle}</p>
-						<p id="pseudoEncheriste">Meilleure offre : ${model.article.enchereMaximum.montantEnchere} par ${model.encheriste.pseudo}${aucuneEnchere} </p>
-						<p>Mise à prix : ${model.article.miseAPrix}</p>
-						<p>Fin enchère : ${model.article.dateFinEncheres}</p>
-						<p>Retrait : <br>
-							${model.article.lieuRetrait.lieu} <br>
-							${model.article.lieuRetrait.codePostal} <br>
-							${model.article.lieuRetrait.ville}	</p>
-						<p>Vendeur : ${model.vendeur.pseudo}</p>	
-						<p id="telephoneVendeur"> Tel : ${model.vendeur.telephone}<p>				
-						<form action="DetailEnchere" method="POST" id="formulaireEncherir">
-							<p>Ma proposition : </p>
-							<!-- noArticle envoyé dans la requête en "hidden" pour conserver l'information -->
-								<input type="hidden" name="noArticle" value="${model.article.noArticle}"/>
-								<input type="number" name="proposition" value="${model.article.enchereMaximum.montantEnchere}"/>
-							<input type="submit" name="nouvelleEnchere" value="Encherir"/>
-						</form>
-						<p><strong> ${model.message} </strong></p>
-						<p><strong> ${messageErreur} </strong></p>
-					</div>	
+
+				<div class="col-md-4">
+					<p>Nom Article : ${model.article.nomArticle}</p>
+					<p>Description : ${model.article.description}</p>
+					<p>Catégorie :  ${model.article.categorieArticle.libelle}</p>
+					<p id="pseudoEncheriste">Meilleure offre : ${model.article.enchereMaximum.montantEnchere} par ${model.encheriste.pseudo}${aucuneEnchere} </p>
+					<p>Mise à prix : ${model.article.miseAPrix}</p>
+					<p>Fin enchère : ${model.article.dateFinEncheres}</p>
+					<p>Retrait : ${model.article.lieuRetrait.lieu} <br>
+								 ${model.article.lieuRetrait.codePostal} <br>
+								  ${model.article.lieuRetrait.ville}	</p>
+					<p>Vendeur : ${model.vendeur.pseudo}</p>	
+					<p id="telephoneVendeur"> Tel : ${model.vendeur.telephone}<p>
+					<form action="DetailEnchere" method="POST" id="formulaireEncherir">
+					<p>Ma proposition : </p>
+					<!-- noArticle envoyé dans la requête en "hidden" pour conserver l'information -->
+						<input type="hidden" name="noArticle" value="${model.article.noArticle}"/>
+						<input type="number" name="proposition" min="${model.article.miseAPrix}" value="${model.article.enchereMaximum.montantEnchere}"/>
+						<input type="submit" name="nouvelleEnchere" value="Encherir"/>
+					</form>
+					<p><strong> ${model.message} </strong></p>
+					<p><strong> ${messageErreur} </strong></p>
+				</div>
+				<div class="col-md-4">
 				</div>
 		</div>
 	</div>
 </div>
-
+</div>
 <input type="hidden" value="${model.article.etatVente}" id="etatVente"/>	
 <input type="hidden" value="${pseudoUtilisateur}" id="pseudoUtilisateur"/>
 
@@ -126,9 +127,9 @@
                             </div>
                             <div class="col-md-6 text-center text-md-end">
                                 <div class="footer-menu">
-                                    <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte">Enchères</a>
-                                    <a href="http://localhost:8080/ProjetEncheres/NouvelleVente">Vendre un article</a>
-                                    <a href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
+                                    <a href="/ProjetEncheres/AccueilConnecte">Enchères</a>
+                                    <a href="/ProjetEncheres/NouvelleVente">Vendre un article</a>
+                                    <a href="/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
                                 </div>
                             </div>
                         </div>
