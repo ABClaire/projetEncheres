@@ -227,15 +227,15 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 	
 	@Override
 	public void modifierCreditEncheriste(Utilisateur utilisateur, Integer montantEnchere) throws BLLException {
-		Integer nouveauCredit = utilisateur.getCredit() - montantEnchere;
-		updateCredit(utilisateur.getNoUtilisateur(), nouveauCredit);
+		updateCredit(utilisateur.getNoUtilisateur(), montantEnchere * -1);
 	}
 	
 
 	@Override
 	public void modifierCreditAncienEncheriste(Utilisateur ancienEncheriste, Integer enchereMax) throws BLLException {
-		Integer nouveauCredit = ancienEncheriste.getCredit() + enchereMax;
-		updateCredit(ancienEncheriste.getNoUtilisateur(), nouveauCredit);
+		if(ancienEncheriste != null) {
+			updateCredit(ancienEncheriste.getNoUtilisateur(), enchereMax);	
+		}
 	}
 	
 	

@@ -3,14 +3,14 @@
  */
 package fr.eni.encheres.bo;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Classe en charge de créer un objet enchères
  *
  */
 public class Enchere {
-	LocalDate dateEnchere;
+	LocalDateTime dateEnchere;
 	Integer montantEnchere;
 	ArticleVendu articleVendu;
 	Utilisateur utilisateur;
@@ -38,7 +38,7 @@ public class Enchere {
 	 * @param articleVendu
 	 * @param utilisateur
 	 */
-	public Enchere(LocalDate dateEnchere, Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
+	public Enchere(LocalDateTime dateEnchere, Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
 		this(montantEnchere, articleVendu, utilisateur);
 		this.dateEnchere = dateEnchere;
 	}
@@ -46,14 +46,14 @@ public class Enchere {
 	 * Getter pour dateEnchere.
 	 * @return the dateEnchere
 	 */
-	public LocalDate getDateEnchere() {
+	public LocalDateTime getDateEnchere() {
 		return dateEnchere;
 	}
 	/**
 	 * Setter pour dateEnchere.
 	 * @param dateEnchere the dateEnchere to set
 	 */
-	public void setDateEnchere(LocalDate dateEnchere) {
+	public void setDateEnchere(LocalDateTime dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
 	/**

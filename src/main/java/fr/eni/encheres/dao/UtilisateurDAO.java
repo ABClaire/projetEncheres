@@ -23,6 +23,6 @@ public interface UtilisateurDAO {
 	
 	void supprimerUtilisateur(Integer idUtilisateur) throws DALException;
 	
-	void modifierCreditUtilisateur(Integer noEncheriste, Integer montantCredit) throws DALException;
+	void modifierCreditUtilisateur(Integer noUtilisateur, Integer montantCredit) throws DALException;
 
 }

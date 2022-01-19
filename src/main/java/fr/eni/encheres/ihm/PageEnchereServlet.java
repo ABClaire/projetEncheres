@@ -80,32 +80,35 @@ public class PageEnchereServlet extends HttpServlet {
 				// Récupération de la proposition effectuée
 				Integer proposition = Integer.parseInt(request.getParameter("proposition"));
 				
-				// Récupération de l'ancienne proposition maximale
+				// Récupération de l'ancienne proposition maximale ou 0 si pas d'enchère précédente
 				enchereMax = detailArticle.getEnchereMaximum().getMontantEnchere();
 				
-				// Ajout d'une nouvelle enchère
-				EnchereManagerImpl.getInstance().ajouterNouvelleEnchere(noArticleEnchere, noEncheriste, proposition);
-			
-				// Mise à jour du prix de vente du produit
-				ArticleVenduManagerImpl.getInstance().miseAJourPrixVente(noArticleEnchere, proposition);
-				
-				// Modification du crédit de point de l'enchériste (moins)
-				UtilisateurManagerImpl.getInstance().modifierCreditEncheriste(nouvelEncheriste, proposition);
-				
-				// Modification du crédit de point de l'ancien enchériste (plus)
-				UtilisateurManagerImpl.getInstance().modifierCreditAncienEncheriste(ancienEncheriste, enchereMax);
-				
-				// Mise à jour de l'article en cours
-				detailArticle.getEnchereMaximum().setMontantEnchere(proposition);
-				
-				// Mise à jour de l'enchériste ayant effectué la plus haute enchère
-				detailArticle.getEnchereMaximum().setUtilisateur(nouvelEncheriste);
-				
-				
-				// Mise à jour du model
-				model.setArticle(detailArticle);
-				model.setEncheriste(nouvelEncheriste);
-				model.setMessage("Votre enchère est bien enregistrée");
+				if(proposition > enchereMax && proposition > detailArticle.getMiseAPrix()) {
+					// Ajout d'une nouvelle enchère
+					EnchereManagerImpl.getInstance().ajouterNouvelleEnchere(noArticleEnchere, noEncheriste, proposition);
+					
+					// Mise à jour du prix de vente du produit
+					ArticleVenduManagerImpl.getInstance().miseAJourPrixVente(noArticleEnchere, proposition);
+					
+					// Modification du crédit de point de l'enchériste (moins)
+					UtilisateurManagerImpl.getInstance().modifierCreditEncheriste(nouvelEncheriste, proposition);
+					
+					// Modification du crédit de point de l'ancien enchériste (plus)
+					UtilisateurManagerImpl.getInstance().modifierCreditAncienEncheriste(ancienEncheriste, enchereMax);
+					
+					// Mise à jour de l'article en cours
+					detailArticle.getEnchereMaximum().setMontantEnchere(proposition);
+					
+					// Mise à jour de l'enchériste ayant effectué la plus haute enchère
+					detailArticle.getEnchereMaximum().setUtilisateur(nouvelEncheriste);
+					
+					
+					// Mise à jour du model
+					model.setArticle(detailArticle);
+					model.setEncheriste(nouvelEncheriste);
+					model.setMessage("Votre enchère est bien enregistrée");
+					request.setAttribute("aucuneEnchere", "");
+				}
 				
 			} catch (BLLException e) {
 				e.printStackTrace();
