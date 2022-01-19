@@ -90,7 +90,7 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		
 		if(nouvelUtilisateur.getTelephone() != null) {
 			String telephone = nouvelUtilisateur.getTelephone();
-			utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, mdp, ville, telephone, 100, false);
+			utilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, cp, ville, mdp, 100, false);
 			
 		} else {
 			utilisateur = new Utilisateur(pseudo, nom, prenom, email, rue, cp, ville, mdp, 100, false);	

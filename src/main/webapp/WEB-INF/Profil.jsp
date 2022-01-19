@@ -47,18 +47,18 @@
         <div class="container-xxl bg-white py-5">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
 
-                <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0">Grandma's Store</h1>
-                    <img src="img/logo.gif" alt="logo">
+                <a href="/ProjetEncheres/AccueilConnecte" class="navbar-brand p-0">
+                   <img src="img/logo1.gif" alt="Grandma's Store">
+                    
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte" class="nav-item nav-link">Enchères</a>
-                        <a href="http://localhost:8080/ProjetEncheres/NouvelleVente" class="nav-item nav-link">Vendre un article</a>
-                        <a href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet" class="nav-item nav-link">Mon profil</a>
+                        <a href="/ProjetEncheres/AccueilConnecte" class="nav-item nav-link">Enchères</a>
+                        <a href="/ProjetEncheres/NouvelleVente" class="nav-item nav-link">Vendre un article</a>
+                        <a href="/ProjetEncheres/AfficherPofilServlet" class="nav-item nav-link">Mon profil</a>
                     </div>
 
                    <form action="AccueilConnecte" method="POST"><input type="submit" name="deconnexion" value="Deconnexion" class="btn btn-primary py-2 px-4"></form>
@@ -89,6 +89,9 @@
                     </div>
                 </div>
             </div>
+         </div>
+        </div>
+
 
             <!-- Mon profil Fin -->
             
@@ -106,20 +109,20 @@
                             </div>
                             <div class="col-md-6 text-center text-md-end">
                                 <div class="footer-menu">
-                                    <a href="http://localhost:8080/ProjetEncheres/AccueilConnecte">Enchères</a>
-                                    <a href="http://localhost:8080/ProjetEncheres/NouvelleVente">Vendre un article</a>
-                                    <a href="http://localhost:8080/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
+                                    <a href="/ProjetEncheres/AccueilConnecte">Enchères</a>
+                                    <a href="/ProjetEncheres/NouvelleVente">Vendre un article</a>
+                                    <a href="/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
             <!-- Footer End -->
             
-            <!-- Back to Top -->
-            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        </div>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
