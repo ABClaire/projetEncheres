@@ -44,7 +44,7 @@ public class TestMain {
 		
 		List<Integer> lstchoix = new ArrayList<Integer>();
 		lstchoix.add(2);
-		lstchoix.add(3);
+		
 		
 		Utilisateur mamie = null;
 		try {

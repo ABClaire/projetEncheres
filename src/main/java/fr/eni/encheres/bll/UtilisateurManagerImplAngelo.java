@@ -106,13 +106,14 @@ public class UtilisateurManagerImplAngelo {
 	
 	
 	// Method qui retourne une liste d'article dans l'état Encours
-	private List<ArticleVendu> filtreArticleEncoursParDate(List<ArticleVendu> lstEntree) {
+	public List<ArticleVendu> filtreArticleEncoursParDate(List<ArticleVendu> lstEntree) {
 		List<ArticleVendu> lstReturn = new ArrayList<ArticleVendu>();
 		for (ArticleVendu articleVendu : lstEntree) {
 
 			if (articleVendu.getDateFinEncheres().isAfter(LocalDate.now()) & (articleVendu.getDateDebutEncheres().isBefore(LocalDate.now())) | articleVendu.getDateDebutEncheres().equals(LocalDate.now())) {
 				lstReturn.add(articleVendu);
 			}
+			
 		}
 		return lstReturn;
 	}
@@ -182,9 +183,20 @@ public class UtilisateurManagerImplAngelo {
 			case 2: // Achat -> mes enchères
 
 				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
+					
+					try {
+						articleVendu.setLstEncheres(DAOFactory.getEnchereDAO().selectAllEncheresByArticle(articleVendu));
+						
+					} catch (DALException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
 					for (Enchere enchere : articleVendu.getLstEncheres()) {
-
+						
+						
+						System.out.println("enchereriste" + " " + enchere.getNoEncheriste());
+						System.out.println("utilisateur session BLL" + utilisateurSession.getNoUtilisateur());
 						if (enchere.getNoEncheriste() == utilisateurSession.getNoUtilisateur()) {
 							// je récupère la liste des articles sur lesquels j'ai enchéris et je check si
 							// l'id de l'utilisateur en session est présent si oui j'ajoute à la liste à

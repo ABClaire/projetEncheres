@@ -52,20 +52,22 @@ public class AccueilServlet extends HttpServlet {
 		if (motClef == null || motClef.isBlank()) {
 			
 			try {
-				request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option));
+				List<ArticleVendu> LstFinal = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option);
+				request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().filtreArticleEncoursParDate(LstFinal));
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 			//si il y a un mot cl�e je r�cup�re la liste tri� par cat�gorie puis je la trie par recherche par mot cl� avant de la renvoyer 
 		}else {
-			
+			List<ArticleVendu> LstFinal = new ArrayList<ArticleVendu>();
 			try {
 				lstARetouner = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option);
+				 LstFinal = UtilisateurManagerImplAngelo.getInstance().filtreArticleEncoursParDate(lstARetouner);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 			
-			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RechercheDansLeNomDelArticle(lstARetouner, motClef));
+			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RechercheDansLeNomDelArticle(LstFinal, motClef));
 		}
 		
 		
