@@ -271,8 +271,33 @@ public class ArticleVendu {
 		this.lieuRetrait = lieuRetrait;
 	}
 	
-
+	/**
+	 * Constructeur.
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param utilisateur
+	 * @param categorieArticle
+	 * @param lieuRetrait
+	 */
+	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,LocalDate dateFinEncheres,
+			Integer miseAPrix, Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.utilisateur = utilisateur;
+		this.categorieArticle = categorieArticle;
+		this.lieuRetrait = lieuRetrait;
+	}
 	
+	
+
 
 	/**
 	 * Getter pour enchereMaximum.

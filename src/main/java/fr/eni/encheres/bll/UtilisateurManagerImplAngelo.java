@@ -99,15 +99,26 @@ public class UtilisateurManagerImplAngelo {
 
 		// R�cup�re les ench�res en cours (date d'ench�re inf�rieur � la
 		// date du jour)
-		for (ArticleVendu articleVendu : lstAReturn) {
+		
 
-			if (articleVendu.getDateFinEncheres().isAfter(LocalDate.now())) {
-				lstFinal.add(articleVendu);
+		return lstAReturn;
+	}
+	
+	
+	// Method qui retourne une liste d'article dans l'état Encours
+	private List<ArticleVendu> filtreArticleEncoursParDate(List<ArticleVendu> lstEntree) {
+		List<ArticleVendu> lstReturn = new ArrayList<ArticleVendu>();
+		for (ArticleVendu articleVendu : lstEntree) {
+
+			if (articleVendu.getDateFinEncheres().isAfter(LocalDate.now()) & (articleVendu.getDateDebutEncheres().isBefore(LocalDate.now())) | articleVendu.getDateDebutEncheres().equals(LocalDate.now())) {
+				lstReturn.add(articleVendu);
 			}
 		}
-
-		return lstFinal;
+		return lstReturn;
 	}
+	
+	
+
 
 	// M�thode pour faire une recherche par mot cl�e prend en entr�e la liste
 	// issue du chois de la cat�gorie et retourne une list
@@ -143,41 +154,7 @@ public class UtilisateurManagerImplAngelo {
 	// -------Methode pour
 	// EncherereOuverte/MesEncheres/MesEnchereRemporter----------
 
-	public List<ArticleVendu> AchatSwitchPourCheckbox(List<ArticleVendu> lstEntree, String pseudoSession,
-			Integer choix) {
-
-		List<ArticleVendu> lstRetourner = new ArrayList<ArticleVendu>();
-
-		for (ArticleVendu articleVendu : lstEntree) {
-
-			switch (choix) {
-			case 1:// Enchere ouverte
-				System.out.println("Ench�re ouverte");
-				if (articleVendu.getDateFinEncheres().isBefore(LocalDate.now())) {
-					lstRetourner.add(articleVendu);
-					System.out.println("dans le if");
-				}
-				break;
-
-			case 2:// Mes Encheres
-				System.out.println("Ench�re ouverte");
-
-				break;
-
-			case 3:// Mes Enchere rapporter
-
-				System.out.println("Mes Ench�re rapporter");
-				break;
-
-			default:// Aucun choix
-
-				System.out.println("Aucun choix");
-				break;
-			}
-		}
-
-		return lstRetourner;
-	}
+	
 
 	// Methode pour les checkbox D'Achat
 
@@ -189,14 +166,17 @@ public class UtilisateurManagerImplAngelo {
 		for (Integer integer : lstCheck) {
 			switch (integer) {
 			case 1: // Dans Achat -> Enchère Ouverte
+				List<ArticleVendu> LstTemporaire = new ArrayList<ArticleVendu>();
 				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
-					if ("ENCOURS".equals(articleVendu.getEtatVente()) & articleVendu.getUtilisateur()
+					if (articleVendu.getUtilisateur()
 							.getNoUtilisateur() != (utilisateurSession.getNoUtilisateur())) {
 						// je récupère les articles avec le statut ENCOURS et j'exclue les articles que
 						// l'utilisateur vend
-						lstReturn.add(articleVendu);
+						LstTemporaire.add(articleVendu);
 					}
+					lstReturn = filtreArticleEncoursParDate (LstTemporaire);
 				}
+				
 				break;
 
 			case 2: // Achat -> mes enchères
@@ -218,11 +198,19 @@ public class UtilisateurManagerImplAngelo {
 			case 3:// mes enchères remportées
 				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
 						// TODO : ESSAYER de récuperer la BestEnchere en itérant dans la liste puis de set l'articles avec 
-				
+					
+					ArticleVendu articlestockage = new ArticleVendu();
+					try {
+						articlestockage = DAOFactory.getArticleVenduDAO().selectArticleByIdBestEnchere(articleVendu.getNoArticle());
+					} catch (DALException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					articleVendu.setEnchereMaximum(articlestockage.getEnchereMaximum());
 					
 					
-					if ("CLOTURE".equals(articleVendu.getEtatVente()) & articleVendu.getEnchereMaximum()
-							.getUtilisateur().getNoUtilisateur() == utilisateurSession.getNoUtilisateur()) {
+					
+					if (articleVendu.getDateFinEncheres().isBefore(LocalDate.now()) & articleVendu.getEnchereMaximum().getUtilisateur().getNoUtilisateur() == utilisateurSession.getNoUtilisateur()) {
 						// tu comprendras plus tard
 						lstReturn.add(articleVendu);
 					}

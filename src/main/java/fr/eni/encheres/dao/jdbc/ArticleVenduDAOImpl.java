@@ -33,13 +33,13 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	
 	private final static String SELECT_ALL = "SELECT no_article, nom_article, date_debut_encheres, date_fin_encheres, prix_vente, no_utilisateur,etat_article FROM ARTICLES_VENDUS";
 	
-	private final static String SELECT_ARTICLE_BY_USER = "SELECT av.no_article,nom_article,description, libelle AS categorie,ISNULL(MAX(montant_enchere), prix_initial) AS prix, date_fin_encheres,r.rue,r.code_postal,r.ville, pseudo\r\n"
+	private final static String SELECT_ARTICLE_BY_USER = "SELECT av.no_article,nom_article,description, libelle AS categorie,ISNULL(MAX(montant_enchere), prix_initial) AS prix, date_debut_encheres, date_fin_encheres,r.rue,r.code_postal,r.ville, pseudo\r\n"
 			+ "FROM ARTICLES_VENDUS av\r\n"
 			+ "INNER JOIN UTILISATEURS u ON av.no_utilisateur = u.no_utilisateur\r\n"
 			+ "LEFT JOIN ENCHERES e ON av.no_article = e.no_article\r\n"
 			+ "INNER JOIN CATEGORIES c ON av.no_categorie = c.no_categorie\r\n"
 			+ "INNER JOIN RETRAITS r ON av.no_article = r.no_article\r\n"
-			+ "GROUP BY av.no_article, nom_article, description, libelle, prix_initial,date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo";
+			+ "GROUP BY av.no_article, nom_article, description, libelle, prix_initial, date_debut_encheres, date_fin_encheres,r.rue,r.code_postal,r.ville,pseudo";
 	
 	private final static String SELECT_BY_ID_BEST_ENCHERE = "SELECT TOP 1 av.no_article, nom_article,description,etat_article,libelle AS categorie, prix_initial, date_fin_encheres,r.rue, r.code_postal,r.ville, pseudo AS vendeur,av.no_utilisateur AS no_vendeur,ISNULL(MAX(montant_enchere), 0) AS \"meilleure offre\",e.no_utilisateur AS encheriste\r\n"
 			+ "FROM ARTICLES_VENDUS av\r\n"
@@ -164,7 +164,9 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				
 				retrait = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"));
 				
-				ArticleVendu articleAvecUtilisateuretCategorie = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),  rs.getString("description"), (rs.getDate("date_fin_encheres")).toLocalDate(), rs.getInt("prix"), utilisateur, categorie, retrait);
+				
+				ArticleVendu articleAvecUtilisateuretCategorie = new ArticleVendu(rs.getInt("no_article"), rs.getString("nom_article"),  rs.getString("description")
+						,(rs.getDate("date_debut_encheres")).toLocalDate(),(rs.getDate("date_fin_encheres")).toLocalDate(), rs.getInt("prix"), utilisateur, categorie, retrait);
 				
 		
 				lstArticleVendus.add(articleAvecUtilisateuretCategorie);				

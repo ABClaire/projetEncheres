@@ -65,9 +65,11 @@ public class TestMain {
 		
 		List<ArticleVendu> lstTest = UtilisateurManagerImplAngelo.getInstance().filtreCheckboxAchat(lstchoix, LstGlobal, mamie);
 		
-		
-		System.out.println(lstTest);
-		
+		int compteur = 1;
+		for (ArticleVendu articleVendu : lstTest) {
+			System.out.println(compteur++);
+			System.out.println(articleVendu);
+		}
 		
 		
 		
