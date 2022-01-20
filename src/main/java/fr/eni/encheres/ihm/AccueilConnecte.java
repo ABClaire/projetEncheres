@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.ArticleVenduManagerImpl;
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.CategorieManagerImpl;
 import fr.eni.encheres.bll.UtilisateurManagerImpl;
@@ -37,7 +38,6 @@ public class AccueilConnecte extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextScreen = "WEB-INF/AccueilConnecte.jsp";
 		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("utilisateur");
-		Integer noUtilisateur = utilisateur.getNoUtilisateur();
 	
 		// Remonter la liste des categories disponibles
 				try {
@@ -55,8 +55,6 @@ public class AccueilConnecte extends HttpServlet {
 		List<Integer> checkBoxSelect = new ArrayList<Integer>();
 		Utilisateur utiliPourRecherche = new Utilisateur();
 		
-		System.out.println((Utilisateur) request.getSession().getAttribute("utilisateur"));
- 		
 		//Au clique sur rechercher on recupere la categorie et un possible motClef
 		if (request.getParameter("recherche")!= null) {
 			option = request.getParameter("listeDeroulante");
@@ -104,13 +102,12 @@ public class AccueilConnecte extends HttpServlet {
 				listTemp = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option);
 				
 				if (radioSelect.equals("achat")) {
-					List<ArticleVendu> laListeDeTrop= UtilisateurManagerImplAngelo.getInstance().filtreCheckboxAchat(checkBoxSelect, listTemp, utiliPourRecherche);
-					request.setAttribute("Liste",laListeDeTrop );
+					List<ArticleVendu> lstRechercheAchat= UtilisateurManagerImplAngelo.getInstance().filtreCheckboxAchat(checkBoxSelect, listTemp, utiliPourRecherche);
+					request.setAttribute("Liste",lstRechercheAchat );
 					
 				} else if (radioSelect.equals("mesventes")) {
-					//TODO : rajouter cas mes ventes
-					//cas ou on le radio mes ventes est select
-				
+					List<ArticleVendu> lstRechercheVente =	ArticleVenduManagerImpl.getInstance().lstFiltreMesVentes(utiliPourRecherche.getPseudo(), checkBoxSelect, listTemp);
+					request.setAttribute("Liste", lstRechercheVente);
 					
 				} else {
 					//cas ou rien n'est select
