@@ -86,7 +86,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		if(request.getParameter("suppressionCompte")!=null) {
 			try {				
 				UtilisateurManagerImpl.getInstance().supprimerUtilisateur(model.getUtilisateur().getNoUtilisateur());
-				request.getSession().setAttribute("utilisateur", "");
+				request.getSession().setAttribute("utilisateur", null);
 			} catch (BLLException e) {
 				e.printStackTrace();
 				//request.setAttribute("message", e.toString());

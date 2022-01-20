@@ -6,6 +6,7 @@ package fr.eni.encheres.bll;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.dao.DALException;
@@ -60,11 +61,17 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		}
 
 	}
+	
+	
+	/*
+	 * ========================================================
+	 * 			*** 	TRAITEMENT D'UNE VENTE	 ***
+	 * ========================================================
+	 * 
+	 */
 
 	/**
-	 * Méthode en charge de mettre à jour l'état des enchères en fonction de la date
-	 * du jour
-	 * 
+	 * Méthode en charge de mettre à jour l'état des enchères en fonction de la date du jour
 	 * @param dateDuJour
 	 * @throws BLLException
 	 */
@@ -99,7 +106,6 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 		// Mise à jour de l'état de vente des articles en BDD
 
 		lstArticlesUpdate.forEach(a -> {
-
 				try {
 					DAOFactory.getArticleVenduDAO().updateEtatVente(a);
 				} catch (DALException e) {
@@ -126,6 +132,109 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 			throw new BLLException(e);
 		}
 
+	}
+	
+	
+	
+	/*
+	 * ========================================================
+	 * 			*** 	FILTRES SUR MES ARTICLES	 ***
+	 * ========================================================
+	 * 
+	 */
+	
+	// Method qui retourne la liste des articles en cours d'enchère
+	private List<ArticleVendu> filtreArticleEncoursParDate(List<ArticleVendu> lstEntree) {
+		List<ArticleVendu> lstReturn = new ArrayList<ArticleVendu>();
+		for (ArticleVendu articleVendu : lstEntree) {
+
+			if (articleVendu.getDateFinEncheres().isAfter(LocalDate.now()) & (articleVendu.getDateDebutEncheres().isBefore(LocalDate.now())) | articleVendu.getDateDebutEncheres().equals(LocalDate.now())) {
+				lstReturn.add(articleVendu);
+			}
+		}
+		return lstReturn;
+	}
+	
+	/*
+	 * ========================================================
+	 * 			*** 	FILTRES SUR MES ACHATS	 ***
+	 * ========================================================
+	 * 
+	 */
+	
+	
+
+	
+	/*
+	 * ========================================================
+	 * 			*** 	FILTRES SUR MES VENTES	 ***
+	 * ========================================================
+	 * 
+	 */
+	
+	public List<ArticleVendu> lstFiltreMesVentes(String pseudo, List<Integer> lstCheck, List<ArticleVendu> lstMesVentes) {
+		List<ArticleVendu> lstFiltreMesVentes = new ArrayList<ArticleVendu>();
+		
+		for(Integer check : lstCheck) {
+			switch (check) {
+			case 1: // Mes ventes en cours
+				lstMesVentesEnCours(pseudo, lstMesVentes).forEach(v -> lstFiltreMesVentes.add(v));
+				break;
+			case 2: // Mes ventes non débutées
+				lstMesVentesNonDebutes(pseudo, lstMesVentes).forEach(v -> lstFiltreMesVentes.add(v));
+				break;
+			case 3: // Mes ventes terminées
+				lstMesVentesTerminees(pseudo, lstMesVentes).forEach(v -> lstFiltreMesVentes.add(v));
+				break;
+
+			default: System.out.println("tu es dans ton default");
+				break;
+			}
+		}
+		
+		List<ArticleVendu> lstReturn = lstFiltreMesVentes.stream().distinct().collect(Collectors.toList());
+				
+		return lstReturn;
+	}
+	
+	/**
+	 * Méthode en charge de retourner la liste de mes ventes en cours
+	 * @param pseudo
+	 * @return
+	 * @throws BLLException
+	 */
+	public List<ArticleVendu> lstMesVentesEnCours(String pseudo, List<ArticleVendu> lstEntree) {
+		List<ArticleVendu> lstMesVentesEnCours = new ArrayList<ArticleVendu>();
+		lstMesVentesEnCours = filtreArticleEncoursParDate(lstEntree);
+		return lstMesVentesEnCours.stream()
+				.filter(a -> pseudo.equals(a.getUtilisateur().getPseudo()))
+				.collect(Collectors.toList());
+	}
+	
+	/**
+	 * Méthode en charge de retourner la liste de mes ventes non débutées
+	 * @param pseudo
+	 * @return
+	 * @throws BLLException
+	 */
+	public List<ArticleVendu> lstMesVentesNonDebutes(String pseudo, List<ArticleVendu> lstEntree) {
+		return lstEntree.stream()
+				.filter(a -> a.getDateDebutEncheres().isAfter(LocalDate.now()) & pseudo.equals(a.getUtilisateur().getPseudo()))
+				.collect(Collectors.toList());
+	}
+	
+	
+	/**
+	 * Méthode en charge de retourner la liste de mes ventes terminées
+	 * @param pseudo
+	 * @return
+	 * @throws BLLException
+	 */
+	public List<ArticleVendu> lstMesVentesTerminees(String pseudo, List<ArticleVendu> lstEntree) {
+		return lstEntree.stream()
+				.filter(a -> a.getDateFinEncheres().isBefore(LocalDate.now())
+						& pseudo.equals(a.getUtilisateur().getPseudo()))
+				.collect(Collectors.toList());
 	}
 
 }
