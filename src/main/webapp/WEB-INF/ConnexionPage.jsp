@@ -46,11 +46,10 @@
         <!-- Navbar & Hero Start -->
         <div class="container-xxl bg-white py-5">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-
-                <a href="/ProjetEncheres/AccueilConnecte" class="navbar-brand p-0">
-                   <img src="img/logo1.gif" alt="Grandma's Store">
-                    
-                </a>
+				<a href="/ProjetEncheres/accueil"
+					class="navbar-brand p-0"> <img src="img/logo1.gif"
+					alt="Grandma's Store">
+				</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
@@ -94,6 +93,9 @@
                                     <input type="submit" name="Connexion" value="Connexion" class="btn btn-primary" />
 
                                     <input type="submit" name="Creation Compte" value="S'inscrire" class="btn btn-primary">
+                               		<p><strong> ${Inscription.messageInscriptionOk } </strong></p>
+                                    <p><strong> ${message} </strong></p>
+                               
                                 </div>
                             </div>
                         </form>

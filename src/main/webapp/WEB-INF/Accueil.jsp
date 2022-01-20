@@ -147,14 +147,18 @@
 
 								<div class="tab-class wow fadeInUp" data-wow-delay="0.1s">
 									<div class="row">
+									
 										<c:forEach items="${Liste}" var="sc">
+										
 											<p>-------------------------------------------------------</p>
 											<p>${sc.nomArticle}</p>
 											<p>Prix :${sc.miseAPrix}</p>
 											<p>Fin de l'enchère : ${sc.dateFinEncheres}</p>
 											<p>Vendeur : ${sc.utilisateur.pseudo}</p>
 											<p>-------------------------------------------------------</p>
+											
 										</c:forEach>
+										
 									</div>
 								</div>
 							</div>

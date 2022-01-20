@@ -43,24 +43,14 @@ public class InscriptionServlet extends HttpServlet {
 				String motDePasse = request.getParameter("motDePasse");
 				
 				Utilisateur nouvelUtilisateur = new Utilisateur(pseudo, nom, prenom, email, telephone, rue, codePostal, ville, motDePasse, 100, false);
-				System.out.println(nouvelUtilisateur.getPseudo());
-				System.out.println(nouvelUtilisateur.getNom());
-				System.out.println(nouvelUtilisateur.getPrenom());
-				System.out.println(nouvelUtilisateur.getEmail());
-				System.out.println(nouvelUtilisateur.getTelephone());
-				System.out.println(nouvelUtilisateur.getRue());
-				System.out.println(nouvelUtilisateur.getCodePostal());
-				System.out.println(nouvelUtilisateur.getVille());
-				System.out.println(nouvelUtilisateur.getMotDePasse());
-				
-				
-				
-				
-				nextScreen = "/Connexion";
+
 				request.setAttribute("messageInscriptionOk", "Merci pour votre inscription! Vous pouvez vous connecter");
 				
 				try {
 					UtilisateurManagerImpl.getInstance().ajouterNouvelUtilisateur(nouvelUtilisateur);
+					request.getSession().setAttribute("nouvelUtilisateur", "nouveau");
+					nextScreen ="Connexion";
+				
 				} catch (BLLException e) {
 					e.printStackTrace();
 					request.setAttribute("message", e.toString());

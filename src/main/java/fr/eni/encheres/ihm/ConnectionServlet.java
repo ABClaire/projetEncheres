@@ -32,13 +32,19 @@ public class ConnectionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String nextScreen = "WEB-INF/ConnexionPage.jsp";
+		String message = null;
+		
+		if(request.getSession().getAttribute("nouvelutilisateur")!= null ) {
+			message = "Le compte a été crée avec succés. Veuillez-vous connecter.";
+			request.setAttribute("message", message);
 
+		}
+		
 		if (request.getParameter("Connexion") != null) {
 			String identifiant = request.getParameter("identifiant");
 			String motDePasse = request.getParameter("motDePasse");
 			Utilisateur saisieUtilisateur = new Utilisateur(identifiant, identifiant, motDePasse);
 			Utilisateur utilisateurRecupere;
-			String message = null;
 
 			try {
 				utilisateurRecupere = UtilisateurManagerImpl.getInstance()

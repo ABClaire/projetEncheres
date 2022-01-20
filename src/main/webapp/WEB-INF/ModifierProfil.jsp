@@ -60,8 +60,11 @@
                         <a href="/ProjetEncheres/NouvelleVente" class="nav-item nav-link">Vendre un article</a>
                         <a href="/ProjetEncheres/AfficherPofilServlet" class="nav-item nav-link">Mon profil</a>
                     </div>
-                    <input type="submit" name="deconnexion" value="Deconnexion" class="btn btn-primary py-2 px-4">
-                </div>
+					<form action="AccueilConnecte" method="POST">
+						<input type="submit" name="deconnexion" value="Deconnexion"
+							class="btn btn-primary py-2 px-4">
+					</form>
+				</div>
             </nav>
         </div>
         <!-- Navbar & Hero End -->
