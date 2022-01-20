@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.ArticleVenduManagerImpl;
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.CategorieManagerImpl;
-import fr.eni.encheres.bll.UtilisateurManagerImplAngelo;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
 
@@ -52,8 +52,8 @@ public class AccueilServlet extends HttpServlet {
 		if (motClef == null || motClef.isBlank()) {
 			
 			try {
-				List<ArticleVendu> LstFinal = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option);
-				request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().filtreArticleEncoursParDate(LstFinal));
+				List<ArticleVendu> LstFinal = ArticleVenduManagerImpl.getInstance().FiltreSuivantCategorie(option);
+				request.setAttribute("Liste", ArticleVenduManagerImpl.getInstance().filtreArticleEncoursParDate(LstFinal));
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
@@ -61,13 +61,13 @@ public class AccueilServlet extends HttpServlet {
 		}else {
 			List<ArticleVendu> LstFinal = new ArrayList<ArticleVendu>();
 			try {
-				lstARetouner = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option);
-				 LstFinal = UtilisateurManagerImplAngelo.getInstance().filtreArticleEncoursParDate(lstARetouner);
+				lstARetouner = ArticleVenduManagerImpl.getInstance().FiltreSuivantCategorie(option);
+				 LstFinal = ArticleVenduManagerImpl.getInstance().filtreArticleEncoursParDate(lstARetouner);
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
 			
-			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RechercheDansLeNomDelArticle(LstFinal, motClef));
+			request.setAttribute("Liste", ArticleVenduManagerImpl.getInstance().RechercheDansLeNomDelArticle(LstFinal, motClef));
 		}
 		
 		

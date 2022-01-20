@@ -18,6 +18,8 @@ public interface ArticleVenduManager {
 
 	void miseAJourPrixVente(Integer noArticleEnchere, Integer proposition) throws BLLException;
 	
+	List<ArticleVendu> RecuperationArticleEtUtilisateur() throws BLLException;
+	
 	List<ArticleVendu> lstFiltreMesVentes(String pseudo, List<Integer> lstCheck, List<ArticleVendu> lstMesVentes);
 		
 }

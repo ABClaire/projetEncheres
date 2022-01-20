@@ -3,25 +3,12 @@
  */
 package fr.eni.encheres.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import fr.eni.encheres.bll.ArticleVenduManagerImpl;
-import fr.eni.encheres.bll.BLLException;
-import fr.eni.encheres.bll.UtilisateurManager;
-import fr.eni.encheres.bll.UtilisateurManagerImpl;
-import fr.eni.encheres.bll.UtilisateurManagerImplAngelo;
-import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.dao.DALException;
-import fr.eni.encheres.dao.DAOFactory;
-
 /**
  * Classe en charge de tester la couche BLL
  * 
  */
 public class TestBLL {
 	public static void main(String[] args) {
-		UtilisateurManager mger = UtilisateurManagerImpl.getInstance();
 		
 	/*
 	 * =========================================================
@@ -155,22 +142,22 @@ public class TestBLL {
 //		}
 		
 		// Liste filtre mes ventes
-		List<Integer> lstCheck = new ArrayList<Integer>();
-		lstCheck.add(1);
-		
-		List<ArticleVendu> lstMesVentes = new ArrayList<ArticleVendu>();
-		try {
-			lstMesVentes = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie("Toutes");
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}
-				
-		
-		List<ArticleVendu> lstMesVentesCheck = ArticleVenduManagerImpl.getInstance().lstFiltreMesVentes("mamie", lstCheck, lstMesVentes);
-		
-		lstMesVentesCheck.forEach(System.out::println);
-	
-		
+//		List<Integer> lstCheck = new ArrayList<Integer>();
+//		lstCheck.add(1);
+//		
+//		List<ArticleVendu> lstMesVentes = new ArrayList<ArticleVendu>();
+//		try {
+//			lstMesVentes = ArticleVenduManagerImpl.getInstance().FiltreSuivantCategorie("Toutes");
+//		} catch (BLLException e) {
+//			e.printStackTrace();
+//		}
+//				
+//		
+//		List<ArticleVendu> lstMesVentesCheck = ArticleVenduManagerImpl.getInstance().lstFiltreMesVentes("mamie", lstCheck, lstMesVentes);
+//		
+//		lstMesVentesCheck.forEach(System.out::println);
+//	
+//		
 	}
 
 }
