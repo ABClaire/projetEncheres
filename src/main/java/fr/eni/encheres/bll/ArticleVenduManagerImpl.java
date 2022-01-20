@@ -191,7 +191,7 @@ public class ArticleVenduManagerImpl implements ArticleVenduManager {
 				break;
 			}
 		}
-		
+		// Supression des doublons
 		List<ArticleVendu> lstReturn = lstFiltreMesVentes.stream().distinct().collect(Collectors.toList());
 				
 		return lstReturn;
