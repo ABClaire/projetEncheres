@@ -3,6 +3,7 @@
  */
 package fr.eni.encheres.test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bll.ArticleVenduManagerImpl;
@@ -113,12 +114,61 @@ public class TestBLL {
 //		}
 		
 		
+//		try {
+//			List<ArticleVendu> lstArticlesVendus = DAOFactory.getArticleVenduDAO().getAllArticleVendu();
+//			lstArticlesVendus.forEach(System.out::println);
+//		} catch (DALException e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		// Liste de mes ventes en cours
+//		List<ArticleVendu> lstMesVentesEnCours = new ArrayList<ArticleVendu>();
+//		List<ArticleVendu> lstAllVentes;
+//		try {
+//			lstAllVentes = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie("Toutes");
+//			lstMesVentesEnCours = ArticleVenduManagerImpl.getInstance().lstMesVentesEnCours("mamie", lstAllVentes);
+//			lstMesVentesEnCours.forEach(System.out::println);
+//		} catch (BLLException e) {
+//			e.printStackTrace();
+//		}
+		
+		// liste de mes ventes non débutées
+//		List<ArticleVendu> lstMesVentesNonDebutees = new ArrayList<ArticleVendu>();
+//	
+//		try {
+//			lstMesVentesNonDebutees = ArticleVenduManagerImpl.getInstance().lstMesVentesNonDebutes("Roxy");
+//			lstMesVentesNonDebutees.forEach(System.out::println);
+//		} catch (BLLException e) {
+//			e.printStackTrace();
+//		}
+		
+		// Liste de mes ventes terminées
+//		List<ArticleVendu> lstMesVentesTerminees = new ArrayList<ArticleVendu>();
+//		List<ArticleVendu> lstAllVentes;
+//		try {
+//			lstAllVentes = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie("Toutes");
+//			lstMesVentesTerminees = ArticleVenduManagerImpl.getInstance().lstMesVentesTerminees("Roxy",lstAllVentes);
+//			lstMesVentesTerminees.forEach(System.out::println);
+//		} catch (BLLException e1) {
+//			e1.printStackTrace();
+//		}
+		
+		// Liste filtre mes ventes
+		List<Integer> lstCheck = new ArrayList<Integer>();
+		lstCheck.add(1);
+		
+		List<ArticleVendu> lstMesVentes = new ArrayList<ArticleVendu>();
 		try {
-			List<ArticleVendu> lstArticlesVendus = DAOFactory.getArticleVenduDAO().getAllArticleVendu();
-			lstArticlesVendus.forEach(System.out::println);
-		} catch (DALException e) {
+			lstMesVentes = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie("Toutes");
+		} catch (BLLException e) {
 			e.printStackTrace();
 		}
+				
+		
+		List<ArticleVendu> lstMesVentesCheck = ArticleVenduManagerImpl.getInstance().lstFiltreMesVentes("mamie", lstCheck, lstMesVentes);
+		
+		lstMesVentesCheck.forEach(System.out::println);
 	
 		
 	}

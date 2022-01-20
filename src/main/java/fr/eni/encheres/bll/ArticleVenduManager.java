@@ -3,8 +3,9 @@
  */
 package fr.eni.encheres.bll;
 
+import java.util.List;
+
 import fr.eni.encheres.bo.ArticleVendu;
-import fr.eni.encheres.bo.Utilisateur;
 
 /**
  * Interface de l'implémentation article vendu
@@ -17,4 +18,6 @@ public interface ArticleVenduManager {
 
 	void miseAJourPrixVente(Integer noArticleEnchere, Integer proposition) throws BLLException;
 	
+	List<ArticleVendu> lstFiltreMesVentes(String pseudo, List<Integer> lstCheck, List<ArticleVendu> lstMesVentes);
+		
 }
