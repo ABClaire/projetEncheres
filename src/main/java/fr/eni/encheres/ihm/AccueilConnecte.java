@@ -17,7 +17,6 @@ import fr.eni.encheres.bll.UtilisateurManagerImplAngelo;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Utilisateur;
-import fr.eni.encheres.dao.DAOFactory;
 
 /**
  * Servlet implementation class AccueilConnecte
@@ -65,16 +64,13 @@ public class AccueilConnecte extends HttpServlet {
 			Utilisateur utiliSession = (Utilisateur) request.getSession().getAttribute("utilisateur");
 			try {
 				utiliPourRecherche =UtilisateurManagerImpl.getInstance().getByIdUtilisateur(utiliSession.getNoUtilisateur());
-				System.out.println("numero utili" + utiliPourRecherche);
 			} catch (BLLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
+			 
 
 			// on récupère les choix utilisateurs dans les radio et checkbox
-			if (request.getParameter("achatVente").equals("AchatRadio")) {
-				System.out.println("radio a achat cliqué");
+			if ("AchatRadio".equals(request.getParameter("achatVente"))) {
 				radioSelect = "achat";
 				if (request.getParameter("Enchères ouvertes")!=null) {
 					checkBoxSelect.add(1);
@@ -85,11 +81,7 @@ public class AccueilConnecte extends HttpServlet {
 				if (request.getParameter("Mes enchères remportées")!=null) {
 					checkBoxSelect.add(3);
 				}
-			}
-			
-
-			if (request.getParameter("achatVente").equals("VenteRadio")) {
-				System.out.println("radio a Vente cliqué");
+			} else if ("VenteRadio".equals(request.getParameter("achatVente"))) {
 				radioSelect = "mesventes";
 				if (request.getParameter("Ventes en cours")!=null) {
 					checkBoxSelect.add(1);
@@ -100,7 +92,7 @@ public class AccueilConnecte extends HttpServlet {
 				if (request.getParameter("Ventes terminées")!=null) {
 					checkBoxSelect.add(3);
 				}
-			}
+			} 
 			
 			
 		}
@@ -112,18 +104,15 @@ public class AccueilConnecte extends HttpServlet {
 				listTemp = UtilisateurManagerImplAngelo.getInstance().FiltreSuivantCategorie(option);
 				
 				if (radioSelect.equals("achat")) {
-					System.out.println(listTemp);
-					System.out.println("------------------------------------------------------------------------");
 					List<ArticleVendu> laListeDeTrop= UtilisateurManagerImplAngelo.getInstance().filtreCheckboxAchat(checkBoxSelect, listTemp, utiliPourRecherche);
-					System.out.println(laListeDeTrop);
 					request.setAttribute("Liste",laListeDeTrop );
 					
-				}if (radioSelect.equals("mesventes")) {
+				} else if (radioSelect.equals("mesventes")) {
 					//TODO : rajouter cas mes ventes
 					//cas ou on le radio mes ventes est select
 				
 					
-				}else {
+				} else {
 					//cas ou rien n'est select
 					request.setAttribute("Liste", listTemp);
 				}
@@ -143,12 +132,12 @@ public class AccueilConnecte extends HttpServlet {
 					
 					listPretePourLaRecherche = UtilisateurManagerImplAngelo.getInstance().filtreCheckboxAchat(checkBoxSelect, listTemp, (Utilisateur) request.getSession().getAttribute("utilisateur"));
 					
-				}if (radioSelect.equals("mesventes")) {
+				} else if (radioSelect.equals("mesventes")) {
 					//TODO : rajouter cas mes ventes
 					//cas ou on le radio mes ventes est select
 				
 					
-				}else {
+				} else {
 					
 					listPretePourLaRecherche = listTemp;
 				}
@@ -158,7 +147,9 @@ public class AccueilConnecte extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			request.setAttribute("Liste", UtilisateurManagerImplAngelo.getInstance().RechercheDansLeNomDelArticle(listPretePourLaRecherche, motClef));
+			List<ArticleVendu> lstArticlesAttribute = UtilisateurManagerImplAngelo.getInstance().RechercheDansLeNomDelArticle(listPretePourLaRecherche, motClef);
+			
+			request.setAttribute("Liste", lstArticlesAttribute);
 		}
 		
 		//--Ajout m�thode recherche ----------------------------------------------------------------------------------------------------

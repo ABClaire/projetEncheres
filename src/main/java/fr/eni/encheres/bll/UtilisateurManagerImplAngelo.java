@@ -162,11 +162,13 @@ public class UtilisateurManagerImplAngelo {
 	public List<ArticleVendu> filtreCheckboxAchat(List<Integer> lstCheck, List<ArticleVendu> lstIssuDeRecherche,
 			Utilisateur utilisateurSession) {
 
+		System.out.println("je suis dans filtreCheckBoxAchat");
 		List<ArticleVendu> lstReturn = new ArrayList<ArticleVendu>();
 
 		for (Integer integer : lstCheck) {
 			switch (integer) {
 			case 1: // Dans Achat -> Enchère Ouverte
+				System.out.println("je suis dans achat case 1");
 				List<ArticleVendu> LstTemporaire = new ArrayList<ArticleVendu>();
 				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
 					if (articleVendu.getUtilisateur()
@@ -181,6 +183,7 @@ public class UtilisateurManagerImplAngelo {
 				break;
 
 			case 2: // Achat -> mes enchères
+				System.out.println("je suis dans achat case 2");
 
 				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
 					
@@ -188,15 +191,11 @@ public class UtilisateurManagerImplAngelo {
 						articleVendu.setLstEncheres(DAOFactory.getEnchereDAO().selectAllEncheresByArticle(articleVendu));
 						
 					} catch (DALException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
 					for (Enchere enchere : articleVendu.getLstEncheres()) {
 						
-						
-						System.out.println("enchereriste" + " " + enchere.getNoEncheriste());
-						System.out.println("utilisateur session BLL" + utilisateurSession.getNoUtilisateur());
 						if (enchere.getNoEncheriste() == utilisateurSession.getNoUtilisateur()) {
 							// je récupère la liste des articles sur lesquels j'ai enchéris et je check si
 							// l'id de l'utilisateur en session est présent si oui j'ajoute à la liste à
@@ -208,6 +207,7 @@ public class UtilisateurManagerImplAngelo {
 
 				break;
 			case 3:// mes enchères remportées
+				System.out.println("je suis dans achat case 3");
 				for (ArticleVendu articleVendu : lstIssuDeRecherche) {
 						// TODO : ESSAYER de récuperer la BestEnchere en itérant dans la liste puis de set l'articles avec 
 					

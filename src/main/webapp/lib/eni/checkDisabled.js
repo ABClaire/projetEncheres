@@ -4,6 +4,9 @@
  * selon selection du Radio Bouton (Vente / Achat)
 
  */
+	var achats = document.getElementById("achats");
+	var ventes = document.getElementById("ventes");
+
     var enchOuvertes = document.getElementById("enchOuvertes");
     var mesEnch = document.getElementById("mesEnch");
     var enchRemportees = document.getElementById("enchRemportees");
@@ -12,6 +15,16 @@
     var ventesNonDebut = document.getElementById("ventesNonDebut");
     var ventesTerminees = document.getElementById("ventesTerminees");
 
+function onClicCheckAchat() {
+	achats.selected = true;
+	vente.selected = false;
+	
+}
+
+function onClicCheckVente() {
+	achats.checked = false;
+	vente.checked = true;
+}
 
 function onClickVentes() {
   	enchOuvertes.checked = false;

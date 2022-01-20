@@ -138,19 +138,19 @@
 													<!-- Choix types achats-->
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															value="1" name="Enchères ouvertes" id="enchOuvertes"> <label
+															value="1" name="Enchères ouvertes" id="enchOuvertes" onclick="onClicCheckAchat()"> <label
 															class="form-check-label" for="flexCheckDefault">
 															Encheres ouvertes </label>
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															value="2" name="Mes enchères" id="mesEnch"> <label
+															value="2" name="Mes enchères" id="mesEnch" > <label
 															class="form-check-label" for="flexCheckChecked">
 															Mes encheres </label>
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															value="3" name="Mes enchères remportées" id="enchRemportees">
+															value="3" name="Mes enchères remportées" id="enchRemportees" >
 														<label class="form-check-label" for="flexCheckChecked">
 															Mes encheres remportees </label>
 													</div>
@@ -168,19 +168,19 @@
 													<!-- Choix types achats-->
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															name="Ventes en cours" value="1" id="ventesEnCours"> <label
+															name="Ventes en cours" value="1" id="ventesEnCours" onclick="onClicCheckVente"> <label
 															class="form-check-label" for="flexCheckDefault">
 															Mes ventes en cours </label>
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															name="Ventes non débutées" value="1"  id="ventesNonDebut">
+															name="Ventes non débutées" value="1"  id="ventesNonDebut" onclick="onClicCheckVente">
 														<label class="form-check-label" for="flexCheckChecked">
 															Ventes non debutees </label>
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															name="Ventes terminées" value="1"  id="ventesTerminees"> <label
+															name="Ventes terminées" value="1"  id="ventesTerminees" onclick="onClicCheckVente"> <label
 															class="form-check-label" for="flexCheckChecked">
 															Ventes terminees </label>
 													</div>

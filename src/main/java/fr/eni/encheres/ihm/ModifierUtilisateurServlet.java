@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UtilisateurManagerImpl;
 import fr.eni.encheres.bo.Utilisateur;
-import fr.eni.encheres.dao.DALException;
 
 /**
  * Servlet implementation class ModifierUtilisateurServlet
