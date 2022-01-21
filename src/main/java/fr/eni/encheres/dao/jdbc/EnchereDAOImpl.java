@@ -27,7 +27,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 	@Override
 	public void ajouterNouvelleEnchere(Integer noArticle, Integer noEncheriste, Integer montantNouvelleEnchere) throws DALException {
 		
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(INSERT);
 
 			pStmt.setDate(1, Date.valueOf(LocalDate.now()));
@@ -44,7 +44,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 	@Override
 	public List<Enchere> selectAllEncheresByUser(Utilisateur utilisateur) throws DALException {
 		List<Enchere> lstEnchere = new ArrayList<Enchere>();
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_USER);
 			pStmt.setInt(1, utilisateur.getNoUtilisateur());
 		
@@ -64,7 +64,7 @@ public class EnchereDAOImpl implements EnchereDAO {
 	
 	public List<Enchere> selectAllEncheresByArticle(ArticleVendu article) throws DALException {
 		List<Enchere> lstEnchere = new ArrayList<Enchere>();
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_ALL_BY_ARTICLES);
 			pStmt.setInt(1, article.getNoArticle());
 		

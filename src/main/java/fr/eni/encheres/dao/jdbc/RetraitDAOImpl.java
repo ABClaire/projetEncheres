@@ -19,7 +19,7 @@ public class RetraitDAOImpl implements RetraitDAO {
 	private final static String INSERT = "INSERT INTO RETRAITS(no_article, rue, code_postal, ville) VALUES(?,?,?,?)";
 	@Override
 	public void ajouterRetrait(Retrait retrait) throws DALException {
-		try (Connection cnx = JdbcTools.getConnection()) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt;
 			pStmt = cnx.prepareStatement(INSERT);
 			pStmt.setInt(1, retrait.getArticleVendu().getNoArticle());

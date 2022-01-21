@@ -57,7 +57,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	 */
 	@Override
 	public ArticleVendu ajouterArticleAVendre (ArticleVendu articleVendu) throws DALException {
-		try (Connection cnx = JdbcTools.getConnection()) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt;
 			pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, articleVendu.getNomArticle());
@@ -86,7 +86,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	
 	@Override
 	public void updatePrixVente(Integer noArticleEnchere, Integer proposition) throws DALException {
-		try (Connection cnx = JdbcTools.getConnection()){
+		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_PRIX_VENTE);
 			pStmt.setInt(1, proposition);
 			pStmt.setInt(2, noArticleEnchere);
@@ -100,7 +100,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	
 	@Override
 	public void updateEtatVente(ArticleVendu article) throws DALException {
-		try (Connection cnx = JdbcTools.getConnection()){
+		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_ETAT_VENTE);
 			pStmt.setString(1, article.getEtatVente());
 			pStmt.setInt(2, article.getNoArticle());
@@ -118,7 +118,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		Utilisateur utilisateurVendeur;
 		Categorie categorie;
 		Retrait retrait;
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while(rs.next()) {
@@ -153,7 +153,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		Retrait retrait;
 		
 		
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ARTICLE_BY_USER);
 			while(rs.next()) {
@@ -185,7 +185,7 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 	public ArticleVendu selectArticleByIdBestEnchere(Integer idArticle) throws DALException {		
 		ArticleVendu article = null;
 
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID_BEST_ENCHERE);
 			pStmt.setInt(1, idArticle);
 			ResultSet rs = pStmt.executeQuery();
@@ -209,7 +209,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		Categorie categorie;
 		Retrait retrait;
 		Enchere enchere;
-		List<Enchere> lstEncheres = new ArrayList<Enchere>();
 		ArticleVendu article;
 		
 		Integer noArticle = rs.getInt("no_article");
@@ -225,7 +224,8 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 		
 		categorie = new Categorie(rs.getString("categorie"));
 		retrait = new Retrait(rs.getString("rue"), rs.getString("code_postal"), rs.getString("ville"));
-		article = new ArticleVendu(noArticle, nom, description, dateFinEncheres, prixInitial, etatVente, utilisateurVendeur, categorie, retrait);
+		article = new ArticleVendu(noArticle, nom, description, dateFinEncheres, prixInitial, etatVente, 
+				utilisateurVendeur, categorie, retrait);
 		
 		enchere = new Enchere(rs.getInt("meilleure offre"), article, utilisateurEncheriste);
 				

@@ -42,7 +42,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	@Override
 	public List<Utilisateur> getAllUtilisateurs() throws DALException {
 		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while(rs.next()) {
@@ -64,7 +64,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	@Override
 	public Utilisateur selectUtilisateurById(Integer no_utilisateur) throws DALException {
 		Utilisateur utilisateur = null;
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_ID);
 			pStmt.setInt(1, no_utilisateur);
 			ResultSet rs = pStmt.executeQuery();
@@ -84,7 +84,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	 */
 	@Override
 	public void ajouterUtilisateur(Utilisateur utilisateur) throws DALException {
-		try (Connection cnx = JdbcTools.getConnection()) {
+		try (Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt;
 				pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 				mappStmt(utilisateur, pStmt);
@@ -110,7 +110,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	@Override
 	public Utilisateur getByPseudo(String pseudoUtilisateur) throws DALException {
 		Utilisateur utilisateur = new Utilisateur();
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(SELECT_BY_PSEUDO);
 			pStmt.setString(1, pseudoUtilisateur);
 			ResultSet rs= pStmt.executeQuery();
@@ -136,7 +136,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	 */
 	@Override
 	public void modifierUtilisateur(Utilisateur utilisateurModif) throws DALException {
-		try (Connection cnx = JdbcTools.getConnection()){
+		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE);
 			mappStmt(utilisateurModif, pStmt);
 			pStmt.setInt(10, utilisateurModif.getNoUtilisateur());
@@ -153,7 +153,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	 */
 	@Override
 	public void modifierCreditUtilisateur(Integer noUtilisateur, Integer montantCredit) throws DALException {
-		try (Connection cnx = JdbcTools.getConnection()){
+		try (Connection cnx = ConnectionProvider.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(UPDATE_CREDIT);
 			pStmt.setInt(1, noUtilisateur);
 			pStmt.setInt(2, montantCredit);
@@ -173,7 +173,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	
 	@Override
 	public void supprimerUtilisateur(Integer idUtilisateur) throws DALException {
-		try(Connection cnx= JdbcTools.getConnection()){
+		try(Connection cnx= ConnectionProvider.getConnection()){
 			PreparedStatement pStmt = cnx.prepareStatement(DELETE);
 			pStmt.setInt(1, idUtilisateur);
 			pStmt.executeUpdate();			

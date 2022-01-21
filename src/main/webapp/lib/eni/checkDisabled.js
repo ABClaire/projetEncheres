@@ -16,8 +16,8 @@
     var ventesTerminees = document.getElementById("ventesTerminees");
 
 function onClicCheckAchat() {
-	achats.selected = true;
-	vente.selected = false;
+	document.forms[0].achats.checked = true;
+	document.forms[1].ventes.checked = false;
 	
 }
 

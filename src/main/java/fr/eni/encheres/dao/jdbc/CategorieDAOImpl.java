@@ -26,7 +26,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 	@Override
 	public List<Categorie> listeDesCategories() throws DALException {
 		List<Categorie> lstCategories = new ArrayList<Categorie>();
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			Statement stmt = cnx.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL);
 			while(rs.next()) {
@@ -45,7 +45,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 
 	@Override
 	public void ajouterCategorie(Categorie categorie) throws DALException {
-		try(Connection cnx = JdbcTools.getConnection()) {
+		try(Connection cnx = ConnectionProvider.getConnection()) {
 			PreparedStatement pStmt = cnx.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			pStmt.setString(1, categorie.getLibelle());
 			pStmt.executeUpdate();

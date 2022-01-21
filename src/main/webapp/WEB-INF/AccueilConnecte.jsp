@@ -168,8 +168,8 @@
 													<!-- Choix types achats-->
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															name="Ventes en cours" value="1" id="ventesEnCours" onclick="onClicCheckVente"> <label
-															class="form-check-label" for="flexCheckDefault">
+															name="Ventes en cours" value="1" id="ventesEnCours" onclick="onClicCheckVente"> 
+															<label class="form-check-label" for="flexCheckDefault">
 															Mes ventes en cours </label>
 													</div>
 													<div class="form-check">
@@ -180,8 +180,8 @@
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															name="Ventes terminées" value="1"  id="ventesTerminees" onclick="onClicCheckVente"> <label
-															class="form-check-label" for="flexCheckChecked">
+															name="Ventes terminées" value="1"  id="ventesTerminees" onclick="onClicCheckVente"> 
+															<label class="form-check-label" for="flexCheckChecked">
 															Ventes terminees </label>
 													</div>
 													<!--Fin choix type achats-->
@@ -233,7 +233,8 @@
 							<!-- Envoi un paramètre par l'URL  -->
 							<p>
 								Vendeur : <a
-									href="<c:url value="/AfficherProfilVendeurServlet?pseudoVendeur=${sc.utilisateur.pseudo}" />">${sc.utilisateur.pseudo}
+									href="<c:url value="/AfficherProfilVendeurServlet?pseudoVendeur=${sc.utilisateur.pseudo}" />">
+									${sc.utilisateur.pseudo}
 								</a>
 							</p>
 

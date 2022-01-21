@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="top-margin">
                                         <label>Mot de passe <span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text" name="motDePasse" value="${motDePasse}" />
+                                        <input class="form-control" type="password" name="motDePasse" value="${motDePasse}" />
                                     </div>
                                 </div>
                                 <div class="col-12">

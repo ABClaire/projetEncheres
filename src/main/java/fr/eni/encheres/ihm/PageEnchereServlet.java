@@ -56,7 +56,8 @@ public class PageEnchereServlet extends HttpServlet {
 			request.setAttribute("nomVendeur", vendeur.getPseudo());
 			
 			// Réccupération des informations de l'ancien enchériste
-			ancienEncheriste = UtilisateurManagerImpl.getInstance().getByIdUtilisateur(detailArticle.getEnchereMaximum().getUtilisateur().getNoUtilisateur());	
+			ancienEncheriste = UtilisateurManagerImpl.getInstance().getByIdUtilisateur(detailArticle.getEnchereMaximum()
+					.getUtilisateur().getNoUtilisateur());	
 			if(ancienEncheriste == null) {
 				request.setAttribute("aucuneEnchere", "aucune enchère actuellement");
 			} else {
@@ -127,7 +128,6 @@ public class PageEnchereServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

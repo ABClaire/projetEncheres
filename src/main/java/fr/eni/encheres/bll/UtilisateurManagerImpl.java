@@ -311,7 +311,8 @@ public class UtilisateurManagerImpl implements UtilisateurManager {
 		for (int i = 0; i < pseudo.length(); i++) {
 			pseudoIsValid =	Character.isLetterOrDigit(pseudo.charAt(i));
 			if(!pseudoIsValid) {
-				be.ajouterErreur(new ParameterException("Le pseudo doit contenir des caractères alphanumériques uniquement. Les caractères spéciaux sont interdits"));
+				be.ajouterErreur(new ParameterException("Le pseudo doit contenir des "
+						+ "caractères alphanumériques uniquement. Les caractères spéciaux sont interdits"));
 				break;
 			}
 		}		
