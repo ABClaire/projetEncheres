@@ -219,10 +219,10 @@
 				</div>
 				<div class="tab-class wow fadeInUp" data-wow-delay="0.1s">
 
-					<div class="row">
+					<div class="row " >
+						
 						<c:forEach items="${Liste}" var="sc">
 							<p>-------------------------------------------------------</p>
-
 							<p>
 								<a
 									href="<c:url value="/DetailEnchere?noArticle=${sc.noArticle}"/>">${sc.nomArticle}</a>

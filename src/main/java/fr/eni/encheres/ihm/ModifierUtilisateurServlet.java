@@ -77,7 +77,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 				}
 
 			} else {
-				request.setAttribute("message", "Attention, vous avez saisi deux mots de passes différents. Veuillez recommancer s'il vous plait");
+				request.setAttribute("message", "Attention, vous avez saisi un mauvais mot de passe. Saisissez votre mot de passe pour enregistrer vos modifications.");
 			}
 		}
 				

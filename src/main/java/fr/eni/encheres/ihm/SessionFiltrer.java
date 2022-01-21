@@ -47,9 +47,9 @@ public class SessionFiltrer implements Filter {
 
 		String path = ((HttpServletRequest) request).getRequestURI();
 
-		if (!path.endsWith("AccueilServlet") & !path.endsWith("MotDePasseOublie")) {
+		if (!path.endsWith("AccueilServlet") & !path.endsWith("MotDePasseOublie") & !path.endsWith("Inscription") & !path.endsWith("Connexion")) {
 			if (login == null) {
-				request.getRequestDispatcher("Connexion").forward(request, response);
+				request.getRequestDispatcher("AccueilServlet").forward(request, response);
 			}
 		}
 		
