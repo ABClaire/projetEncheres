@@ -49,7 +49,6 @@ public class AccueilConnecte extends HttpServlet {
 		//----------------------------------------- Copie fonction recherche--------------------------------------------------
 		String option = "Toutes";
 		String motClef = null;
-		List<ArticleVendu> lstARetouner = new ArrayList<ArticleVendu>();
 		String radioSelect = "rien" ;
 		List<Integer> checkBoxSelect = new ArrayList<Integer>();
 		Utilisateur utiliPourRecherche = new Utilisateur();
@@ -58,9 +57,8 @@ public class AccueilConnecte extends HttpServlet {
 		if (request.getParameter("recherche")!= null) {
 			option = request.getParameter("listeDeroulante");
 			motClef = request.getParameter("nomArticle");
-			Utilisateur utiliSession = (Utilisateur) request.getSession().getAttribute("utilisateur");
 			try {
-				utiliPourRecherche =UtilisateurManagerImpl.getInstance().getByIdUtilisateur(utiliSession.getNoUtilisateur());
+				utiliPourRecherche =UtilisateurManagerImpl.getInstance().getByIdUtilisateur(utilisateur.getNoUtilisateur());
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
@@ -69,24 +67,24 @@ public class AccueilConnecte extends HttpServlet {
 			// on récupère les choix utilisateurs dans les radio et checkbox
 			if ("AchatRadio".equals(request.getParameter("achatVente"))) {
 				radioSelect = "achat";
-				if (request.getParameter("Enchères ouvertes")!=null) {
+				if (request.getParameter("encheresOuvertes")!=null) {
 					checkBoxSelect.add(1);
 				}
-				if (request.getParameter("Mes enchères")!=null) {
+				if (request.getParameter("mesEncheres")!=null) {
 					checkBoxSelect.add(2);
 				}
-				if (request.getParameter("Mes enchères remportées")!=null) {
+				if (request.getParameter("encheresRemportees")!=null) {
 					checkBoxSelect.add(3);
 				}
 			} else if ("VenteRadio".equals(request.getParameter("achatVente"))) {
 				radioSelect = "mesventes";
-				if (request.getParameter("Ventes en cours")!=null) {
+				if (request.getParameter("ventesEnCours")!=null) {
 					checkBoxSelect.add(1);
 				}
-				if (request.getParameter("Ventes non débutées")!=null) {
+				if (request.getParameter("ventesNonDebutees")!=null) {
 					checkBoxSelect.add(2);
 				}
-				if (request.getParameter("Ventes terminées")!=null) {
+				if (request.getParameter("ventesTerminees")!=null) {
 					checkBoxSelect.add(3);
 				}
 			} 
@@ -94,12 +92,11 @@ public class AccueilConnecte extends HttpServlet {
 			
 		}
 		
-		// si il n'y a pas de mot clee on retourne la Liste global filtrer par le choix de cat�gorie 
+		// si il n'y a pas de mot clee on retourne la Liste globale filtrée par le choix de catégorie 
 		if (motClef == null || motClef.isBlank()) { 		
 			List<ArticleVendu> listTemp = new ArrayList<ArticleVendu>();
 			try {
 				listTemp = ArticleVenduManagerImpl.getInstance().FiltreSuivantCategorie(option);
-				
 				if (radioSelect.equals("achat")) {
 					List<ArticleVendu> lstRechercheAchat= ArticleVenduManagerImpl.getInstance().filtreCheckboxAchat(checkBoxSelect, listTemp, utiliPourRecherche);
 					request.setAttribute("Liste",lstRechercheAchat );
@@ -129,7 +126,6 @@ public class AccueilConnecte extends HttpServlet {
 					
 				} else if (radioSelect.equals("mesventes")) {
 					listPretePourLaRecherche =	ArticleVenduManagerImpl.getInstance().lstFiltreMesVentes(utiliPourRecherche.getPseudo(), checkBoxSelect, listTemp);
-									
 					
 				} else {
 					
@@ -146,24 +142,13 @@ public class AccueilConnecte extends HttpServlet {
 			request.setAttribute("Liste", lstArticlesAttribute);
 		}
 		
-		//--Ajout m�thode recherche ----------------------------------------------------------------------------------------------------
-		List<ArticleVendu> LstArticleRadio = new ArrayList<ArticleVendu>();
-		Utilisateur login = (Utilisateur) ((HttpServletRequest) request).getSession().getAttribute("utilisateur");
-			// si bouton radio Achat selectionne - retourner la liste des produits achetable (on ecarte donc les produits du proprietaire)
-		
-				ArticleVenduManagerImpl.getInstance().FiltreListeParArticleDeLAcheteur(lstARetouner,login.getPseudo());
-				
-			// si bouton radio Mes ventes selectionne - retourner la liste des produits de l'utilisateur 
-		
-				ArticleVenduManagerImpl.getInstance().FiltreListeParArticleDeLAcheteur(LstArticleRadio, login.getPseudo());
-		
 		
 		//-----------------------------------------------------fin copie fonction recherche---------------------------------------------------
 		
 	
 		if(request.getParameter("deconnexion") != null) {
 			request.getSession().setAttribute("utilisateur", null);
-			nextScreen = "AccueilServlet";
+			nextScreen = "Accueil";
 		}
 		
 					

@@ -17,7 +17,7 @@ import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
 
 
-@WebServlet("/AccueilServlet")
+@WebServlet("/Accueil")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

@@ -36,7 +36,6 @@ public class CategorieDAOImpl implements CategorieDAO {
 				lstCategories.add(categorie);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		
@@ -55,7 +54,6 @@ public class CategorieDAOImpl implements CategorieDAO {
 				categorie.setNoCategorie(id);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 	}

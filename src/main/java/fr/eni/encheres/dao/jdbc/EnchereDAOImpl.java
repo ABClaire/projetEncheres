@@ -36,7 +36,6 @@ public class EnchereDAOImpl implements EnchereDAO {
 			pStmt.setInt(4, noEncheriste);
 			pStmt.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 	
@@ -55,7 +54,6 @@ public class EnchereDAOImpl implements EnchereDAO {
 				lstEnchere.add(enchere);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		return lstEnchere;
@@ -75,7 +73,6 @@ public class EnchereDAOImpl implements EnchereDAO {
 				lstEnchere.add(enchere);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		return lstEnchere;

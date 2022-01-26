@@ -77,7 +77,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			}
 					
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		return articleVendu;
@@ -93,7 +92,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}		
 	}
@@ -107,7 +105,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}		
 	}
@@ -136,7 +133,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				articlesVendus.add(articleVendu);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		
@@ -173,7 +169,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		
@@ -193,7 +188,6 @@ public class ArticleVenduDAOImpl implements ArticleVenduDAO {
 				article = map(rs);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		

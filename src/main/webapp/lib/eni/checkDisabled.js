@@ -15,10 +15,21 @@
     var ventesNonDebut = document.getElementById("ventesNonDebut");
     var ventesTerminees = document.getElementById("ventesTerminees");
 
-function onClicCheckAchat() {
-	document.forms[0].achats.checked = true;
-	document.forms[1].ventes.checked = false;
+	achats.checked = true;
+	ventes.checked = false;
+    ventesEnCours.disabled = true;
+    ventesNonDebut.disabled = true;
+    ventesTerminees.disabled = true;
 	
+function onClicCheckAchat() {
+	achats.checked = true;
+	ventes.checked = false;
+	
+}
+
+function onClicCheckVente(){
+	achats.checked = false;
+	ventes.checked = true;
 }
 
 function onClicCheckVente() {
@@ -58,6 +69,5 @@ function onClickAchats() {
 	enchOuvertes.disabled = false;
     mesEnch.disabled = false;
     enchRemportees.disabled = false;
-
 
 }

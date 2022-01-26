@@ -144,7 +144,7 @@
                         <p>Crédit : ${model.utilisateur.credit}</p>
 
                         <!-- nouveau mot de passe-->
-                        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Modifier son mot de passe</h5>
+                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">Modifier son mot de passe</h5>
                         <div class="row top-margin">
                             <div class="col-sm-6">
                                 <label for="nouveauMotDePasse">Nouveau mot de passe <span class="text-danger">*</span></label>
@@ -174,51 +174,58 @@
 
     <!-- Fin modificaiton profil -->
     
-            <!-- Footer Start -->
-            <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-                <div class="container">
-                    <div class="copyright">
-                        <div class="row">
-                            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                                 <a class="border-bottom" href="#">GrandMa'S Store</a>, Tous droits réservés.
+<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer wow fadeIn"
+		data-wow-delay="0.1s">
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						<a class="border-bottom" href="#">GrandMa'S Store</a>, Tous droits
+						réservés.
+						
+						 Site créé par <a href="https://www.linkedin.com/in/roxane-houlgatte-57334097/" target="_blank"> Roxane - </a> 
+								  <a href="https://www.linkedin.com/in/claire-goarnisson/" target="_blank"> Claire - </a> 
+								  <a href="https://www.linkedin.com/in/ang%C3%A9lo-fernandes-85b32b226/" target="_blank"> Angélo</a>
+						
 
-                                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                                Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                                Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                            </div>
-                            <div class="col-md-6 text-center text-md-end">
-                                <div class="footer-menu">
-                                    <a href="/ProjetEncheres/AccueilConnecte">Enchères</a>
-                                    <a href="/ProjetEncheres/NouvelleVente">Vendre un article</a>
-                                    <a href="/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Footer End -->
-            
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
-  <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-        <!--  SCRIPT POUR DISABLED LES BOUTONS -->
-        <script src="lib/eni/checkDisabled.js"></script>
+						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						<br>Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
+							Codex</a> Distributed By <a class="border-bottom"
+							href="https://themewagon.com" target="_blank">ThemeWagon</a>
+					</div>
+					<div class="col-md-6 text-center text-md-end">
+						<div class="footer-menu">
+							<a href="/ProjetEncheres/AccueilConnecte">Enchères</a> <a
+								href="/ProjetEncheres/NouvelleVente">Vendre un article</a> <a
+								href="/ProjetEncheres/AfficherPofilServlet">Mon profil</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
 
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
+			<!-- Back to Top -->
+			<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
+				class="bi bi-arrow-up"></i></a>
+
+			<!-- JavaScript Libraries -->
+			<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+			<script
+				src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+			<script src="lib/wow/wow.min.js"></script>
+			<script src="lib/easing/easing.min.js"></script>
+			<script src="lib/waypoints/waypoints.min.js"></script>
+			<script src="lib/counterup/counterup.min.js"></script>
+			<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+			<script src="lib/tempusdominus/js/moment.min.js"></script>
+			<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+			<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+			<!-- Template Javascript -->
+			<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -132,25 +132,25 @@
 											<div class="col-md-6">
 												<div class="form-check">
 													<input class="form-check-input" type="radio"
-														name="achatVente" id="achats" onclick="onClickAchats()" value="AchatRadio">
+														name="achatVente" id="achats" onclick="onClickAchats()" value="AchatRadio" checked>
 													<label class="form-check-label" for="flexRadioDefault1">
 														Achats </label>
 													<!-- Choix types achats-->
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															value="1" name="Enchères ouvertes" id="enchOuvertes" onclick="onClicCheckAchat()"> <label
+															value="1" name="encheresOuvertes" id="enchOuvertes" onclick="onClicCheckAchat()"> <label
 															class="form-check-label" for="flexCheckDefault">
 															Encheres ouvertes </label>
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															value="2" name="Mes enchères" id="mesEnch" > <label
+															value="2" name="mesEncheres" id="mesEnch" onclick="onClicCheckAchat()"> <label
 															class="form-check-label" for="flexCheckChecked">
 															Mes encheres </label>
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															value="3" name="Mes enchères remportées" id="enchRemportees" >
+															value="3" name="encheresRemportees" id="enchRemportees" onclick="onClicCheckAchat()">
 														<label class="form-check-label" for="flexCheckChecked">
 															Mes encheres remportees </label>
 													</div>
@@ -168,19 +168,19 @@
 													<!-- Choix types achats-->
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															name="Ventes en cours" value="1" id="ventesEnCours" onclick="onClicCheckVente"> 
+															name="ventesEnCours" value="1" id="ventesEnCours" onclick="onClicCheckVente()"> 
 															<label class="form-check-label" for="flexCheckDefault">
 															Mes ventes en cours </label>
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															name="Ventes non débutées" value="1"  id="ventesNonDebut" onclick="onClicCheckVente">
+															name="ventesNonDebutees" value="1"  id="ventesNonDebut" onclick="onClicCheckVente()">
 														<label class="form-check-label" for="flexCheckChecked">
 															Ventes non debutees </label>
 													</div>
 													<div class="form-check">
 														<input class="form-check-input" type="checkbox"
-															name="Ventes terminées" value="1"  id="ventesTerminees" onclick="onClicCheckVente"> 
+															name="ventesTerminees" value="1"  id="ventesTerminees" onclick="onClicCheckVente()"> 
 															<label class="form-check-label" for="flexCheckChecked">
 															Ventes terminees </label>
 													</div>
@@ -219,10 +219,9 @@
 				</div>
 				<div class="tab-class wow fadeInUp" data-wow-delay="0.1s">
 
-					<div class="row " >
-						
+					<div class="row " id="listItem" >
 						<c:forEach items="${Liste}" var="sc">
-							<p>-------------------------------------------------------</p>
+							<div id="item">
 							<p>
 								<a
 									href="<c:url value="/DetailEnchere?noArticle=${sc.noArticle}"/>">${sc.nomArticle}</a>
@@ -237,8 +236,7 @@
 									${sc.utilisateur.pseudo}
 								</a>
 							</p>
-
-							<p>-------------------------------------------------------</p>
+							</div>
 						</c:forEach>
 					</div>
 				</div>
@@ -258,11 +256,15 @@
 					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
 						<a class="border-bottom" href="#">GrandMa'S Store</a>, Tous droits
 						réservés.
+						
+						 Site créé par <a href="https://www.linkedin.com/in/roxane-houlgatte-57334097/" target="_blank"> Roxane - </a> 
+								  <a href="https://www.linkedin.com/in/claire-goarnisson/" target="_blank"> Claire - </a> 
+								  <a href="https://www.linkedin.com/in/ang%C3%A9lo-fernandes-85b32b226/" target="_blank"> Angélo</a>
+						
 
 						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a><br>
-						<br> Distributed By <a class="border-bottom"
+						<br>Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
+							Codex</a> Distributed By <a class="border-bottom"
 							href="https://themewagon.com" target="_blank">ThemeWagon</a>
 					</div>
 					<div class="col-md-6 text-center text-md-end">

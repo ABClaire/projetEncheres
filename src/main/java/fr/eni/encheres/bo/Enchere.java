@@ -23,8 +23,13 @@ public class Enchere {
 	 */
 	public Enchere() {
 	}
-	
-	
+	/**
+	 * Constructeur.
+	 * @param dateEnchere
+	 * @param montantEnchere
+	 * @param articleVendu
+	 * @param noEncheriste
+	 */
 	public Enchere(LocalDateTime dateEnchere, Integer montantEnchere, ArticleVendu articleVendu, Integer noEncheriste) {
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
@@ -32,13 +37,17 @@ public class Enchere {
 		this.noEncheriste = noEncheriste;
 	}
 
-
+	/**
+	 * Constructeur.
+	 * @param dateEnchere
+	 * @param montantEnchere
+	 * @param utilisateur
+	 */
 	public Enchere(LocalDateTime dateEnchere, Integer montantEnchere, Utilisateur utilisateur) {
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
 		this.utilisateur = utilisateur;
 	}
-
 
 	/**
 	 * Constructeur.
@@ -47,8 +56,6 @@ public class Enchere {
 	 * @param articleVendu
 	 * @param utilisateur
 	 */
-	
-	
 	public Enchere(Integer montantEnchere, ArticleVendu articleVendu, Utilisateur utilisateur) {
 		this.montantEnchere = montantEnchere;
 		this.articleVendu = articleVendu;

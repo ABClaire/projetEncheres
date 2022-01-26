@@ -52,7 +52,6 @@ public class ConnectionServlet extends HttpServlet {
 				
 				if(utilisateurRecupere.getNoUtilisateur() != null) {
 					request.getSession().setAttribute("utilisateur", utilisateurRecupere);
-					// request.getSession().setAttribute("login", identifiant);
 					nextScreen = "AccueilConnecte";
 				} 
 			} catch (BLLException e) {

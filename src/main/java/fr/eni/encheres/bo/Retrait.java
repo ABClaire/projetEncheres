@@ -26,9 +26,7 @@ public class Retrait {
 	 * @param articleVendu
 	 */
 	public Retrait(String lieu, String codePostal, String ville, ArticleVendu articleVendu) {
-		this.lieu = lieu;
-		this.codePostal = codePostal;
-		this.ville = ville;
+		this(lieu, codePostal, ville);
 		this.articleVendu = articleVendu;
 	}
 

@@ -87,8 +87,6 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 				UtilisateurManagerImpl.getInstance().supprimerUtilisateur(model.getUtilisateur().getNoUtilisateur());
 				request.getSession().setAttribute("utilisateur", null);
 			} catch (BLLException e) {
-				e.printStackTrace();
-				//request.setAttribute("message", e.toString());
 			} 
 			request.getRequestDispatcher("WEB-INF/Accueil.jsp").forward(request, response);			
 		}

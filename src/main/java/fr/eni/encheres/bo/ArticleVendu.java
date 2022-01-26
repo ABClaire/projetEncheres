@@ -46,7 +46,6 @@ public class ArticleVendu {
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateFinEncheres,
 			Integer miseAPrix, String etatVente, Utilisateur utilisateur, Categorie categorieArticle,
 			Retrait lieuRetrait) {
-		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -57,30 +56,26 @@ public class ArticleVendu {
 		this.categorieArticle = categorieArticle;
 		this.lieuRetrait = lieuRetrait;
 	}
-
-	
 	/**
 	 * Constructeur.
 	 * @param noArticle
 	 * @param nomArticle
-	 * @param description
+	 * @param dateDebutEncheres
 	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param utilisateur
+	 * @param prixVente
 	 * @param etatVente
+	 * @param utilisateur
 	 */
 	public ArticleVendu(Integer noArticle, String nomArticle, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer miseAPrix, Utilisateur utilisateur, String etatVente) {
+			Integer prixVente, String etatVente, Utilisateur utilisateur) {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.utilisateur = utilisateur;
+		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.utilisateur = utilisateur;
 	}
-	
-	
 	/**
 	 * Constructeur.
 	 * @param nomArticle
@@ -103,174 +98,6 @@ public class ArticleVendu {
 		this.categorieArticle = categorieArticle;
 		this.lieuRetrait = lieuRetrait;
 	}
-
-	
-	
-	/**
-	 * Constructeur.
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param prixVente
-	 * @param etatVente
-	 * @param utilisateur
-	 */
-	public ArticleVendu(Integer noArticle, String nomArticle, LocalDate dateDebutEncheres, LocalDate dateFinEncheres,
-			Integer prixVente, String etatVente, Utilisateur utilisateur) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.utilisateur = utilisateur;
-	}
-
-	/**
-	 * Constructeur.
-	 * @param nomArticle
-	 * @param description
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 */
-	public ArticleVendu(String nomArticle, String description, LocalDate dateFinEncheres, Integer miseAPrix) {
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-	}
-
-
-	
-	/**
-	 * Constructeur.
-	 * @param nomArticle
-	 * @param description
-	 * @param dateFinEncheres
-	 * @param prixVente
-	 * @param utilisateur
-	 * @param categorieArticle
-	 * @param lieuRetrait
-	 */
-	public ArticleVendu(String nomArticle, String description, LocalDate dateFinEncheres, Integer prixVente,
-			Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait) {
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateFinEncheres = dateFinEncheres;
-		this.prixVente = prixVente;
-		this.utilisateur = utilisateur;
-		this.categorieArticle = categorieArticle;
-		this.lieuRetrait = lieuRetrait;
-	}
-
-
-
-	/**
-	 * Constructeur.
-	 * @param nomArticle
-	 * @param description
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param utilisateur
-	 */
-	public ArticleVendu(String nomArticle, String description, LocalDate dateFinEncheres, Integer miseAPrix,
-			Utilisateur utilisateur) {
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.utilisateur = utilisateur;
-	}
-
-
-	/**
-	 * Constructeur.
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 * @param utilisateur
-	 * @param lstEncheres
-	 * @param categorieArticle
-	 * @param lieuRetrait
-	 */
-	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, String etatVente, Utilisateur utilisateur,
-			Enchere enchereMaximum, Categorie categorieArticle, Retrait lieuRetrait) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.utilisateur = utilisateur;
-		this.enchereMaximum = enchereMaximum;
-		this.categorieArticle = categorieArticle;
-		this.lieuRetrait = lieuRetrait;
-	}
-	
-	/**
-	 * Constructeur.
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateDebutEncheres
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param prixVente
-	 * @param etatVente
-	 * @param utilisateur
-	 * @param lstEncheres
-	 * @param categorieArticle
-	 * @param lieuRetrait
-	 */
-	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,
-			LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, String etatVente, Utilisateur utilisateur,
-			List<Enchere> lstEncheres, Categorie categorieArticle, Retrait lieuRetrait) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.prixVente = prixVente;
-		this.etatVente = etatVente;
-		this.utilisateur = utilisateur;
-		this.lstEncheres = lstEncheres;
-		this.categorieArticle = categorieArticle;
-		this.lieuRetrait = lieuRetrait;
-	}
-	
-	/**
-	 * Constructeur.
-	 * @param noArticle
-	 * @param nomArticle
-	 * @param description
-	 * @param dateFinEncheres
-	 * @param miseAPrix
-	 * @param utilisateur
-	 * @param categorieArticle
-	 * @param lieuRetrait
-	 */
-	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateFinEncheres,
-			Integer miseAPrix, Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait) {
-		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.utilisateur = utilisateur;
-		this.categorieArticle = categorieArticle;
-		this.lieuRetrait = lieuRetrait;
-	}
-	
 	/**
 	 * Constructeur.
 	 * @param noArticle
@@ -285,20 +112,10 @@ public class ArticleVendu {
 	 */
 	public ArticleVendu(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres,LocalDate dateFinEncheres,
 			Integer miseAPrix, Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait) {
+		this(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, utilisateur, categorieArticle, lieuRetrait);
 		this.noArticle = noArticle;
-		this.nomArticle = nomArticle;
-		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
-		this.dateFinEncheres = dateFinEncheres;
-		this.miseAPrix = miseAPrix;
-		this.utilisateur = utilisateur;
-		this.categorieArticle = categorieArticle;
-		this.lieuRetrait = lieuRetrait;
 	}
 	
-	
-
-
 	/**
 	 * Getter pour enchereMaximum.
 	 * @return the enchereMaximum
@@ -306,7 +123,6 @@ public class ArticleVendu {
 	public Enchere getEnchereMaximum() {
 		return enchereMaximum;
 	}
-
 	/**
 	 * Setter pour enchereMaximum.
 	 * @param enchereMaximum the enchereMaximum to set
@@ -314,7 +130,6 @@ public class ArticleVendu {
 	public void setEnchereMaximum(Enchere enchereMaximum) {
 		this.enchereMaximum = enchereMaximum;
 	}
-
 	/**
 	 * Getter pour noArticle.
 	 * @return the noArticle

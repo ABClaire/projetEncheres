@@ -110,13 +110,20 @@
         <div class="container">
             <div class="copyright">
                 <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        <a class="border-bottom" href="#">GrandMa'S Store</a>, Tous droits réservés.
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						<a class="border-bottom" href="#">GrandMa'S Store</a>, Tous droits
+						réservés.
+						
+						 Site créé par <a href="https://www.linkedin.com/in/roxane-houlgatte-57334097/" target="_blank"> Roxane - </a> 
+								  <a href="https://www.linkedin.com/in/claire-goarnisson/" target="_blank"> Claire - </a> 
+								  <a href="https://www.linkedin.com/in/ang%C3%A9lo-fernandes-85b32b226/" target="_blank"> Angélo</a>
+						
 
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                    </div>
+						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						<br>Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
+							Codex</a> Distributed By <a class="border-bottom"
+							href="https://themewagon.com" target="_blank">ThemeWagon</a>
+					</div>
                     <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
                             <a href="/ProjetEncheres/AccueilConnecte">Enchères</a>

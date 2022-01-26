@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -179,11 +179,15 @@
 					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
 						<a class="border-bottom" href="#">GrandMa'S Store</a>, Tous droits
 						réservés.
+						
+						 Site créé par <a href="https://www.linkedin.com/in/roxane-houlgatte-57334097/" target="_blank"> Roxane - </a> 
+								  <a href="https://www.linkedin.com/in/claire-goarnisson/" target="_blank"> Claire - </a> 
+								  <a href="https://www.linkedin.com/in/ang%C3%A9lo-fernandes-85b32b226/" target="_blank"> Angélo</a>
+						
 
 						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-						Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-							Codex</a><br>
-						<br> Distributed By <a class="border-bottom"
+						<br>Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
+							Codex</a> Distributed By <a class="border-bottom"
 							href="https://themewagon.com" target="_blank">ThemeWagon</a>
 					</div>
 					<div class="col-md-6 text-center text-md-end">
@@ -204,8 +208,6 @@
 			<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
 				class="bi bi-arrow-up"></i></a>
 
-
-
 			<!-- JavaScript Libraries -->
 			<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 			<script
@@ -219,9 +221,7 @@
 			<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
 			<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-
-
 			<!-- Template Javascript -->
 			<script src="js/main.js"></script>
 </body>
-</html>
+</html>				     

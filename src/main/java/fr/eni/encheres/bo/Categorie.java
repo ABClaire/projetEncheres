@@ -19,7 +19,6 @@ public class Categorie {
 	public Categorie() {
 	}
 	
-	
 	/**
 	 * Constructeur.
 	 * @param libelle

@@ -32,22 +32,30 @@ public class Utilisateur {
 	public Utilisateur() {
 	}
 	
-	
-	
+	/**
+	 * Constructeur.
+	 * @param pseudo
+	 */
 	public Utilisateur(String pseudo) {
 		this.pseudo = pseudo;
 	}
 	
+	/**
+	 * Constructeur.
+	 * @param noUtilisateur
+	 * @param pseudo
+	 */
 	public Utilisateur(Integer noUtilisateur,String pseudo) {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 	}
-	
+	/**
+	 * Constructeur.
+	 * @param noUtilisateur
+	 */
 	public Utilisateur(Integer noUtilisateur) {
 		this.noUtilisateur = noUtilisateur;
 	}
-
-
 
 	/**
 	 * Constructeur.
@@ -56,24 +64,27 @@ public class Utilisateur {
 	 */
 	
 	public Utilisateur(String email, String motDePasse) {
-		super();
 		this.email = email;
 		this.motDePasse = motDePasse;
 	}
 
-
-	
-	
+	/**
+	 * Constructeur.
+	 * @param pseudo
+	 * @param lstVentes
+	 */
 	public Utilisateur(String pseudo, List<ArticleVendu> lstVentes) {
-		super();
 		this.pseudo = pseudo;
 		this.lstVentes = lstVentes;
 	}
 
-
-
+	/**
+	 * Constructeur.
+	 * @param pseudo
+	 * @param email
+	 * @param motDePasse
+	 */
 	public Utilisateur(String pseudo, String email, String motDePasse) {
-		super();
 		this.pseudo = pseudo;
 		this.email = email;
 		this.motDePasse = motDePasse;
@@ -106,7 +117,6 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-	
 	/**
 	 * Constructeur.
 	 * @param pseudo
@@ -126,7 +136,6 @@ public class Utilisateur {
 		this(pseudo, nom, prenom, email, rue, codePostal, ville, motDePasse, credit, administrateur);
 		this.telephone = telephone;
 	}
-	
 
 	/**
 	 * Constructeur.

@@ -50,7 +50,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				utilisateurs.add(utilisateur);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		
@@ -72,7 +71,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				utilisateur = map(rs);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		return utilisateur;
@@ -98,7 +96,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 					utilisateur.setNoUtilisateur(idGenere);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
 				throw new DALException(e.getMessage());
 			}
 		}
@@ -125,7 +122,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				utilisateur.setVille(rs.getString("ville"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		return utilisateur;
@@ -143,7 +139,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 	}
@@ -161,7 +156,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 	}
@@ -178,7 +172,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			pStmt.setInt(1, idUtilisateur);
 			pStmt.executeUpdate();			
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 		

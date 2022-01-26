@@ -30,7 +30,6 @@ public class RetraitDAOImpl implements RetraitDAO {
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
 			throw new DALException(e.getMessage());
 		}
 	}
